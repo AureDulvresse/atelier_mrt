@@ -1,0 +1,30 @@
+{
+  "name": "fenixad/atelier_mrt",
+  "description": "Site vitrine et marchand",
+  "require": {
+    "stripe/stripe-php": "^15.4",
+    "paypal/rest-api-sdk-php": "^1.14",
+    "phpmailer/phpmailer": "^6.9",
+    "phpauth/phpauth": "^1.5"
+  },
+  "authors": [
+    {
+      "name": "Aure",
+      "email": "147180124+AureDulvresse@users.noreply.github.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\Controllers\\": "controllers/",
+      "App\\Models\\": "models/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true
+  }
+}
