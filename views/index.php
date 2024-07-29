@@ -22,15 +22,16 @@
 <section id="gallery" class="gallery flex flex-column align-center">
     <div class="container">
         <h2>Galerie</h2>
-        <div class="gallery-grid flex flex-wrap">
-            <div class="gallery-item flex flex-column">
-                <img src="assets/images/sample.jpg" alt="Œuvre d'art">
-                <div class="gallery-info">
-                    <h3>Titre de l'œuvre</h3>
-                    <p>Description brève.</p>
+        <div class="gallery-grid flex flex-wrap mb-3">
+            <?php for ($i = 0; $i < 6; $i++) { ?>
+                <div class="gallery-item flex flex-column">
+                    <img src="assets/images/sample.jpg" alt="Œuvre d'art">
+                    <div class="gallery-info">
+                        <h3>Titre de l'œuvre</h3>
+                        <p>Description brève.</p>
+                    </div>
                 </div>
-            </div>
-            <!-- Ajoutez plus d'éléments de galerie ici -->
+            <?php } ?>
         </div>
         <a href="gallery.php" class="btn-secondary">Voir plus d'œuvres</a>
     </div>

@@ -11,7 +11,7 @@
 
     <style>
         #home {
-            background-image: url(<?php $artist_banner ?>);
+            background-image: url(<?php $artist_banner ?>) !important;
         }
     </style>
 </head>
