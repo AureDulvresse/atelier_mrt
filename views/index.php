@@ -1,13 +1,14 @@
 <?php include './views/includes/header.php'; ?>
 
 <!-- Section de présentation -->
-<section id="home" class="hero flex flex-column justify-center align-center">
+<section id="home" class="hero flex flex-column justify-center align-start">
     <div class="hero-content">
         <h1 class="hero-title">Bienvenue à l'Atelier MRT</h1>
         <p class="hero-description">Explorez notre collection d'art unique et découvrez des œuvres qui inspirent.</p>
         <a href="#gallery" class="btn-primary">Voir la Galerie</a>
     </div>
 </section>
+
 
 <!-- Section À Propos -->
 <section id="about" class="about flex flex-column align-center">

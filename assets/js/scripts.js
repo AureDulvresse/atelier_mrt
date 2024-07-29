@@ -1,4 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const navToggle = document.querySelector(".nav-toggle");
+  const navMenu = document.querySelector(".nav-menu");
+
+  const isLoggedIn = false; // Remplacez ceci par la logique de votre application
+  const loginBtn = document.querySelector(".login-btn");
+  const cartIcon = document.querySelector(".cart-icon");
+  const profileIcon = document.querySelector(".profile-icon");
+
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
   // Gérer le changement de couleur de l'en-tête au défilement
   window.addEventListener("scroll", () => {
     const header = document.querySelector("header");
@@ -12,11 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Gérer la visibilité des boutons de connexion et icônes
-  const isLoggedIn = false; // Remplacez ceci par la logique de votre application
-  const loginBtn = document.querySelector(".login-btn");
-  const cartIcon = document.querySelector(".cart-icon");
-  const profileIcon = document.querySelector(".profile-icon");
-
   if (loginBtn && cartIcon && profileIcon) {
     if (isLoggedIn) {
       loginBtn.style.display = "none";
@@ -29,13 +34,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Toggle menu mobile
-  const menuToggle = document.querySelector(".menu-toggle");
-  const navList = document.querySelector("nav ul");
+  navToggle.addEventListener("click", function () {
+    const header = document.querySelector("header");
+    navMenu.classList.toggle("active");
+      header.classList.toggle("scrolled");
+  });
 
-  if (menuToggle && navList) {
-    menuToggle.addEventListener("click", () => {
-      navList.classList.toggle("active");
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault(); // Empêche le comportement par défaut du lien
+
+      const targetId = link.getAttribute("href").substring(1); // Récupère l'id de la cible
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop,
+          behavior: "smooth", // Effectue un défilement fluide
+        });
+      }
     });
-  }
+  });
 });
