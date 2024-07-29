@@ -1,0 +1,483 @@
+/* Réinitialisation de styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-black: #0c0c0c;
+    --color-white: #fff;
+    --color-semi-white: #f2f2f2;
+    --color-semi-black: #0e0707;
+    --color-gray: #ccc;
+    --color-red: #c53737;
+}
+
+/* Flexbox Utilities */
+
+/* Flex Container */
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Justify Content */
+.justify-start {
+    justify-content: flex-start;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+.justify-evenly {
+    justify-content: space-evenly;
+}
+
+/* Align Items */
+.align-start {
+    align-items: flex-start;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-end {
+    align-items: flex-end;
+}
+
+.align-baseline {
+    align-items: baseline;
+}
+
+.align-stretch {
+    align-items: stretch;
+}
+
+/* Align Self */
+.align-self-start {
+    align-self: flex-start;
+}
+
+.align-self-center {
+    align-self: center;
+}
+
+.align-self-end {
+    align-self: flex-end;
+}
+
+.align-self-baseline {
+    align-self: baseline;
+}
+
+.align-self-stretch {
+    align-self: stretch;
+}
+
+/* Flex Grow and Shrink */
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.flex-shrink-1 {
+    flex-shrink: 1;
+}
+
+.flex-basis-auto {
+    flex-basis: auto;
+}
+
+.flex-basis-0 {
+    flex-basis: 0;
+}
+
+/* Flex Direction */
+.flex-direction-row {
+    flex-direction: row;
+}
+
+.flex-direction-column {
+    flex-direction: column;
+}
+
+/* Flex Wrap */
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-nowrap {
+    flex-wrap: nowrap;
+}
+
+.flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+}
+
+/* Order */
+.order-1 {
+    order: 1;
+}
+
+.order-2 {
+    order: 2;
+}
+
+.order-3 {
+    order: 3;
+}
+
+.order-last {
+    order: 9999;
+}
+
+/* Styles généraux */
+body {
+    font-family: 'Arial', sans-serif;
+    background: var(--color-semi-white);
+    color: var(--color-black);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+/* En-tête */
+header {
+    color: var(--color-black);
+    padding: 1rem 0;
+    position: -webkit-sticky;
+    /* Pour Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s ease-in-out;
+}
+
+header.scrolled {
+    background: var(--color-semi-black);
+    transition: background 0.5s ease-in-out;
+}
+
+header .logo {
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+
+header .logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: var(--color-black);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s, background 0.3s;
+}
+
+header.scrolled nav ul li a {
+    color: var(--color-white);
+}
+
+nav ul li a.active{
+    color: var(--color-red);
+    border-bottom: 2px solid var(--color-red);
+}
+
+nav ul li a:hover {
+    color: var(--color-red);
+}
+
+.nav-extra {
+    display: flex;
+    align-items: center;
+}
+
+.nav-extra .login-btn {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    background: #e84c3d;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.nav-extra .login-btn:hover {
+    background: #d43f2b;
+}
+
+.nav-extra .cart-icon,
+.nav-extra .profile-icon {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+/* Section Hero */
+.hero {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    background-color: #f39c12;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e67e22;
+}
+
+/* Section À Propos */
+.about {
+    background-color: #f4f4f4;
+    padding: 50px 20px;
+}
+
+.about .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.about p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.btn-secondary {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #2980b9;
+}
+
+/* Section Galerie */
+.gallery {
+    padding: 50px 20px;
+}
+
+.gallery .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.gallery-item {
+    flex: 1 1 calc(33.333% - 20px);
+    box-sizing: border-box;
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.gallery-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.gallery-info h3 {
+    margin: 0;
+}
+
+.gallery-info p {
+    margin: 5px 0 0;
+}
+
+/* Section Contact */
+.contact {
+    background-color: #fff;
+    padding: 50px 20px;
+}
+
+.contact .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.contact p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* Section Boutique */
+.shop {
+    background-color: #f4f4f4;
+    padding: 50px 20px;
+}
+
+.shop .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.shop h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.shop p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* Pied de page */
+footer {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+footer .footer-info p {
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #333;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 0;
+        text-align: center;
+    }
+
+    .nav-extra {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        color: #fff;
+        background: #333;
+        border: none;
+        cursor: pointer;
+    }
+}
