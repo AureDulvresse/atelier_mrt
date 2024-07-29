@@ -24,8 +24,8 @@ $config = new PHPAuthConfig($pdo);
 $auth = new PHPAuth($pdo, $config);
 
 // Vérifiez que l'initialisation s'est bien déroulée
-if ($auth) {
-    echo 'PHPAuth a été initialisé avec succès.';
-} else {
-    echo 'Erreur lors de l\'initialisation de PHPAuth.';
-}
+// if ($auth) {
+//     echo 'PHPAuth a été initialisé avec succès.';
+// } else {
+//     echo 'Erreur lors de l\'initialisation de PHPAuth.';
+// }
