@@ -13,9 +13,46 @@
 <!-- Section À Propos -->
 <section id="about" class="about flex flex-column align-center">
     <div class="container">
-        <h2>À Propos de Nous</h2>
-        <p>Notre atelier est dédié à la création et à la présentation d'art unique. Nous croyons en la puissance de l'art pour transformer les espaces et les esprits.</p>
-        <a href="about.php" class="btn-secondary">En savoir plus</a>
+        <div class="about-content flex flex-row align-center justify-between">
+            <div class="about-text flex flex-column">
+                <h2>À Propos de Nous</h2>
+                <p>Peintre français né en 1983 d'origine Espagnole, entouré depuis son
+                    plus jeune âge par une famille d'artistes. Il s'inspire de leurs
+                    différentes techniques et de leurs différents styles pour créer son
+                    propre univers. Pour lui, la peinture est un moyen d'expression, de
+                    transmission, de création et de contemplation. Chacune de ses œuvres
+                    est une explosion de couleurs, de formes et d'énergie, créant un
+                    langage visuel unique qui brise les frontières de la tradition
+                    artistique. À travers ses personnages, il aime mélanger les styles
+                    et les époques : "une véritable rencontre entre Cubisme, Street-art
+                    et Pop-art". Un mariage inattendu mais époustouflant de styles.</p>
+                    
+                <!-- Informations supplémentaires -->
+                <div class="d-flex flex-wrap gap-4">
+                    <div class="d-flex align-items-center">
+                        <span class="text-danger me-2">
+                            <i class="bx bx-paint bx-md"></i>
+                        </span>
+                        <span class="text-muted">Peinture</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="text-danger me-2">
+                            <i class="bx bx-idea bx-md"></i>
+                        </span>
+                        <span class="text-muted">Créativité</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="text-danger me-2">
+                            <i class="bx bx-pen bx-md"></i>
+                        </span>
+                        <span class="text-muted">Expression</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="assets/images/sample.jpg" alt="À propos de nous">
+            </div>
+        </div>
     </div>
 </section>
 

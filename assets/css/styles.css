@@ -12,14 +12,13 @@
     --color-white: #fff;
     --color-semi-white: #f4f4f4;
     --color-semi-black: #0e0707;
-    --color-gray: #ccc;
+    --color-gray: #6d6b6b;
     --color-red: #c53737;
 }
 
-
 /* Styles généraux */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Inter', sans-serif;
     background: var(--color-semi-white);
     color: var(--color-black);
     line-height: 1.6;
@@ -167,7 +166,38 @@ nav ul li a:hover {
     }
 
 }
+/* Appliquer la police Owsland aux titres */
+h1,
+h2 {
+    font-family: 'Oswald', serif;
+}
 
+/* Style pour les titres de sections */
+section h2 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--color-red);
+    position: relative;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Ajouter un effet de dégradé aux titres */
+section h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, var(--color-red), var(--color-semi-black));
+    z-index: -1;
+}
+
+/* Effet d'ombre légère pour les titres */
+section h2 {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
 /* Section Hero */
 .hero {
     background-repeat: no-repeat;
@@ -245,8 +275,9 @@ nav ul li a:hover {
 
 /* Section À Propos */
 .about {
-    background-color: var(--color-semi-white);
-    padding: 50px 20px;
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+    /* Couleur de fond claire */
 }
 
 .about .container {
@@ -254,14 +285,51 @@ nav ul li a:hover {
     margin: 0 auto;
 }
 
-.about h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
 }
 
-.about p {
-    font-size: 1rem;
+.about-text {
+    flex: 1;
+    max-width: 500px;
+}
+
+.about-text p {
+    font-size: 1.125rem;
+    line-height: 1.6;
     margin-bottom: 20px;
+    color: var(--color-gray);
+}
+
+.about-image {
+    flex: 1;
+    max-width: 500px;
+    text-align: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    /* Coins arrondis pour l'image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Ombre légère */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+    }
+
+    .about-text,
+    .about-image {
+        max-width: 100%;
+    }
 }
 
 /* Section Galerie */
@@ -273,13 +341,6 @@ nav ul li a:hover {
 .gallery .container {
     max-width: 1200px;
     margin: 0 auto;
-}
-
-.gallery h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    text-align: center;
-    color: var(--color-black);
 }
 
 .gallery-grid {
@@ -360,11 +421,6 @@ nav ul li a:hover {
     margin: 0 auto;
 }
 
-.contact h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
 .contact p {
     font-size: 1rem;
     margin-bottom: 20px;
@@ -379,11 +435,6 @@ nav ul li a:hover {
 .shop .container {
     max-width: 1200px;
     margin: 0 auto;
-}
-
-.shop h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
 }
 
 .shop p {

@@ -5,8 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atelier MRT | <?php echo htmlspecialchars($pageTitle); ?></title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
+
     <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons/css/boxicons.min.css' rel='stylesheet'>
+    
     <?php includeCSS('styles.css'); ?>
 
     <style>
