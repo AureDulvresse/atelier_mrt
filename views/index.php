@@ -92,7 +92,7 @@
                 <?php } ?>
             </div>
             <div class="more-folio">
-                <a href="shop/index.php" class="btn">Explorer la galerie</a>
+                <a href="shop" class="btn">Explorer la galerie</a>
             </div>
         </div>
     </div>
@@ -170,7 +170,7 @@
                             <p class="blog-text">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem poimus? Tempora expedita eos autem!
                             </p>
-                            <a href="#" class="btn small">Lire la Suite</a>
+                            <a href="blog/post?id=<?php echo $article_id; ?>" class="btn small">Lire la Suite</a>
                         </div>
                     </div>
                 </div>
@@ -222,7 +222,7 @@
                 <div class="row">
                     <textarea name="message" class="contact-input textarea" placeholder="Message"></textarea>
                 </div>
-                <a href="#" class="btn">Send</a>
+                <a href="#" class="btn">Envoyer</a>
             </div>
         </div>
     </div>

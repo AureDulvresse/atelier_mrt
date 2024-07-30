@@ -2,6 +2,11 @@
 session_start();
 require_once 'config/config.php';
 
+// Afficher les erreurs pour le débogage
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Obtenez l'URI de la requête
 $request = $_SERVER['REQUEST_URI'];
 
@@ -35,32 +40,50 @@ $pageTitle = 'Accueil - Atelier MRT';
 switch ($request) {
     case '':
     case '/':
-        $pageTitle = 'Accueil - Atelier MRT';
+        $pageTitle = 'Accueil';
         require __DIR__ . '/views/index.php';
         break;
     case '/login':
-        $pageTitle = 'Connexion - Atelier MRT';
+        $pageTitle = 'Connexion';
         require __DIR__ . '/views/auth/login.php';
         break;
     case '/register':
-        $pageTitle = 'Inscription - Atelier MRT';
+        $pageTitle = 'Inscription';
         require __DIR__ . '/views/auth/register.php';
         break;
     case '/contact':
-        $pageTitle = 'Contact - Atelier MRT';
+        $pageTitle = 'Contact';
         require __DIR__ . '/views/mail/contact.php';
         break;
-    case '/admin':
-        $pageTitle = 'Administration - Atelier MRT';
-        require __DIR__ . '/views/admin/dashboard.php';
+    case '/shop':
+        $pageTitle = 'Boutique';
+        require __DIR__ . '/views/shop/gallery.php';
         break;
-    case '/admin/edit_painting':
-        $pageTitle = 'Éditer une œuvre - Atelier MRT';
-        require __DIR__ . '/views/admin/edit_painting.php';
+    case (preg_match('/^\/shop\/artwork\/(\d+)$/', $request, $matches) ? true : false):
+        $pageTitle = 'Détail de l\'œuvre';
+        $_GET['id'] = $matches[1];
+        require __DIR__ . '/views/shop/artwork.php';
+        break;
+    case '/blog':
+        $pageTitle = 'Blog';
+        require __DIR__ . '/views/blog/blog.php';
+        break;
+    case (preg_match('/^\/blog\/post\/(\d+)$/', $request, $matches) ? true : false):
+        $pageTitle = 'Détail de l\'article';
+        $_GET['id'] = $matches[1];
+        require __DIR__ . '/views/blog/post.php';
         break;
     case '/order/checkout':
-        $pageTitle = 'Commande - Atelier MRT';
+        $pageTitle = 'Commande';
         require __DIR__ . '/views/order/checkout.php';
+        break;
+    case '/admin':
+        $pageTitle = 'Administration';
+        require __DIR__ . '/views/admin/dashboard.php';
+        break;
+    case '/admin/artwork/edit':
+        $pageTitle = 'Éditer une œuvre';
+        require __DIR__ . '/views/admin/edit_painting.php';
         break;
     default:
         $pageTitle = 'Page Non Trouvée - Atelier MRT';
