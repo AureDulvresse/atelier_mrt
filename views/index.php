@@ -23,7 +23,7 @@
 <section class="about section" id="about">
     <div class="container">
         <div class="section-header">
-            <h3 class="title" data-title="Qui suis-je ?">A Propos</h3>
+            <h3 class="title" data-title="Qui suis-je ?">À Propos</h3>
         </div>
 
         <div class="section-body grid-2">
@@ -32,32 +32,11 @@
                 <p class="text">
                     Peintre français né en 1983 d'origine Espagnole, entouré depuis son plus jeune âge par une famille d'artistes. Il s'inspire de leurs différentes techniques et de leurs différents styles pour créer son propre univers. Pour lui, la peinture est un moyen d'expression, de transmission, de création et de contemplation. Chacune de ses œuvres est une explosion de couleurs, de formes et d'énergie, créant un langage visuel unique qui brise les frontières de la tradition artistique. À travers ses personnages, il aime mélanger les styles et les époques : "une véritable rencontre entre Cubisme, Street-art et Pop-art". Un mariage inattendu mais époustouflant de styles.
                 </p>
-                <div class="skills">
-                    <div class="skill html">
-                        <h3 class="skill-title">HTML</h3>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill css">
-                        <h3 class="skill-title">CSS</h3>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="70%"></div>
-                        </div>
-                    </div>
-                    <div class="skill js">
-                        <h3 class="skill-title">JavaScript</h3>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-progress="80%"></div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#" class="btn">Read more</a>
             </div>
 
             <div class="column-2 image" data-aos="fade-left" data-aos-duration="2000">
                 <img src="./assets/images/shapes/points4.png" class="points" alt="" />
-                <img src="./img/about.png" class="z-index" alt="" />
+                <img src="./assets/images/about.png" class="z-index" alt="" />
             </div>
         </div>
     </div>
@@ -79,35 +58,31 @@
 
     <div class="container">
         <div class="section-header">
-            <h3 class="title" data-title="Decouvrir ma galerie">Mes Oeuvres </h3>
+            <h3 class="title" data-title="Découvrir ma galerie">Mes Œuvres</h3>
         </div>
 
         <div class="section-body">
             <div class="filter">
-                <button class="filter-btn active" data-filter="*">All</button>
-                <button class="filter-btn" data-filter=".ui">UI/UX</button>
-                <button class="filter-btn" data-filter=".webdev">Web Dev</button>
-                <button class="filter-btn" data-filter=".appdev">
-                    Mobile App
-                </button>
-                <button class="filter-btn" data-filter=".logo-design">
-                    Logo Design
-                </button>
+                <button class="filter-btn active" data-filter="*">Toutes</button>
+                <button class="filter-btn" data-filter=".peinture">Peinture</button>
+                <button class="filter-btn" data-filter=".dessin">Dessin</button>
+                <button class="filter-btn" data-filter=".sculpture">Sculpture</button>
+                <button class="filter-btn" data-filter=".photographie">Photographie</button>
             </div>
 
             <div class="grid" data-aos="fade-up" data-aos-duration="11000">
-                <?php for ($i = 0; $i < 7; $i++) { ?>
-                    <div class="grid-item logo-design">
+                <?php for ($i = 0; $i < 6; $i++) { ?>
+                    <div class="grid-item peinture">
                         <div class="gallery-image">
                             <img src="./assets/images/sample.jpg" alt="" />
                             <div class="img-overlay">
                                 <div class="img-overlay-content">
                                     <div class="img-description">
-                                        <h3>Logo Design</h3>
-                                        <h5>View Demo</h5>
+                                        <h3>Peinture</h3>
+                                        <h5>Voir Démo</h5>
                                     </div>
                                     <button class="btn" id="add-to-cart" title="ajouter au panier">
-                                        <i class="bx bx-shop"></i>
+                                        <i class="bx bx-cart-add bx-sm small"></i>
                                     </button>
                                 </div>
 
@@ -140,28 +115,28 @@
         <div class="wrap">
             <div class="record-circle">
                 <h2 class="number" data-num="235">0</h2>
-                <h4 class="sub-title">Projects</h4>
+                <h4 class="sub-title">Projets</h4>
             </div>
         </div>
 
         <div class="wrap">
             <div class="record-circle active">
-                <h2 class="number" data-num="174">0</h2>
-                <h4 class="sub-title">Happy Clients</h4>
+                <h2 class="number" data-num="174">0</h4>
+                    <h4 class="sub-title">Clients Satisfaits</h4>
             </div>
         </div>
 
         <div class="wrap">
             <div class="record-circle">
                 <h2 class="number" data-num="892">0</h2>
-                <h4 class="sub-title">Work Hour</h4>
+                <h4 class="sub-title">Heures de Travail</h4>
             </div>
         </div>
 
         <div class="wrap">
             <div class="record-circle">
                 <h2 class="number" data-num="368">0</h2>
-                <h4 class="sub-title">Awards</h4>
+                <h4 class="sub-title">Récompenses</h4>
             </div>
         </div>
     </div>
@@ -170,10 +145,9 @@
 <section class="blog section">
     <div class="container">
         <div class="section-header">
-            <h3 class="title" data-title="Last News">My blog</h3>
+            <h3 class="title" data-title="Dernières Nouvelles">Mon Blog</h3>
             <p class="text">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo,
-                deserunt?
+                Découvrez les dernières actualités et projets de l'atelier MRT.
             </p>
         </div>
 
@@ -189,15 +163,14 @@
 
                         <div class="blog-content">
                             <div class="blog-info">
-                                <h5 class="blog-date">March, 19 2020</h5>
+                                <h5 class="blog-date">19 Mars, 2020</h5>
                                 <h5 class="blog-user"><i class="fas fa-user"></i>Admin</h5>
                             </div>
-                            <h3 class="title-sm">This is a short title</h3>
+                            <h3 class="title-sm">Un Titre Court</h3>
                             <p class="blog-text">
-                                Lorem ipsum, dolor sit amet elit. rem poimus? Tempora
-                                expedita eos autem! Lorem ipsum, dolor sit met.
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem poimus? Tempora expedita eos autem!
                             </p>
-                            <a href="#" class="btn small">Read more</a>
+                            <a href="#" class="btn small">Lire la Suite</a>
                         </div>
                     </div>
                 </div>
@@ -210,38 +183,32 @@
     <div class="container">
         <div class="contact-box">
             <div class="contact-info">
-                <h3 class="title">Get in touch</h3>
+                <h3 class="title" data-title="Parlons-en">Contactez-moi</h3>
                 <p class="text">
-                    Vous avez une question, une idée ou un projet ?
-                    N'hésitez pas à me contacter ! Ensemble, nous pouvons créer quelque chose d'incroyable.
-                    Chaque message compte, et je suis impatient de découvrir le vôtre.
+                    Une question, une commande, une demande spécifique ? N'hésitez pas à me contacter, je vous répondrai dans les plus brefs délais.
                 </p>
                 <div class="information-wrap">
                     <div class="information">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <p class="info-text">92 Cherry Drive Unimodale, NY 11553</p>
+                        <i class="bx bxs-map"></i>
+                        <p class="info-text">Boulevard, Paris, France</p>
                     </div>
-
                     <div class="information">
-                        <div class="contact-icon">
-                            <i class="fas fa-paper-plane"></i>
-                        </div>
-                        <p class="info-text">lorem@ipsum.com</p>
+                        <i class="bx bxs-phone"></i>
+                        <p class="info-text">+33 123 456 789</p>
                     </div>
-
                     <div class="information">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <p class="info-text">123-456-789</p>
+                        <i class="bx bxs-envelope"></i>
+                        <p class="info-text">mtr.artiste@gmail.com</p>
                     </div>
                 </div>
+                <div class="contact-social">
+                    <a href="#"><i class="bx bxl-instagram-alt"></i></a>
+                    <a href="#"><i class="bx bxl-twitter"></i></a>
+                    <a href="#"><i class="bx bxl-dribbble"></i></a>
+                    <a href="#"><i class="bx bxl-youtube"></i></a>
+                </div>
             </div>
-
             <div class="contact-form">
-                <h3 class="title">Contact me</h3>
                 <div class="row">
                     <input type="text" class="contact-input" placeholder="First Name" />
                     <input type="text" class="contact-input" placeholder="Last Name" />
@@ -260,19 +227,5 @@
         </div>
     </div>
 </section>
-
-<section class="hireme" id="hireme">
-    <div class="container">
-        <h3 class="title">Let's talk about a project</h3>
-        <p class="text">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio,
-            culpa. Commodi suscipit animi officia dignissimos unde, ipsum fugiat
-            consequuntur, fugit ratione vel aperiam, similique distinctio
-            mollitia repellendus quasi rem vero!
-        </p>
-        <a href="#" class="btn">Hire me</a>
-    </div>
-</section>
-</main>
 
 <?php include './views/includes/footer.php'; ?>

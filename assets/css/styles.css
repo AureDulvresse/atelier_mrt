@@ -207,6 +207,8 @@
       text-transform: uppercase;
       font-weight: 500;
       transition: 0.3s;
+      cursor: pointer;
+      transition: background-color 0.4s ease-in-out;
   }
 
   .btn:hover {
@@ -615,39 +617,6 @@
 
   .about .text {
       margin-top: 1rem;
-  }
-
-  .skills {
-      margin: 1.5rem 0 2.5rem 0;
-  }
-
-  .skill {
-      margin: 1rem 0;
-  }
-
-  .skill-title {
-      color: #555;
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-  }
-
-  .skill-bar {
-      width: 70%;
-      height: 12px;
-      border-radius: 10px;
-      background-color: #ece6fa;
-      position: relative;
-      overflow: hidden;
-  }
-
-  .skill-progress {
-      position: absolute;
-      height: 100%;
-      width: 0%;
-      top: 0;
-      left: 0;
-      background-color: var(--main-color);
-      transition: 1s;
   }
 
   .about .column-1 {
