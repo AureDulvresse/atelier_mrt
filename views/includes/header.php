@@ -66,7 +66,7 @@
                                 <a href="#contact">Contact</a>
                             </li>
                             <li>
-                                <a href="#hireme" class="active">Connexion</a>
+                                <a href="login" class="active">Connexion</a>
                             </li>
                         </ul>
                     </div>

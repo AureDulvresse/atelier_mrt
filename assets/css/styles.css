@@ -24,6 +24,18 @@
       scroll-behavior: smooth;
   }
 
+  html::-webkit-scrollbar {
+     width: 6px;
+  }
+
+  html::-webkit-scrollbar-thumb {
+      background-color: var(--main-color);
+      border-radius: 999px;
+  }
+
+  html::-webkit-scrollbar-track {
+      background-color: var(--light-two);
+  }
 
 
   body,
@@ -218,6 +230,11 @@
   .btn.small {
       padding: 0.7rem 1.8rem;
       font-size: 1rem;
+  }
+
+  .btn.black {
+      background-color: var(--light-three);
+      box-shadow: 4px 8px 14px rgba(255, 255, 255, 0.15);
   }
 
   /* End Genral Styles */
@@ -420,6 +437,45 @@
 
   /* End header */
 
+  /* About */
+
+  .about {
+      overflow: hidden;
+  }
+
+  .about img {
+      max-width: 600px;
+  }
+
+  .about .text {
+      margin-top: 1rem;
+  }
+
+  .about .column-1 {
+      position: relative;
+  }
+
+  .about .column-1:before {
+      content: "About";
+      position: absolute;
+      font-size: 8rem;
+      font-weight: 800;
+      color: var(--main-color);
+      opacity: 0.04;
+      top: 20px;
+      left: 0;
+      line-height: 0;
+  }
+
+  .about .points {
+      width: 300px;
+      top: 65%;
+      left: 80%;
+      opacity: 0.1;
+  }
+
+  /* End About */
+
   /* Gallery */
 
   .gallery {
@@ -435,6 +491,7 @@
       top: 0;
       left: 0;
       background-color: var(--main-color);
+      border-radius: var(--radius);
   }
 
   .gallery .title,
@@ -545,13 +602,14 @@
   .gallery-image .img-overlay {
       position: absolute;
       width: 100%;
-      height: 75%;
+      height: 72%;
       bottom: 0;
       left: 0;
       z-index: 2;
       color: var(--light-one);
-      background: linear-gradient(to top, rgba(147, 16, 16, 0.5), rgba(251, 76, 76, 0.45));
-      box-shadow: 0 -14px 15px rgba(251, 76, 76, 0.49);
+      /* background: linear-gradient(to top, rgba(147, 16, 16, 0.5), rgba(251, 76, 76, 0.45)); */
+      background: linear-gradient(to top, rgba(147, 16, 16, 0.5), rgba(53, 20, 20, 0.45));
+      box-shadow: 0 -14px 15px rgba(53, 20, 20, 0.48);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -562,11 +620,11 @@
   }
 
   .img-overlay-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      position: relative;
   }
 
   .img-description {
@@ -584,10 +642,10 @@
       font-weight: 300;
   }
 
-  .img-overlay-content .btn{
-    width: 100px !important;
-    outline: none !important;
-    border: none !important;
+  .img-overlay-content .btn {
+      width: 100px !important;
+      outline: none !important;
+      border: none !important;
   }
 
   .gallery-image:hover .img-overlay {
@@ -598,51 +656,12 @@
       transform: translate(-50%, -50%) scale(1.1);
   }
 
-  .more-folio {
+  .more-artwork {
       display: flex;
       justify-content: center;
   }
 
   /* End Gallery */
-
-  /* About */
-
-  .about {
-      overflow: hidden;
-  }
-
-  .about img {
-      max-width: 600px;
-  }
-
-  .about .text {
-      margin-top: 1rem;
-  }
-
-  .about .column-1 {
-      position: relative;
-  }
-
-  .about .column-1:before {
-      content: "About";
-      position: absolute;
-      font-size: 8rem;
-      font-weight: 800;
-      color: var(--main-color);
-      opacity: 0.04;
-      top: 20px;
-      left: 0;
-      line-height: 0;
-  }
-
-  .about .points {
-      width: 300px;
-      top: 65%;
-      left: 80%;
-      opacity: 0.1;
-  }
-
-  /* End About */
 
   /* Records */
 
@@ -650,6 +669,7 @@
       position: relative;
       background-color: var(--main-color);
       padding: 5.2rem 0;
+      border-radius: var(--radius);
   }
 
   .records .container {
@@ -755,25 +775,16 @@
       max-width: 420px;
       width: 100%;
       overflow: hidden;
-      background-color: var(--light-two);
       transition: 0.3s;
       position: relative;
-  }
-
-  .blog-card:after {
-      content: "";
-      position: absolute;
-      width: 1100%;
-      height: 0px;
-      bottom: 0;
-      left: 0;
-      background-color: var(--main-color);
-      transition: 0.3s;
   }
 
   .blog-image {
       width: 100%;
       height: 270px;
+      border-radius: var(--radius);
+      margin-top: 10px;
+      margin-bottom: 8px;
       position: relative;
       overflow: hidden;
   }
@@ -785,11 +796,14 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      border-radius: var(--radius);
       transition: 0.5s;
   }
 
   .blog-content {
-      padding: 2.1rem 2.2rem 2.7rem 2.2rem;
+      padding: 2.1rem 1.6rem 2.7rem 1.6rem;
+      background-color: var(--light-two);
+      border-radius: var(--radius);
   }
 
   .blog-info {
@@ -826,12 +840,8 @@
       transform: translateY(-15px);
   }
 
-  .blog-card:hover:after {
-      height: 8px;
-  }
-
   .blog-card:hover .blog-image img {
-      transform: translate(-50%, -50%) scale(1.15);
+      transform: translate(-50%, -50%) scale(1.25);
   }
 
   .blog .points {
@@ -862,6 +872,8 @@
   .contact:before {
       top: 0;
       height: 40%;
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
       background: url("../images/map.png") center center / cover;
   }
 
@@ -875,7 +887,7 @@
       width: 100%;
       background-color: var(--light-one);
       width: 100%;
-      border-radius: 45px;
+      border-radius: 35px;
       padding: 5.5rem 4.5rem;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -949,7 +961,7 @@
       border: none;
       outline: none;
       background: #f3f3f3;
-      border-radius: 4rem;
+      border-radius: var(--radius);
       font-weight: 600;
       font-size: 1.25rem;
       transition: 0.3s;
@@ -962,7 +974,7 @@
   .contact-input.textarea {
       resize: none;
       min-height: 280px;
-      border-radius: 2rem;
+      border-radius: 14px;
   }
 
   .contact-input:hover {
@@ -980,31 +992,10 @@
 
   /* End Contact */
 
-  /* Hire me */
-
-  .hireme {
-      padding: 12rem 0;
-  }
-
-  .hireme .container {
-      text-align: center;
-  }
-
-  .hireme .title {
-      margin-bottom: 1.3rem;
-  }
-
-  .hireme .text {
-      max-width: 1000px;
-      margin: 0 auto 1.6rem auto;
-  }
-
-  /* End Hire me */
-
   /* Footer */
 
   .footer {
-      background-color: #222;
+      background-color: var(--light-three);
       padding: 6rem 0;
   }
 
@@ -1020,6 +1011,10 @@
   .footer .title-sm {
       color: #fafafa;
       margin-bottom: 0.9rem;
+  }
+
+  .footer .title-sm span {
+      color: var(--main-color);
   }
 
   .footer .text {
@@ -1096,29 +1091,6 @@
       cursor: pointer;
   }
 
-  .followme-wrap {
-      display: flex;
-  }
-
-  .followme {
-      display: flex;
-      align-items: center;
-  }
-
-  .followme h3 {
-      color: #7b7b7b;
-      font-weight: 500;
-      font-size: 1.3rem;
-  }
-
-  .followme .footer-line {
-      width: 60px;
-      height: 2px;
-      background-color: #7b7b7b;
-      margin: 0 1.2rem;
-      display: inline-block;
-  }
-
   .social-media a {
       color: #7b7b7b;
       font-size: 1.3rem;
@@ -1131,8 +1103,11 @@
   }
 
   .back-btn-wrap {
-      position: relative;
       margin-left: 2.5rem;
+      position: fixed;
+      bottom: 20px;
+      right: 50px;
+      z-index: 89;
   }
 
   .back-btn {
@@ -1141,20 +1116,18 @@
       justify-content: center;
       height: 55px;
       width: 55px;
-      background-color: var(--main-color);
+      background-color: var(--light-three);
       border-radius: 50%;
       color: #fff;
       font-size: 1.2rem;
       box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.15);
       transition: 0.3s;
-      position: fixed;
-      bottom: 20px;
-      right: 50px;
+
       z-index: 2;
   }
 
   .back-btn:hover {
-      background-color: #690c0c;
+      background-color: #151313;
   }
 
   .back-btn-wrap:before {
@@ -1162,7 +1135,7 @@
       position: absolute;
       width: 60px;
       height: 60px;
-      background-color: #fff;
+      background-color: var(--dark-two);
       z-index: 1;
       top: 50%;
       left: 50%;
@@ -1364,11 +1337,6 @@
           padding: 1.4rem 2rem;
       }
 
-      .plus:before,
-      .plus:after {
-          width: 2.8rem;
-      }
-
       .img-overlay h3 {
           font-size: 1.1rem;
       }
@@ -1392,18 +1360,6 @@
 
       .about .text {
           margin-top: 0.7rem;
-      }
-
-      .skills {
-          margin: 0.9rem 0 1.7rem 0;
-      }
-
-      .skill-title {
-          font-size: 1rem;
-      }
-
-      .skill-bar {
-          height: 6px;
       }
 
       .about .column-1:before {
@@ -1720,10 +1676,6 @@
 
       .gallery .xshape {
           top: 25%;
-      }
-
-      .skill-bar {
-          width: 100%;
       }
 
       .about .column-1:before {

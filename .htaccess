@@ -15,6 +15,9 @@ RewriteRule ^shop/?$ index.php?page=shop [L,QSA]
 # Redirection spécifique pour 'blog/'
 RewriteRule ^blog/?$ index.php?page=blog [L,QSA]
 
+# Redirection spécifique pour 'cart/'
+RewriteRule ^cart/?$ index.php?page=cart [L,QSA]
+
 # Sécuriser l'accès aux fichiers .htaccess
 <Files .htaccess>
     Require all denied

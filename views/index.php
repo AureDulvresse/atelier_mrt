@@ -81,9 +81,7 @@
                                         <h3>Peinture</h3>
                                         <h5>Voir Démo</h5>
                                     </div>
-                                    <button class="btn" id="add-to-cart" title="ajouter au panier">
-                                        <i class="bx bx-cart-add bx-sm small"></i>
-                                    </button>
+                                    <a href="shop/artwork?id=<?php /* echo $article_id; */ echo 1 ?>" class="btn black small">Détail</a>
                                 </div>
 
                             </div>
@@ -91,7 +89,7 @@
                     </div>
                 <?php } ?>
             </div>
-            <div class="more-folio">
+            <div class="more-artwork">
                 <a href="shop" class="btn">Explorer la galerie</a>
             </div>
         </div>
@@ -170,7 +168,7 @@
                             <p class="blog-text">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem poimus? Tempora expedita eos autem!
                             </p>
-                            <a href="blog/post?id=<?php echo $article_id; ?>" class="btn small">Lire la Suite</a>
+                            <a href="blog/post?id=<?php /* echo $article_id; */ 1 ?>" class="btn small">Lire la Suite</a>
                         </div>
                     </div>
                 </div>
