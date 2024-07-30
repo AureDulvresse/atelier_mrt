@@ -1,58 +1,91 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const navToggle = document.querySelector(".nav-toggle");
-  const navMenu = document.querySelector(".nav-menu");
+const filter_btns = document.querySelectorAll(".filter-btn");
+const skills_wrap = document.querySelector(".skills");
+const skills_bars = document.querySelectorAll(".skill-progress");
+const records_wrap = document.querySelector(".records");
+const records_numbers = document.querySelectorAll(".number");
+const hamburger_menu = document.querySelector(".hamburger-menu");
+const navbar = document.querySelector("header nav");
+const links = document.querySelectorAll(".links a");
 
-  const isLoggedIn = false; // Remplacez ceci par la logique de votre application
-  const loginBtn = document.querySelector(".login-btn");
-  const cartIcon = document.querySelector(".cart-icon");
-  const profileIcon = document.querySelector(".profile-icon");
+function closeMenu() {
+  navbar.classList.remove("open");
+  document.body.classList.remove("stop-scrolling");
+}
 
-  const navLinks = document.querySelectorAll('nav a[href^="#"]');
-
-  // Gérer le changement de couleur de l'en-tête au défilement
-  window.addEventListener("scroll", () => {
-    const header = document.querySelector("header");
-    if (header) {
-      if (window.scrollY > 50) {
-        header.classList.add("scrolled");
-      } else {
-        header.classList.remove("scrolled");
-      }
-    }
-  });
-
-  // Gérer la visibilité des boutons de connexion et icônes
-  if (loginBtn && cartIcon && profileIcon) {
-    if (isLoggedIn) {
-      loginBtn.style.display = "none";
-      cartIcon.style.display = "block";
-      profileIcon.style.display = "block";
-    } else {
-      loginBtn.style.display = "block";
-      cartIcon.style.display = "none";
-      profileIcon.style.display = "none";
-    }
+hamburger_menu.addEventListener("click", () => {
+  if (!navbar.classList.contains("open")) {
+    navbar.classList.add("open");
+    document.body.classList.add("stop-scrolling");
+  } else {
+    closeMenu();
   }
+});
 
-  navToggle.addEventListener("click", function () {
-    const header = document.querySelector("header");
-    navMenu.classList.toggle("active");
-      header.classList.toggle("scrolled");
-  });
+links.forEach((link) => link.addEventListener("click", () => closeMenu()));
 
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault(); // Empêche le comportement par défaut du lien
+filter_btns.forEach((btn) =>
+  btn.addEventListener("click", () => {
+    filter_btns.forEach((button) => button.classList.remove("active"));
+    btn.classList.add("active");
 
-      const targetId = link.getAttribute("href").substring(1); // Récupère l'id de la cible
-      const targetElement = document.getElementById(targetId);
+    let filterValue = btn.dataset.filter;
 
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop,
-          behavior: "smooth", // Effectue un défilement fluide
-        });
+    $(".grid").isotope({ filter: filterValue });
+  })
+);
+
+$(".grid").isotope({
+  itemSelector: ".grid-item",
+  layoutMode: "fitRows",
+  transitionDuration: "0.6s",
+});
+
+window.addEventListener("scroll", () => {
+  skillsEffect();
+  countUp();
+});
+
+function checkScroll(el) {
+  let rect = el.getBoundingClientRect();
+  if (window.innerHeight >= rect.top + el.offsetHeight) return true;
+  return false;
+}
+
+function skillsEffect() {
+  if (!checkScroll(skills_wrap)) return;
+  skills_bars.forEach((skill) => (skill.style.width = skill.dataset.progress));
+}
+
+function countUp() {
+  if (!checkScroll(records_wrap)) return;
+  records_numbers.forEach((numb) => {
+    const updateCount = () => {
+      let currentNum = +numb.innerText;
+      let maxNum = +numb.dataset.num;
+      let speed = 100;
+      const increment = Math.ceil(maxNum / speed);
+
+      if (currentNum < maxNum) {
+        numb.innerText = currentNum + increment;
+        setTimeout(updateCount, 1);
+      } else {
+        numb.innerText = maxNum;
       }
-    });
+    };
+
+    setTimeout(updateCount, 400);
   });
+}
+
+var mySwiper = new Swiper(".swiper-container", {
+  speed: 1100,
+  slidesPerView: 1,
+  loop: true,
+  autoplay: {
+    delay: 5000,
+  },
+  navigation: {
+    prevEl: ".swiper-button-prev",
+    nextEl: ".swiper-button-next",
+  },
 });

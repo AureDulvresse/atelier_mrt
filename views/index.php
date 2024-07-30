@@ -1,97 +1,278 @@
 <?php include './views/includes/header.php'; ?>
 
 <!-- Section de présentation -->
-<section id="home" class="hero flex flex-column justify-center align-start">
-    <div class="hero-content">
-        <h1 class="hero-title">Bienvenue à l'Atelier MRT</h1>
-        <p class="hero-description">Explorez notre collection d'art unique et découvrez des œuvres qui inspirent.</p>
-        <a href="#gallery" class="btn-primary">Voir la Galerie</a>
+<div class="header-content">
+    <div class="container grid-2">
+        <div class="column-1">
+            <h1 class="header-title">Bienvenue sur <span>l'atelier MRT</span></h1>
+            <p class="text">
+                Explorez notre collection d'art et trouvez l'inspiration !
+            </p>
+            <a href="#gallery" class="btn" data-aos="fade-up" data-aos-duration="1000">Découvrir mes tableaux</a>
+        </div>
+
+        <div class="column-2 image">
+            <img src="./assets/images/shapes/points2.png" class="points points2" alt="" />
+            <img src="./assets/images/person.png" class="img-element z-index" alt="" data-aos="fade-left" data-aos-duration="2000" />
+        </div>
     </div>
-</section>
+</div>
+</header>
 
 
-<!-- Section À Propos -->
-<section id="about" class="about flex flex-column align-center">
+<section class="about section" id="about">
     <div class="container">
-        <div class="about-content flex flex-row align-center justify-between">
-            <div class="about-text flex flex-column">
-                <h2>À Propos de Nous</h2>
-                <p>Peintre français né en 1983 d'origine Espagnole, entouré depuis son
-                    plus jeune âge par une famille d'artistes. Il s'inspire de leurs
-                    différentes techniques et de leurs différents styles pour créer son
-                    propre univers. Pour lui, la peinture est un moyen d'expression, de
-                    transmission, de création et de contemplation. Chacune de ses œuvres
-                    est une explosion de couleurs, de formes et d'énergie, créant un
-                    langage visuel unique qui brise les frontières de la tradition
-                    artistique. À travers ses personnages, il aime mélanger les styles
-                    et les époques : "une véritable rencontre entre Cubisme, Street-art
-                    et Pop-art". Un mariage inattendu mais époustouflant de styles.</p>
-                    
-                <!-- Informations supplémentaires -->
-                <div class="d-flex flex-wrap gap-4">
-                    <div class="d-flex align-items-center">
-                        <span class="text-danger me-2">
-                            <i class="bx bx-paint bx-md"></i>
-                        </span>
-                        <span class="text-muted">Peinture</span>
+        <div class="section-header">
+            <h3 class="title" data-title="Qui suis-je ?">A Propos</h3>
+        </div>
+
+        <div class="section-body grid-2">
+            <div class="column-1" data-aos="fade-right" data-aos-duration="1200">
+                <h3 class="title-sm">Salut, je suis</h3>
+                <p class="text">
+                    Peintre français né en 1983 d'origine Espagnole, entouré depuis son plus jeune âge par une famille d'artistes. Il s'inspire de leurs différentes techniques et de leurs différents styles pour créer son propre univers. Pour lui, la peinture est un moyen d'expression, de transmission, de création et de contemplation. Chacune de ses œuvres est une explosion de couleurs, de formes et d'énergie, créant un langage visuel unique qui brise les frontières de la tradition artistique. À travers ses personnages, il aime mélanger les styles et les époques : "une véritable rencontre entre Cubisme, Street-art et Pop-art". Un mariage inattendu mais époustouflant de styles.
+                </p>
+                <div class="skills">
+                    <div class="skill html">
+                        <h3 class="skill-title">HTML</h3>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-progress="90%"></div>
+                        </div>
                     </div>
-                    <div class="d-flex align-items-center">
-                        <span class="text-danger me-2">
-                            <i class="bx bx-idea bx-md"></i>
-                        </span>
-                        <span class="text-muted">Créativité</span>
+                    <div class="skill css">
+                        <h3 class="skill-title">CSS</h3>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-progress="70%"></div>
+                        </div>
                     </div>
-                    <div class="d-flex align-items-center">
-                        <span class="text-danger me-2">
-                            <i class="bx bx-pen bx-md"></i>
-                        </span>
-                        <span class="text-muted">Expression</span>
+                    <div class="skill js">
+                        <h3 class="skill-title">JavaScript</h3>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-progress="80%"></div>
+                        </div>
                     </div>
                 </div>
+                <a href="#" class="btn">Read more</a>
             </div>
-            <div class="about-image">
-                <img src="assets/images/sample.jpg" alt="À propos de nous">
+
+            <div class="column-2 image" data-aos="fade-left" data-aos-duration="2000">
+                <img src="./assets/images/shapes/points4.png" class="points" alt="" />
+                <img src="./img/about.png" class="z-index" alt="" />
             </div>
         </div>
     </div>
 </section>
 
-<!-- Section Galerie -->
-<section id="gallery" class="gallery flex flex-column align-center">
+
+<section class="gallery section" id="gallery">
+    <div class="background-bg">
+        <div class="overlay overlay-sm">
+            <img src="./assets/images/shapes/half-circle.png" class="shape half-circle1" alt="" data-aos="fade-up" data-aos-duration="1000" />
+            <img src="./assets/images/shapes/half-circle.png" class="shape half-circle2" alt="" data-aos="fade-up" data-aos-duration="2000" />
+            <img src="./assets/images/shapes/square.png" class="shape square" alt="" data-aos="fade-up" data-aos-duration="3000" />
+            <img src="./assets/images/shapes/wave.png" class="shape wave" alt="" data-aos="fade-up" data-aos-duration="4000" />
+            <img src="./assets/images/shapes/circle.png" class="shape circle" alt="" data-aos="fade-up" data-aos-duration="5000" />
+            <img src="./assets/images/shapes/triangle.png" class="shape triangle" alt="" data-aos="fade-up" data-aos-duration="6000" />
+            <img src="./assets/images/shapes/x.png" class="shape xshape" alt="" data-aos="fade-up" data-aos-duration="7000" />
+        </div>
+    </div>
+
     <div class="container">
-        <h2>Galerie</h2>
-        <div class="gallery-grid flex flex-wrap mb-3">
-            <?php for ($i = 0; $i < 6; $i++) { ?>
-                <div class="gallery-item flex flex-column">
-                    <img src="assets/images/sample.jpg" alt="Œuvre d'art">
-                    <div class="gallery-info">
-                        <h3>Titre de l'œuvre</h3>
-                        <p>Description brève.</p>
+        <div class="section-header">
+            <h3 class="title" data-title="Decouvrir ma galerie">Mes Oeuvres </h3>
+        </div>
+
+        <div class="section-body">
+            <div class="filter">
+                <button class="filter-btn active" data-filter="*">All</button>
+                <button class="filter-btn" data-filter=".ui">UI/UX</button>
+                <button class="filter-btn" data-filter=".webdev">Web Dev</button>
+                <button class="filter-btn" data-filter=".appdev">
+                    Mobile App
+                </button>
+                <button class="filter-btn" data-filter=".logo-design">
+                    Logo Design
+                </button>
+            </div>
+
+            <div class="grid" data-aos="fade-up" data-aos-duration="11000">
+                <?php for ($i = 0; $i < 7; $i++) { ?>
+                    <div class="grid-item logo-design">
+                        <div class="gallery-image">
+                            <img src="./assets/images/sample.jpg" alt="" />
+                            <div class="img-overlay">
+                                <div class="img-overlay-content">
+                                    <div class="img-description">
+                                        <h3>Logo Design</h3>
+                                        <h5>View Demo</h5>
+                                    </div>
+                                    <button class="btn" id="add-to-cart" title="ajouter au panier">
+                                        <i class="bx bx-shop"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+            <div class="more-folio">
+                <a href="shop/index.php" class="btn">Explorer la galerie</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="records">
+    <div class="overlay overlay-sm">
+        <img src="./assets/images/shapes/square.png" alt="" class="shape square1" />
+        <img src="./assets/images/shapes/square.png" alt="" class="shape square2" />
+        <img src="./assets/images/shapes/circle.png" alt="" class="shape circle" />
+        <img src="./assets/images/shapes/half-circle.png" alt="" class="shape half-circle" />
+        <img src="./assets/images/shapes/wave.png" alt="" class="shape wave wave1" />
+        <img src="./assets/images/shapes/wave.png" alt="" class="shape wave wave2" />
+        <img src="./assets/images/shapes/x.png" alt="" class="shape xshape" />
+        <img src="./assets/images/shapes/triangle.png" alt="" class="shape triangle" />
+    </div>
+
+    <div class="container">
+        <div class="wrap">
+            <div class="record-circle">
+                <h2 class="number" data-num="235">0</h2>
+                <h4 class="sub-title">Projects</h4>
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div class="record-circle active">
+                <h2 class="number" data-num="174">0</h2>
+                <h4 class="sub-title">Happy Clients</h4>
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div class="record-circle">
+                <h2 class="number" data-num="892">0</h2>
+                <h4 class="sub-title">Work Hour</h4>
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div class="record-circle">
+                <h2 class="number" data-num="368">0</h2>
+                <h4 class="sub-title">Awards</h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="blog section">
+    <div class="container">
+        <div class="section-header">
+            <h3 class="title" data-title="Last News">My blog</h3>
+            <p class="text">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo,
+                deserunt?
+            </p>
+        </div>
+
+        <div class="blog-wrapper">
+            <?php for ($i = 0; $i < 3; $i++) { ?>
+                <div class="blog-wrap">
+                    <img src="" alt="" class="points points-sq" />
+
+                    <div class="blog-card" data-aos="fade-up" data-aos-duration="2000">
+                        <div class="blog-image">
+                            <img src="./assets/images/sample.jpg" alt="" />
+                        </div>
+
+                        <div class="blog-content">
+                            <div class="blog-info">
+                                <h5 class="blog-date">March, 19 2020</h5>
+                                <h5 class="blog-user"><i class="fas fa-user"></i>Admin</h5>
+                            </div>
+                            <h3 class="title-sm">This is a short title</h3>
+                            <p class="blog-text">
+                                Lorem ipsum, dolor sit amet elit. rem poimus? Tempora
+                                expedita eos autem! Lorem ipsum, dolor sit met.
+                            </p>
+                            <a href="#" class="btn small">Read more</a>
+                        </div>
                     </div>
                 </div>
             <?php } ?>
         </div>
-        <a href="gallery.php" class="btn-secondary">Voir plus d'œuvres</a>
     </div>
 </section>
 
-<!-- Section Contact -->
-<section id="contact" class="contact flex flex-column align-center">
+<section class="contact" id="contact">
     <div class="container">
-        <h2>Contactez-nous</h2>
-        <p>Vous avez des questions ? N'hésitez pas à nous contacter pour plus d'informations.</p>
-        <a href="contact.php" class="btn-primary">Nous Contacter</a>
+        <div class="contact-box">
+            <div class="contact-info">
+                <h3 class="title">Get in touch</h3>
+                <p class="text">
+                    Vous avez une question, une idée ou un projet ?
+                    N'hésitez pas à me contacter ! Ensemble, nous pouvons créer quelque chose d'incroyable.
+                    Chaque message compte, et je suis impatient de découvrir le vôtre.
+                </p>
+                <div class="information-wrap">
+                    <div class="information">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p class="info-text">92 Cherry Drive Unimodale, NY 11553</p>
+                    </div>
+
+                    <div class="information">
+                        <div class="contact-icon">
+                            <i class="fas fa-paper-plane"></i>
+                        </div>
+                        <p class="info-text">lorem@ipsum.com</p>
+                    </div>
+
+                    <div class="information">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <p class="info-text">123-456-789</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3 class="title">Contact me</h3>
+                <div class="row">
+                    <input type="text" class="contact-input" placeholder="First Name" />
+                    <input type="text" class="contact-input" placeholder="Last Name" />
+                </div>
+
+                <div class="row">
+                    <input type="text" class="contact-input" placeholder="Phone" />
+                    <input type="email" class="contact-input" placeholder="Email" />
+                </div>
+
+                <div class="row">
+                    <textarea name="message" class="contact-input textarea" placeholder="Message"></textarea>
+                </div>
+                <a href="#" class="btn">Send</a>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- Section Boutique -->
-<section id="shop" class="shop flex flex-column align-center">
+<section class="hireme" id="hireme">
     <div class="container">
-        <h2>Boutique</h2>
-        <p>Découvrez nos œuvres disponibles à l'achat et apportez une touche artistique à votre espace.</p>
-        <a href="./shop/index.php" class="btn-primary">Voir la Boutique</a>
+        <h3 class="title">Let's talk about a project</h3>
+        <p class="text">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio,
+            culpa. Commodi suscipit animi officia dignissimos unde, ipsum fugiat
+            consequuntur, fugit ratione vel aperiam, similique distinctio
+            mollitia repellendus quasi rem vero!
+        </p>
+        <a href="#" class="btn">Hire me</a>
     </div>
 </section>
-
+</main>
 
 <?php include './views/includes/footer.php'; ?>

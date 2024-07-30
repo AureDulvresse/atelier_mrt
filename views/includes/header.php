@@ -11,7 +11,11 @@
 
     <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons/css/boxicons.min.css' rel='stylesheet'>
-    
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <?php includeCSS('styles.css'); ?>
 
     <style>
@@ -22,32 +26,53 @@
 </head>
 
 <body>
-    <!-- En-tête -->
-    <header>
-        <div class="container">
-            <div class="flex flex-row justify-between align-center">
-                <div class="logo">
-                    <img src="assets/images/logo.png" alt="Logo Atelier MRT">
-                </div>
-                <nav class="flex flex-row align-center">
-                    <ul class="nav-menu flex flex-row list-none m-0 p-0">
-                        <li><a href="#home" class="active">Accueil</a></li>
-                        <li><a href="#about">À Propos</a></li>
-                        <li><a href="#gallery">Galerie</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#shop">Boutique</a></li>
-                    </ul>
-                    <div class="nav-extra flex flex-row align-center">
-                        <!-- Si utilisateur non connecté -->
-                        <a href="#login" class="login-btn">Connexion</a>
-                        <!-- Sinon -->
-                        <!-- <a href="#cart" class="cart-icon"><i class='bx bx-cart'></i></a> -->
-                        <!-- <a href="#profile" class="profile-icon"><i class='bx bx-user'></i></a> -->
-                    </div>
-                    <button class="nav-toggle" aria-label="Ouvrir le menu">
-                        <i class='bx bx-menu'></i>
-                    </button>
-                </nav>
+
+    <main>
+        <!-- En-tête -->
+        <header id="header">
+            <div class="overlay overlay-lg">
+                <img src="./assets/images/shapes/square.png" class="shape square" alt="" />
+                <img src="./assets/images/shapes/circle.png" class="shape circle" alt="" />
+                <img src="./assets/images/shapes/half-circle.png" class="shape half-circle1" alt="" />
+                <img src="./assets/images/shapes/half-circle.png" class="shape half-circle2" alt="" />
+                <img src="./assets/images/shapes/x.png" class="shape xshape" alt="" />
+                <img src="./assets/images/shapes/wave.png" class="shape wave wave1" alt="" />
+                <img src="./assets/images/shapes/wave.png" class="shape wave wave2" alt="" />
+                <img src="./assets/images/shapes/triangle.png" class="shape triangle" alt="" />
+                <img src="./assets/images/shapes/points1.png" class="points points1" alt="" />
             </div>
-        </div>
-    </header>
+
+            <nav>
+                <div class="container">
+                    <div class="logo">
+                        <img src="./assets/images/logo.png" alt="" />
+                    </div>
+
+                    <div class="links">
+                        <ul>
+                            <li>
+                                <a href="#header">Home</a>
+                            </li>
+                            <li>
+                                <a href="#about">A propos</a>
+                            </li>
+                            <li>
+                                <a href="#services">Galerie</a>
+                            </li>
+                            <li>
+                                <a href="#testimonials">Actualité</a>
+                            </li>
+                            <li>
+                                <a href="#contact">Contact</a>
+                            </li>
+                            <li>
+                                <a href="#hireme" class="active">Connexion</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="hamburger-menu">
+                        <div class="bar"></div>
+                    </div>
+                </div>
+            </nav>
