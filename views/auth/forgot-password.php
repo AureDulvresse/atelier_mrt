@@ -5,7 +5,7 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-$msg = "Pour une meilleure expérience";
+$msg = "Vous avez oublié votre mot de passe ?";
 
 $csrfToken = "Token";
 
@@ -18,29 +18,21 @@ include './views/includes/breadcrumb.php';
     <div class="container">
         <div class="form-container">
             <div class="form-box">
-                <h3 class="title">Connexion</h3>
+                <h3 class="title">Adresse mail</h3>
                 <form action="path/to/your/login/handler.php" method="post">
 
                     <!-- ffichage du token CSRF (à générer et à inclure selon votre méthode de gestion CSRF) -->
                     <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
 
-                    <div class="row">
-                        <input type="email" class="form-input" placeholder="Entrer votre adresse mail" />
-                    </div>
 
                     <div class="row">
-                        <input type="password" class="form-input" placeholder="Entrer votre mot de passe" />
+                        <input type="email" class="form-input" name="email" placeholder="Entrer votre addresse mail" />
                     </div>
+
                     <div class="row">
                         <button type="submit" class="btn">Envoyer</button>
                     </div>
-                    <a href="forgot-password"> Mot de passe oublié? </a>
-
                 </form>
-                <div class="row">
-                    <p>Vous n'avez pas de compte ?</p>
-                    <a href="register"> Créer un compte </a>
-                </div>
             </div>
         </div>
     </div>

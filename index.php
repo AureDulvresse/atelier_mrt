@@ -43,14 +43,6 @@ switch ($request) {
         $pageTitle = 'Accueil';
         require __DIR__ . '/views/index.php';
         break;
-    case '/login':
-        $pageTitle = 'Connexion';
-        require __DIR__ . '/views/auth/login.php';
-        break;
-    case '/register':
-        $pageTitle = 'Inscription';
-        require __DIR__ . '/views/auth/register.php';
-        break;
     case '/contact':
         $pageTitle = 'Contact';
         require __DIR__ . '/views/mail/contact.php';
@@ -72,6 +64,23 @@ switch ($request) {
         $pageTitle = 'Détail de l\'article';
         $_GET['id'] = $matches[1];
         require __DIR__ . '/views/blog/post.php';
+        break;
+    case '/login':
+        $pageTitle = 'Connexion';
+        require __DIR__ . '/views/auth/login.php';
+        break;
+    case '/register':
+        $pageTitle = 'Inscription';
+        require __DIR__ . '/views/auth/register.php';
+        break;
+
+    case '/forgot-password':
+        $pageTitle = 'Réinitialiser le mot de passe';
+        require __DIR__ . '/views/auth/forgot-password.php';
+        break;
+    case '/reset-password':
+        $pageTitle = 'Réinitialiser le mot de passe';
+        require __DIR__ . '/views/auth/reset-password.php';
         break;
     case '/order/checkout':
         $pageTitle = 'Commande';

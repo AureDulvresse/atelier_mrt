@@ -89,7 +89,7 @@
                     </div>
                 <?php } ?>
             </div>
-            <div class="more-artwork">
+            <div class="more-btn">
                 <a href="shop" class="btn">Explorer la galerie</a>
             </div>
         </div>
@@ -140,12 +140,12 @@
     </div>
 </section>
 
-<section class="blog section">
+<section class="blog section" id="blog">
     <div class="container">
         <div class="section-header">
             <h3 class="title" data-title="Dernières Nouvelles">Mon Blog</h3>
             <p class="text">
-                Découvrez les dernières actualités et projets de l'atelier MRT.
+                Découvrez les dernières actualités et exposition de l'atelier MRT.
             </p>
         </div>
 
@@ -173,6 +173,9 @@
                     </div>
                 </div>
             <?php } ?>
+        </div>
+        <div class="more-btn">
+            <a href="blog" class="btn">Voir plus</a>
         </div>
     </div>
 </section>
