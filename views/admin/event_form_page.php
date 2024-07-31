@@ -80,32 +80,48 @@ include 'css.php'
             </div> 
             <div class="container mt-5">
                 <h2 class="text-center">Ajouter un Événement</h2>
-                <form action="config/config_event.php" method="post" class="mt-4">
+                <form action="config/config_event.php" method="post" class="mt-4" enctype="multipart/form-data">
 
                     <div class="mb-3">
-                        <label for="name" class="form-label">Nom de l'événement</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <label for="title" class="form-label">Titre de l'événement</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
                     </div>
                     
+                    <div class="mb-3">
+                        <label for="slug" class="form-label">Slug</label>
+                        <input type="text" class="form-control" id="slug" name="slug" required>
+                    </div>
+
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
                     </div>
                     
                     <div class="mb-3">
-                        <label for="date" class="form-label">Date</label>
-                        <input type="date" class="form-control" id="date" name="date" required>
+                        <label for="content" class="form-label">Contenu</label>
+                        <textarea class="form-control" id="content" name="content" rows="4" required></textarea>
                     </div>
                     
                     <div class="mb-3">
-                        <label for="lieu" class="form-label">Lieu</label>
-                        <input type="text" class="form-control" id="lieu" name="lieu" required>
+                        <label for="event_date" class="form-label">Date de l'événement</label>
+                        <input type="date" class="form-control" id="event_date" name="event_date" required>
                     </div>
                     
-                    <div class="d-flex justify-align-content-start">
+                    <div class="mb-3">
+                        <label for="event_place" class="form-label">Lieu de l'événement</label>
+                        <input type="text" class="form-control" id="event_place" name="event_place" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="thumbnail" class="form-label">Image de l'événement</label>
+                        <input type="file" class="form-control" id="thumbnail" name="thumbnail" required>
+                    </div>
+                    
+                    <div class="d-flex justify-content-start">
                         <button type="submit" class="btn btn-danger">Ajouter l'événement</button>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>

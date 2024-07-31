@@ -77,7 +77,35 @@ include 'css.php'
                     </div>
                 </div>
             </div> 
-            
+            <form action="" method="post">
+                <div class="mb-3">
+                    <label for="artwork_id" class="form-label">Sélectionner une œuvre d'art</label>
+                    <select id="artwork_id" name="artwork_id" class="form-control" required>
+                        <option value="">Choisissez une œuvre d'art</option>
+                        <?php foreach ($artworks as $artwork): ?>
+                            <option value="<?php echo htmlspecialchars($artwork['id']); ?>">
+                                <?php echo htmlspecialchars($artwork['title']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="customer_id" class="form-label">Sélectionner un client</label>
+                    <select id="customer_id" name="customer_id" class="form-control" required>
+                        <option value="">Choisissez un client</option>
+                        <?php foreach ($customers as $customer): ?>
+                            <option value="<?php echo htmlspecialchars($customer['id']); ?>">
+                                <?php echo htmlspecialchars($customer['first_name']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="d-flex justify-content-start">
+                    <button type="submit" class="btn btn-primary">Afficher les détails</button>
+                </div>
+            </form>
         </div>
     </div>
     
