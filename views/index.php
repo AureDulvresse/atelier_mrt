@@ -81,7 +81,7 @@
                                         <h3>Peinture</h3>
                                         <h5>Voir Démo</h5>
                                     </div>
-                                    <a href="shop/artwork?id=<?php /* echo $article_id; */ echo 1 ?>" class="btn black small">Détail</a>
+                                    <a href="shop/artwork?id=<?php echo 1 ?>" class="btn black small">Détail</a>
                                 </div>
 
                             </div>

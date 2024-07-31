@@ -57,10 +57,10 @@
                                 <a href="/atelier_mrt/#about">A propos</a>
                             </li>
                             <li>
-                                <a href="/atelier_mrt/#services">Galerie</a>
+                                <a href="/atelier_mrt/#gallery">Galerie</a>
                             </li>
                             <li>
-                                <a href="/atelier_mrt/#testimonials">Actualité</a>
+                                <a href="/atelier_mrt/#blog">Actualité</a>
                             </li>
                             <li>
                                 <a href="/atelier_mrt/#contact">Contact</a>

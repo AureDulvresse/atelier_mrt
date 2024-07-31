@@ -57,10 +57,10 @@
                                 <a href="#about">A propos</a>
                             </li>
                             <li>
-                                <a href="#services">Galerie</a>
+                                <a href="#gallery">Galerie</a>
                             </li>
                             <li>
-                                <a href="#testimonials">Actualité</a>
+                                <a href="#blog">Actualité</a>
                             </li>
                             <li>
                                 <a href="#contact">Contact</a>
