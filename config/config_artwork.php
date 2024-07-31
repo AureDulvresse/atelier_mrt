@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 
 // Paramètres de la base de données
 define('DB_HOST', 'localhost');
@@ -71,4 +71,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo 'Erreur lors de l\'exécution de la requête : ' . $e->getMessage();
     }
 }
-?> -->
+?>
