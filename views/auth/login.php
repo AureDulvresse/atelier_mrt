@@ -17,11 +17,11 @@ include './views/includes/breadcrumb.php';
         <div class="contact-box">
             <form method="post">
                 <div class="row">
-                    <input type="email" class="contact-input" placeholder="addresse mail" />
+                    <input type="email" class="form-input" placeholder="addresse mail" />
                 </div>
 
                 <div class="row">
-                    <input type="password" class="contact-input" placeholder="Mot de passe" />
+                    <input type="password" class="form-input" placeholder="Mot de passe" />
                 </div>
                 <button type="submit" class="btn">Envoyer</>
             </form>

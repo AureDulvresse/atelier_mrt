@@ -208,17 +208,17 @@
             </div>
             <div class="contact-form">
                 <div class="row">
-                    <input type="text" class="contact-input" placeholder="First Name" />
-                    <input type="text" class="contact-input" placeholder="Last Name" />
+                    <input type="text" class="form-input" placeholder="First Name" />
+                    <input type="text" class="form-input" placeholder="Last Name" />
                 </div>
 
                 <div class="row">
-                    <input type="text" class="contact-input" placeholder="Phone" />
-                    <input type="email" class="contact-input" placeholder="Email" />
+                    <input type="text" class="form-input" placeholder="Phone" />
+                    <input type="email" class="form-input" placeholder="Email" />
                 </div>
 
                 <div class="row">
-                    <textarea name="message" class="contact-input textarea" placeholder="Message"></textarea>
+                    <textarea name="message" class="form-input textarea" placeholder="Message"></textarea>
                 </div>
                 <a href="#" class="btn">Envoyer</a>
             </div>

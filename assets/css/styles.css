@@ -25,7 +25,7 @@
   }
 
   html::-webkit-scrollbar {
-     width: 6px;
+      width: 6px;
   }
 
   html::-webkit-scrollbar-thumb {
@@ -235,6 +235,27 @@
   .btn.black {
       background-color: var(--light-three);
       box-shadow: 4px 8px 14px rgba(255, 255, 255, 0.15);
+  }
+
+  /* Pagination styles */
+  .pagination {
+      text-align: center;
+      margin-top: 20px;
+  }
+
+  .pagination-btn {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 5px;
+      cursor: pointer;
+      border-radius: 4px;
+  }
+
+  .pagination-btn:disabled {
+      background-color: #777;
+      cursor: not-allowed;
   }
 
   /* End Genral Styles */
@@ -509,6 +530,11 @@
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
+  }
+
+  .filter.bg-red {
+      background-color: var(--main-color);
+      border-radius: var(--radius);
   }
 
   .filter-btn {
@@ -955,7 +981,7 @@
       grid-column-gap: 0.6rem;
   }
 
-  .contact-input {
+  .form-input {
       padding: 1.2rem 2.1rem;
       margin: 0.6rem 0;
       border: none;
@@ -967,26 +993,26 @@
       transition: 0.3s;
   }
 
-  .contact-input::placeholder {
+  .form-input::placeholder {
       font-weight: 400;
   }
 
-  .contact-input.textarea {
+  .form-input.textarea {
       resize: none;
       min-height: 280px;
       border-radius: 14px;
   }
 
-  .contact-input:hover {
+  .form-input:hover {
       background: #ececec;
   }
 
-  .contact-input:focus {
+  .form-input:focus {
       background: #eaeaea;
       border: 2.2px solid var(--main-color);
   }
 
-  .contact-input .btn {
+  .form-input .btn {
       margin-top: 0.6rem;
   }
 
@@ -1462,7 +1488,7 @@
           font-size: 1.05rem;
       }
 
-      .contact-input {
+      .form-input {
           font-size: 0.9rem;
           padding: 0.9rem 1.6rem;
           margin: 0.4rem 0;
@@ -1728,7 +1754,7 @@
           margin-bottom: 0.8rem;
       }
 
-      .contact-input.textarea {
+      .form-input.textarea {
           min-height: 220px;
       }
 
@@ -1878,7 +1904,7 @@
           grid-column-gap: 0.3rem;
       }
 
-      .contact-input {
+      .form-input {
           font-size: 0.8rem;
           padding: 0.8rem 1.4rem;
           margin: 0.25rem 0;
