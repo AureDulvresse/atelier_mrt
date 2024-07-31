@@ -24,12 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $height = $_POST['height'];
     // $category = $_POST['category'];
     // $medium = $_POST['medium'];
-    
+    //hi
     // Gestion de l'upload de l'image
     $thumbnail = $_FILES['thumbnail']['name'];
     $target_dir = __DIR__ . '/../uploads/';
     $target_file = $target_dir . basename($thumbnail);
 
+<<<<<<< HEAD
     // Créer le répertoire uploads s'il n'existe pas
     if (!is_dir($target_dir)) {
         mkdir($target_dir, 0777, true);
@@ -72,3 +73,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?> -->
+=======
+// Vérifiez que l'initialisation s'est bien déroulée
+// if ($auth) {
+//     echo 'PHPAuth a été initialisé avec succès.';
+// } else {
+//     echo 'Erreur lors de l\'initialisation de PHPAuth.';
+// }
+>>>>>>> 667d71639667b707b4e7ffd105a9457becf22a71

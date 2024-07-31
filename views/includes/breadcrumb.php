@@ -51,19 +51,19 @@
                     <div class="links">
                         <ul>
                             <li>
-                                <a href="#header">Home</a>
+                                <a href="/atelier_mrt">Home</a>
                             </li>
                             <li>
-                                <a href="#about">A propos</a>
+                                <a href="/atelier_mrt/#about">A propos</a>
                             </li>
                             <li>
-                                <a href="#gallery">Galerie</a>
+                                <a href="/atelier_mrt/#gallery">Galerie</a>
                             </li>
                             <li>
-                                <a href="#blog">Actualité</a>
+                                <a href="/atelier_mrt/#blog">Actualité</a>
                             </li>
                             <li>
-                                <a href="#contact">Contact</a>
+                                <a href="/atelier_mrt/#contact">Contact</a>
                             </li>
                             <li>
                                 <a href="login" class="active">Connexion</a>
@@ -76,3 +76,11 @@
                     </div>
                 </div>
             </nav>
+
+            <div class="header-content section">
+                <div class="container">
+                    <div class="section-header">
+                        <h3 class="title header-title" data-title="<?php echo $msg ?>"><?php echo $pageTitle ?></h3>
+                    </div>
+                </div>
+            </div>
