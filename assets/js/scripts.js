@@ -18,9 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Filtre les éléments affichés avec Isotope
-    $(".grid").isotope("layout");
-
     if (prev && next) {
+      $(".grid").isotope("layout");
       prev.disabled = page === 1;
       next.disabled = page === totalPages;
     }
