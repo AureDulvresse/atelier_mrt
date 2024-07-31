@@ -86,7 +86,7 @@ switch ($request) {
         require __DIR__ . '/views/admin/edit_painting.php';
         break;
     default:
-        $pageTitle = 'Page Non Trouvée - Atelier MRT';
+        $pageTitle = 'Page Non Trouvée';
         http_response_code(404);
         require __DIR__ . '/views/404.php';
         break;
