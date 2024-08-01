@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             $message = $loginResult['message'];
             // Redirection ou gestion après connexion réussie
-            header('Location: /');
+            header('Location: /atelier_mrt');
             exit;
         }
     }
