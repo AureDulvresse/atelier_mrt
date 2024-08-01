@@ -2,12 +2,15 @@
 
 use PHPAuth\Config as PHPAuthConfig;
 use PHPAuth\Auth as PHPAuth;
+
 require 'models/Customer.php';
 
 class AuthController
 {
     private $pdo;
     private $auth;
+
+    private $registerMessage = '';
 
     public function __construct($pdo)
     {
@@ -16,65 +19,58 @@ class AuthController
         $this->auth = new PHPAuth($pdo, $config);
     }
 
-    public function register()
+    public function registerMessage()
     {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $username = $_POST['username'];
-            $first_name = $_POST['first_name'];
-            $last_name = $_POST['last_name'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $repeatpassword = $_POST['repeatpassword'];
-
-            if ($password !== $repeatpassword) {
-                echo "Les mots de passe ne correspondent pas.";
-                return;
-            }
-
-            // Enregistrement avec PHPAuth
-            $register = $this->auth->register($email, $password, $repeatpassword, [
-                'username' => $username,
-                'first_name' => $first_name,
-                'last_name' => $last_name,
-                'email' => $email,
-                'password' => $password
-            ]);
-
-            if ($register['error'] == true) {
-                echo $register['message'];
-            } else {
-                $customer = new Customer($username, $first_name, $last_name, $email, $password);
-                if ($customer->save($this->pdo)) {
-                    echo "Enregistrement réussi. Veuillez vérifier votre email pour activer votre compte.";
-                } else {
-                    echo "Erreur lors de l'enregistrement.";
-                }
-            }
-        }
+        return $this->registerMessage;
     }
 
-    public function login()
+
+    public function register($firstName, $lastName, $email, $password, $repeatPassword)
     {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            
-            $login = $this->auth->login($email, $password);
 
-            if ($login['error'] == true) {
-                echo $login['message'];
+
+        if ($password !== $repeatPassword) {
+            echo "Les mots de passe ne correspondent pas.";
+            return;
+        }
+
+        // Enregistrement avec PHPAuth
+        $register = $this->auth->register($email, $password, $repeatPassword, [
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'email' => $email,
+            'password' => $password
+        ]);
+
+        if ($register['error'] == true) {
+            $this->registerMessage = $register['message'];
+        } else {
+            $customer = new Customer($firstName, $lastName, $email, $password);
+            if ($customer->save($this->pdo)) {
+                $this->registerMessage = "Enregistrement réussi. Veuillez vérifier votre email pour activer votre compte.";
             } else {
-                // Mettre à jour la date de dernière connexion
-                $customer = Customer::findByEmail($this->pdo, $email);
-                $customer->last_login = date('Y-m-d H:i:s');
-                $customer->update($this->pdo);
-
-                // Stocker le hash de session dans la session PHP
-                $_SESSION['auth_hash'] = $login['hash'];
-
-                echo "Connexion réussie.";
-                // Rediriger ou effectuer une action après connexion
+                $this->registerMessage = "Erreur lors de l'enregistrement.";
             }
+        }
+        return $this->registerMessage;
+    }
+
+    public function login($email, $password)
+    {
+        $login = $this->auth->login($email, $password);
+
+        if ($login['error'] == true) {
+            return $login['message'];
+        } else {
+            // Mettre à jour la date de dernière connexion
+            $customer = Customer::findByEmail($this->pdo, $email);
+            $customer->last_login = date('Y-m-d H:i:s');
+            $customer->update($this->pdo);
+
+            // Stocker le hash de session dans la session PHP
+            $_SESSION['auth_hash'] = $login['hash'];
+
+            echo "Connexion réussie.";
         }
     }
 
@@ -126,4 +122,3 @@ class AuthController
         }
     }
 }
-?>

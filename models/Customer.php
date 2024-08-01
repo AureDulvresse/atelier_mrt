@@ -6,7 +6,6 @@ class Customer
     public $password;
     public $last_login;
     public $is_superuser;
-    public $username;
     public $first_name;
     public $last_name;
     public $email;
@@ -14,9 +13,8 @@ class Customer
     public $is_active;
     public $date_joined;
 
-    public function __construct($username, $first_name, $last_name, $email, $password, $is_superuser = false, $is_staff = false, $is_active = true)
+    public function __construct($first_name, $last_name, $email, $password, $is_superuser = false, $is_staff = false, $is_active = true)
     {
-        $this->username = $username;
         $this->first_name = $first_name;
         $this->last_name = $last_name;
         $this->email = $email;
@@ -29,11 +27,10 @@ class Customer
 
     public function save($pdo)
     {
-        $sql = "INSERT INTO customers (username, first_name, last_name, email, password, is_superuser, is_staff, is_active, date_joined) 
+        $sql = "INSERT INTO customers (first_name, last_name, email, password, is_superuser, is_staff, is_active, date_joined) 
                 VALUES (:username, :first_name, :last_name, :email, :password, :is_superuser, :is_staff, :is_active, :date_joined)";
         $stmt = $pdo->prepare($sql);
         $params = [
-            ':username' => $this->username,
             ':first_name' => $this->first_name,
             ':last_name' => $this->last_name,
             ':email' => $this->email,
@@ -66,12 +63,11 @@ class Customer
 
     public function update($pdo)
     {
-        $sql = "UPDATE customers SET username = :username, first_name = :first_name, last_name = :last_name, email = :email, 
+        $sql = "UPDATE customers SET first_name = :first_name, last_name = :last_name, email = :email, 
                 password = :password, is_superuser = :is_superuser, is_staff = :is_staff, is_active = :is_active, 
                 last_login = :last_login WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         $params = [
-            ':username' => $this->username,
             ':first_name' => $this->first_name,
             ':last_name' => $this->last_name,
             ':email' => $this->email,

@@ -33,10 +33,9 @@ CREATE TABLE customers (
     password VARCHAR(128) NOT NULL,
     last_login DATETIME NULL,
     is_superuser BOOLEAN NOT NULL,
-    username VARCHAR(150) NOT NULL UNIQUE,
     first_name VARCHAR(150) NOT NULL,
     last_name VARCHAR(150) NOT NULL,
-    email VARCHAR(254) NOT NULL,
+    email VARCHAR(254) NOT NULL UNIQUE,
     is_staff BOOLEAN NOT NULL,
     is_active BOOLEAN NOT NULL,
     date_joined DATETIME NOT NULL
