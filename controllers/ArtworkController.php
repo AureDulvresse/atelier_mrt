@@ -11,6 +11,31 @@ class ArtworkController
         $this->pdo = $pdo;
     }
 
+    public function readArtwork($id)
+    {
+        try {
+            // Préparer la requête de sélection
+            $sql = "SELECT * FROM artwork WHERE id = :id";
+            
+            // Préparer et exécuter la requête avec les paramètres
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([':id' => $id]);
+            
+            // Récupérer le résultat
+            $artwork = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if ($artwork) {
+                return $artwork;
+            } else {
+                throw new Exception("Artwork not found.");
+            }
+        } catch (PDOException $e) {
+            echo 'Erreur lors de l\'exécution de la requête : ' . $e->getMessage();
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public function addArtwork()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

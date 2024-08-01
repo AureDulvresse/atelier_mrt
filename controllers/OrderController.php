@@ -9,6 +9,35 @@ class ArtworkController
         $this->pdo = $pdo;
     }
 
+    public function readOrder($id)
+    {
+        try {
+            // Préparer la requête de sélection
+            $sql = "SELECT o.*, a.title AS artwork_title, c.first_name AS customer_first_name
+                    FROM `order` o
+                    JOIN artwork a ON o.artwork_id = a.id
+                    JOIN customer c ON o.customer_id = c.id
+                    WHERE o.id = :id";
+            
+            // Préparer et exécuter la requête avec les paramètres
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([':id' => $id]);
+            
+            // Récupérer le résultat
+            $order = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if ($order) {
+                return $order;
+            } else {
+                throw new Exception("Order not found.");
+            }
+        } catch (PDOException $e) {
+            echo 'Erreur lors de l\'exécution de la requête : ' . $e->getMessage();
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public function addOrder()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
