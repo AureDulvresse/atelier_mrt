@@ -17,8 +17,8 @@ try {
     die('Erreur de connexion à la base de données : ' . $e->getMessage());
 }
 // Configuration de PHPAuth
-$config = new PHPAuthConfig($pdo);
-$auth = new PHPAuth($pdo, $config);
+// $config = new PHPAuthConfig($pdo);
+// $auth = new PHPAuth($pdo, $config);
 
 // if ($auth) {
 //     echo 'PHPAuth a été initialisé avec succès.';
