@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+  
+  AOS.init();
+
   const itemsPerPage = 6;
   let currentPage = 1;
   const items = document.querySelectorAll(".grid-item");
@@ -23,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
       prev.disabled = page === 1;
       next.disabled = page === totalPages;
     }
-    
   }
 
   if (pagination) {

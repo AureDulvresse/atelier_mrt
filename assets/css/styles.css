@@ -18,6 +18,8 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      outline: none;
+      border: none;
   }
 
   html {
@@ -160,6 +162,10 @@
   .section-header {
       text-align: center;
       margin-bottom: 1.5rem;
+  }
+
+  .section-body {
+      background-color: var(--light-one);
   }
 
   .title {
@@ -515,6 +521,10 @@
       border-radius: var(--radius);
   }
 
+  .gallery .section-body {
+      background-color: transparent;
+  }
+
   .gallery .title,
   .gallery .title:before {
       color: var(--light-one);
@@ -682,7 +692,7 @@
       transform: translate(-50%, -50%) scale(1.1);
   }
 
-  .more-artwork {
+  .more-btn {
       display: flex;
       justify-content: center;
   }
@@ -793,12 +803,13 @@
       margin: 1.3rem 0.5rem;
       background: #fff;
       padding: 15px;
+      width: 280px;
       box-shadow: 0px 10px 20px #32323229;
       border-radius: 20px;
   }
 
   .blog-card {
-      max-width: 420px;
+      max-width: 320px;
       width: 100%;
       overflow: hidden;
       transition: 0.3s;
@@ -809,8 +820,6 @@
       width: 100%;
       height: 270px;
       border-radius: var(--radius);
-      margin-top: 10px;
-      margin-bottom: 8px;
       position: relative;
       overflow: hidden;
   }
@@ -828,8 +837,6 @@
 
   .blog-content {
       padding: 2.1rem 1.6rem 2.7rem 1.6rem;
-      background-color: var(--light-two);
-      border-radius: var(--radius);
   }
 
   .blog-info {
@@ -860,10 +867,6 @@
       font-size: 1.2rem;
       line-height: 1.6;
       color: #666;
-  }
-
-  .blog-card:hover {
-      transform: translateY(-15px);
   }
 
   .blog-card:hover .blog-image img {
@@ -912,7 +915,6 @@
   .contact-box {
       width: 100%;
       background-color: var(--light-one);
-      width: 100%;
       border-radius: 35px;
       padding: 5.5rem 4.5rem;
       display: grid;
@@ -1017,6 +1019,75 @@
   }
 
   /* End Contact */
+
+  /* Form Auth */
+
+  .form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 250px;
+      padding: 20px 0;
+  }
+
+  .form-box {
+      box-shadow: 0px 10px 20px #32323229;
+      border-radius: 35px;
+      padding: 4rem 2rem;
+      width: 400px;
+  }
+
+  .form-box .title,
+  .form-box .title::before {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--main-color);
+      margin-top: -28px;
+  }
+
+  .form-box .title::after {
+      background-color: var(--main-color);
+  }
+
+  .form-box form {
+      width: 100%;
+      margin-top: 15px;
+      margin-bottom: 20px;
+  }
+
+  .form-box form .btn {
+      width: 100%;
+      margin-top: 12px;
+      margin-bottom: 8px;
+  }
+
+  .form-box .row {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      align-items: center;
+      grid-column-gap: 0.4rem;
+  }
+
+  .form-box .form-input {
+      width: 100%;
+  }
+
+  .form-box .row {
+      gap: 30px;
+  }
+
+  .form-box a {
+      color: #690c0c;
+  }
+
+  .form-box p {
+      color: #7b7b7b;
+  }
+
+  /* End Form Auth */
 
   /* Footer */
 
@@ -1148,8 +1219,7 @@
       font-size: 1.2rem;
       box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.15);
       transition: 0.3s;
-
-      z-index: 2;
+      z-index: 90;
   }
 
   .back-btn:hover {
@@ -1184,109 +1254,6 @@
   }
 
   /* End Footer */
-
-  /* Administration */
-  .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 250px;
-      background-color: #343a40;
-      color: white;
-      padding: 20px;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-  }
-
-  .sidebar .logo {
-      text-align: center;
-      margin-bottom: 20px;
-  }
-
-  .sidebar ul {
-      list-style-type: none;
-      padding: 0;
-  }
-
-  .sidebar ul li {
-      margin-bottom: 10px;
-  }
-
-  .sidebar ul li a {
-      color: white;
-      text-decoration: none;
-      display: block;
-      padding: 10px;
-      border-radius: 4px;
-  }
-
-  .sidebar ul li a:hover {
-      background-color: #495057;
-  }
-
-  .main-content {
-      margin-left: 270px;
-      /* Ajuster en fonction de la largeur de la sidebar et de son padding */
-      padding: 20px;
-      background-color: #f8f9fa;
-      width: calc(100% - 270px);
-      /* Ajuster en fonction de la largeur de la sidebar et de son padding */
-  }
-
-  .header-title h1 {
-      margin: 0;
-  }
-
-  .user-info {
-      display: flex;
-      align-items: center;
-  }
-
-  .user-info p {
-      margin: 0 10px 0 0;
-  }
-
-  .user-info img {
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-  }
-
-  .stats {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-  }
-
-  .stat-box {
-      flex: 1;
-      background-color: white;
-      border-radius: 4px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin: 0 10px;
-  }
-
-  .stat-box p {
-      font-size: 24px;
-      margin: 0;
-  }
-
-  .visitor-table {
-      margin-top: 20px;
-  }
-
-  .status {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background-color: #28a745;
-  }
-
-  /* End Administration */
 
   /* Responsive */
 
@@ -1441,10 +1408,6 @@
           margin: 1rem 0.6rem;
       }
 
-      .services .points1 {
-          left: -60px;
-      }
-
       .points-sq {
           width: 150px;
       }
@@ -1595,10 +1558,6 @@
           font-size: 0.9rem;
           padding: 0.9rem 1.6rem;
           margin: 0.4rem 0;
-      }
-
-      .hireme {
-          padding: 8rem 0;
       }
 
       .footer {
@@ -1870,7 +1829,7 @@
           top: 25%;
       }
 
-      .footer .grid-4 {
+      .footer .grid-3 {
           grid-template-columns: repeat(2, 1fr);
           max-width: 500px;
           margin: 0 auto;
@@ -1881,11 +1840,7 @@
           grid-column: 1 / 3;
       }
 
-      .footer-newstletter {
-          grid-column: 1 / 3;
-      }
-
-      .grid-4-col {
+      .grid-3-col {
           margin: 1rem 0;
           padding: 0;
       }
