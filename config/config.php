@@ -1,9 +1,6 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use PHPAuth\Config as PHPAuthConfig;
-use PHPAuth\Auth as PHPAuth;
-
 // Paramètres de la base de données
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'ateliermrtdb');
@@ -16,9 +13,6 @@ try {
 } catch (PDOException $e) {
     die('Erreur de connexion à la base de données : ' . $e->getMessage());
 }
-// Configuration de PHPAuth
-$config = new PHPAuthConfig($pdo);
-$auth = new PHPAuth($pdo, $config);
 
 // if ($auth) {
 //     echo 'PHPAuth a été initialisé avec succès.';

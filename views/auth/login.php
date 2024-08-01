@@ -5,6 +5,22 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
+require 'includes/auth.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $login = $auth->login($email, $password);
+
+    if ($login['error']) {
+        echo $login['message'];
+    } else {
+        echo 'Connexion réussie. Bienvenue!';
+    }
+}
+
+
 $msg = "Pour une meilleure expérience";
 
 $csrfToken = "Token";

@@ -1,5 +1,7 @@
 <?php
 
+require 'models/Artwork.php';
+
 class ArtworkController
 {
     private $pdo;
@@ -14,14 +16,13 @@ class ArtworkController
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Récupérer les données du formulaire
             $title = $_POST['title'];
-            $slug = $_POST['slug'];
             $description = $_POST['description'];
             $price = $_POST['price'];
             $stock = $_POST['stock'];
             $width = $_POST['width'];
             $height = $_POST['height'];
-            // $category = $_POST['category'];
-            // $medium = $_POST['medium'];
+            $category_id = $_POST['category_id'];
+            $medium_id = $_POST['medium_id'];
 
             // Gestion de l'upload de l'image
             $thumbnail = $_FILES['thumbnail']['name'];
@@ -41,56 +42,22 @@ class ArtworkController
                 return;
             }
 
-            try {
-                // Préparer la requête d'insertion
-                $sql = "INSERT INTO artwork (title, slug, description, price, stock, width, height, thumbnail)
-                        VALUES (:title, :slug, :description, :price, :stock, :width, :height, :thumbnail)";
-
-                // Préparer et exécuter la requête avec les paramètres
-                $stmt = $this->pdo->prepare($sql);
-                $params = [
-                    ':title' => $title,
-                    ':slug' => $slug,
-                    ':description' => $description,
-                    ':price' => $price,
-                    ':stock' => $stock,
-                    ':width' => $width,
-                    ':height' => $height,
-                    ':thumbnail' => $thumbnail,
-                    // ':category' => $category,
-                    // ':medium' => $medium,
-                ];
-
-                if ($stmt->execute($params)) {
-                    echo "Nouvelle œuvre créée avec succès.";
-                } else {
-                    echo "Erreur lors de l'insertion des données.";
-                }
-            } catch (PDOException $e) {
-                echo 'Erreur lors de l\'exécution de la requête : ' . $e->getMessage();
+            // Créer une nouvelle instance de Artwork et sauvegarder
+            $artwork = new Artwork($title, $description, $price, $stock, $width, $height, $thumbnail, $category_id, $medium_id);
+            if ($artwork->save($this->pdo)) {
+                echo "Nouvelle œuvre créée avec succès.";
+            } else {
+                echo "Erreur lors de l'insertion des données.";
             }
         }
     }
 
     public function deleteArtwork($id)
     {
-        try {
-            // Préparer la requête de suppression
-            $sql = "DELETE FROM artwork WHERE id = :id";
-
-            // Préparer et exécuter la requête avec le paramètre ID
-            $stmt = $this->pdo->prepare($sql);
-            $params = [
-                ':id' => $id
-            ];
-
-            if ($stmt->execute($params)) {
-                echo "Œuvre supprimée avec succès.";
-            } else {
-                echo "Erreur lors de la suppression de l'œuvre.";
-            }
-        } catch (PDOException $e) {
-            echo 'Erreur lors de l\'exécution de la requête : ' . $e->getMessage();
+        if (Artwork::delete($this->pdo, $id)) {
+            echo "Œuvre supprimée avec succès.";
+        } else {
+            echo "Erreur lors de la suppression de l'œuvre.";
         }
     }
 
@@ -99,12 +66,13 @@ class ArtworkController
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Récupérer les données du formulaire
             $title = $_POST['title'];
-            $slug = $_POST['slug'];
             $description = $_POST['description'];
             $price = $_POST['price'];
             $stock = $_POST['stock'];
             $width = $_POST['width'];
             $height = $_POST['height'];
+            $category_id = $_POST['category_id'];
+            $medium_id = $_POST['medium_id'];
 
             // Gestion de l'upload de l'image
             $thumbnail = $_FILES['thumbnail']['name'];
@@ -126,42 +94,47 @@ class ArtworkController
                 }
             }
 
-            try {
-                // Préparer la requête de mise à jour
-                $sql = "UPDATE artwork 
-                        SET title = :title, slug = :slug, description = :description, price = :price, 
-                            stock = :stock, width = :width, height = :height";
+            // Récupérer l'œuvre existante
+            $artwork = Artwork::find($this->pdo, $id);
+            if ($artwork) {
+                $artwork->title = $title;
+                $artwork->slug = slugify($title);
+                $artwork->description = $description;
+                $artwork->price = $price;
+                $artwork->stock = $stock;
+                $artwork->width = $width;
+                $artwork->height = $height;
                 if (!empty($thumbnail)) {
-                    $sql .= ", thumbnail = :thumbnail";
+                    $artwork->thumbnail = $thumbnail;
                 }
-                $sql .= " WHERE id = :id";
+                $artwork->category_id = $category_id;
+                $artwork->medium_id = $medium_id;
+                $artwork->updated_at = date('Y-m-d H:i:s');
 
-                // Préparer et exécuter la requête avec les paramètres
-                $stmt = $this->pdo->prepare($sql);
-                $params = [
-                    ':title' => $title,
-                    ':slug' => $slug,
-                    ':description' => $description,
-                    ':price' => $price,
-                    ':stock' => $stock,
-                    ':width' => $width,
-                    ':height' => $height,
-                    ':id' => $id
-                ];
-                if (!empty($thumbnail)) {
-                    $params[':thumbnail'] = $thumbnail;
-                }
-
-                if ($stmt->execute($params)) {
+                if ($artwork->update($this->pdo)) {
                     echo "Œuvre mise à jour avec succès.";
                 } else {
                     echo "Erreur lors de la mise à jour de l'œuvre.";
                 }
-            } catch (PDOException $e) {
-                echo 'Erreur lors de l\'exécution de la requête : ' . $e->getMessage();
+            } else {
+                echo "Œuvre non trouvée.";
             }
         }
     }
 
+    public function viewArtwork($id)
+    {
+        $artwork = Artwork::find($this->pdo, $id);
+        if ($artwork) {
+            return $artwork;
+        } else {
+            echo "Œuvre non trouvée.";
+            return null;
+        }
+    }
 
+    public function listArtworks()
+    {
+        return Artwork::all($this->pdo);
+    }
 }
