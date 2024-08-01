@@ -34,7 +34,10 @@ function includeJS($filename)
 $artist_banner = ASSETS_PATH . '/images/artist_banner.jpg';
 
 // Définir le titre de la page par défaut
-$pageTitle = 'Accueil - Atelier MRT';
+$pageTitle = 'Accueil';
+
+// Vérifiez si l'utilisateur est connecté
+$isLoggedIn = isset($_SESSION['auth_hash']);
 
 // Gérer le routage et définir le titre en fonction de la page
 switch ($request) {
