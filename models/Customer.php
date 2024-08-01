@@ -28,7 +28,7 @@ class Customer
     public function save($pdo)
     {
         $sql = "INSERT INTO customers (first_name, last_name, email, password, is_superuser, is_staff, is_active, date_joined) 
-                VALUES (:username, :first_name, :last_name, :email, :password, :is_superuser, :is_staff, :is_active, :date_joined)";
+                VALUES (:first_name, :last_name, :email, :password, :is_superuser, :is_staff, :is_active, :date_joined)";
         $stmt = $pdo->prepare($sql);
         $params = [
             ':first_name' => $this->first_name,

@@ -46,7 +46,7 @@ include './views/includes/breadcrumb.php';
         <div class="form-container">
             <div class="form-box">
                 <h3 class="title">Inscription</h3>
-                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                <form action="/atelier_mrt/register" method="post">
 
                     <?php if ($message) : ?>
                         <div class="message"><?php echo htmlspecialchars($message); ?></div>

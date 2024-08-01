@@ -35,12 +35,7 @@ class AuthController
         }
 
         // Enregistrement avec PHPAuth
-        $register = $this->auth->register($email, $password, $repeatPassword, [
-            'first_name' => $firstName,
-            'last_name' => $lastName,
-            'email' => $email,
-            'password' => $password
-        ]);
+        $register = $this->auth->register($email, $password, $repeatPassword);
 
         if ($register['error'] == true) {
             $this->registerMessage = $register['message'];
