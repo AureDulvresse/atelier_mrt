@@ -14,15 +14,11 @@
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <?php includeCSS('styles.css'); ?>
 
-    <style>
-        #home {
-            background-image: url(<?php echo htmlspecialchars($artist_banner); ?>) !important;
-        }
-    </style>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 </head>
 
 <body>

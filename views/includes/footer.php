@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer" data-aos="fade-up" data-aos-duration="2000">
     <div class="container">
         <div class="grid-3">
             <div class="grid-3-col footer-about">
@@ -64,14 +64,16 @@
     </div>
 </footer>
 
+</main>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <?php includeJS('isotope.pkgd.min.js'); ?>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<?php includeJS('scripts.js'); ?>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();
 </script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<?php includeJS('scripts.js'); ?>
 </body>
 
 </html>

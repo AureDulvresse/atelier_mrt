@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-
   const itemsPerPage = 6;
   let currentPage = 1;
   const items = document.querySelectorAll(".grid-item");
@@ -83,8 +82,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const recordsNumbers = document.querySelectorAll(".number");
 
   function checkScroll(el) {
-    const rect = el.getBoundingClientRect();
-    return window.innerHeight >= rect.top + el.offsetHeight;
+    let rect = el.getBoundingClientRect();
+    if (window.innerHeight >= rect.top + el.offsetHeight) return true;
+    return false;
   }
 
   function countUp() {
@@ -107,12 +107,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  $(".grid").isotope({
+    itemSelector: ".grid-item",
+    layoutMode: "fitRows",
+    transitionDuration: "0.6s",
+  });
+
   window.addEventListener("scroll", () => {
     countUp();
   });
 
   // Swiper initialization
-  const mySwiper = new Swiper(".swiper-container", {
+  var mySwiper = new Swiper(".swiper-container", {
     speed: 1100,
     slidesPerView: 1,
     loop: true,

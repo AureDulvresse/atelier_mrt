@@ -151,12 +151,12 @@
             </p>
         </div>
 
-        <div class="blog-wrapper">
+        <div class="blog-wrapper" data-aos="fade-up" data-aos-duration="2000">
             <?php for ($i = 0; $i < 3; $i++) : ?>
                 <div class="blog-wrap">
                     <img src="" alt="" class="points points-sq" />
 
-                    <div class="blog-card" data-aos="fade-up" data-aos-duration="2000">
+                    <div class="blog-card">
                         <div class="blog-image">
                             <img src="./assets/images/sample.jpg" alt="" />
                         </div>
@@ -164,7 +164,7 @@
                         <div class="blog-content">
                             <div class="blog-info">
                                 <h5 class="blog-date">19 Mars, 2020</h5>
-                                <h5 class="blog-user"><i class="fas fa-user"></i>Admin</h5>
+                                <h5 class="blog-user"><i class="bx bx-user"></i>Admin</h5>
                             </div>
                             <h3 class="title-sm">Un Titre Court</h3>
                             <p class="blog-text">
