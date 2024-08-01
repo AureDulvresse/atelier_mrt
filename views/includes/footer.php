@@ -1,4 +1,4 @@
-<footer class="footer" data-aos="fade-up" data-aos-duration="2000">
+<footer class="footer">
     <div class="container">
         <div class="grid-3">
             <div class="grid-3-col footer-about">
