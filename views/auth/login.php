@@ -48,7 +48,7 @@ include './views/includes/breadcrumb.php';
         <div class="form-container">
             <div class="form-box">
                 <h3 class="title">Connexion</h3>
-                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                <form action="/atelier_mrt/login" method="post">
                     <!-- Affichage du token CSRF -->
                     <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
 

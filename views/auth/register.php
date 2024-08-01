@@ -28,7 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         // Appel au contrôleur pour l'inscription
         $authController->register($firstName, $lastName, $email, $password, $repeatPassword);
-        $message = $authController->registerMessage(); // Récupérer le message après inscription
+        if ($authController->registerMessage()) {
+            $message = $authController->registerMessage();
+        }
     }
 }
 
