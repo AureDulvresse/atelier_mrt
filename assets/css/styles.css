@@ -327,6 +327,11 @@
       background-color: #690c0c;
   }
 
+  .links a.user-icon,
+  .links a.cart-icon {
+      font-size: 18px;
+  }
+
   .hamburger-menu {
       width: 2.7rem;
       height: 3rem;
