@@ -25,6 +25,19 @@ class Customer
         $this->date_joined = date('Y-m-d H:i:s');
     }
 
+    public static function createFromDatabaseRow($row)
+    {
+        return new self(
+            $row['id'],
+            $row['first_name'],
+            $row['last_name'],
+            $row['email'],
+            $row['password'],
+            $row['is_superuser'],
+            $row['is_staff'],
+        );
+    }
+
     public function save($pdo)
     {
         $sql = "INSERT INTO customers (first_name, last_name, email, password, is_superuser, is_staff, is_active, date_joined) 
@@ -57,8 +70,13 @@ class Customer
         $sql = "SELECT * FROM customers WHERE email = :email";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([':email' => $email]);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Customer');
-        return $stmt->fetch();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row) {
+            return self::createFromDatabaseRow($row);
+        }
+
+        return null;
     }
 
     public function update($pdo)

@@ -50,24 +50,24 @@ class AuthController
         return $this->registerMessage;
     }
 
-    public function login($email, $password)
-    {
-        $login = $this->auth->login($email, $password);
+        public function login($email, $password)
+        {
+            $login = $this->auth->login($email, $password);
 
-        if ($login['error'] == true) {
-            return $login['message'];
-        } else {
-            // Mettre à jour la date de dernière connexion
-            $customer = Customer::findByEmail($this->pdo, $email);
-            $customer->last_login = date('Y-m-d H:i:s');
-            $customer->update($this->pdo);
+            if ($login['error'] == true) {
+                return $login['message'];
+            } else {
+                // Mettre à jour la date de dernière connexion
+                $customer = Customer::findByEmail($this->pdo, $email);
+                $customer->last_login = date('Y-m-d H:i:s');
+                $customer->update($this->pdo);
 
-            // Stocker le hash de session dans la session PHP
-            $_SESSION['auth_hash'] = $login['hash'];
+                // Stocker le hash de session dans la session PHP
+                $_SESSION['auth_hash'] = $login['hash'];
 
-            echo "Connexion réussie.";
+                echo "Connexion réussie.";
+            }
         }
-    }
 
     public function logout()
     {
