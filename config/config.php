@@ -1,6 +1,9 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
+// use PHPAuth\Config as PHPAuthConfig;
+// use PHPAuth\Auth as PHPAuth;
+
 // Paramètres de la base de données
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'ateliermrtdb');
