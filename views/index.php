@@ -19,7 +19,7 @@
 </div>
 </header>
 
-
+<!-- Section À Propos -->
 <section class="about section" id="about">
     <div class="container">
         <div class="section-header">
@@ -42,10 +42,11 @@
     </div>
 </section>
 
-
+<!-- Section Galerie -->
 <section class="gallery section" id="gallery">
     <div class="background-bg">
         <div class="overlay overlay-sm">
+            <!-- Images de fond -->
             <img src="./assets/images/shapes/half-circle.png" class="shape half-circle1" alt="" data-aos="fade-up" data-aos-duration="1000" />
             <img src="./assets/images/shapes/half-circle.png" class="shape half-circle2" alt="" data-aos="fade-up" data-aos-duration="2000" />
             <img src="./assets/images/shapes/square.png" class="shape square" alt="" data-aos="fade-up" data-aos-duration="3000" />
@@ -71,7 +72,7 @@
             </div>
 
             <div class="grid" data-aos="fade-up" data-aos-duration="11000">
-                <?php for ($i = 0; $i < 6; $i++) { ?>
+                <?php for ($i = 0; $i < 6; $i++) : ?>
                     <div class="grid-item peinture">
                         <div class="gallery-image">
                             <img src="./assets/images/sample.jpg" alt="" />
@@ -81,13 +82,12 @@
                                         <h3>Peinture</h3>
                                         <h5>Voir Démo</h5>
                                     </div>
-                                    <a href="shop/artwork?id=<?php echo 1 ?>" class="btn black small">Détail</a>
+                                    <a href="shop/artwork?id=<?php echo $i + 1; ?>" class="btn black small">Détail</a>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+                <?php endfor; ?>
             </div>
             <div class="more-btn">
                 <a href="shop" class="btn">Explorer la galerie</a>
@@ -96,9 +96,10 @@
     </div>
 </section>
 
-
+<!-- Section Records -->
 <section class="records">
     <div class="overlay overlay-sm">
+        <!-- Images de fond -->
         <img src="./assets/images/shapes/square.png" alt="" class="shape square1" />
         <img src="./assets/images/shapes/square.png" alt="" class="shape square2" />
         <img src="./assets/images/shapes/circle.png" alt="" class="shape circle" />
@@ -119,8 +120,8 @@
 
         <div class="wrap">
             <div class="record-circle active">
-                <h2 class="number" data-num="174">0</h4>
-                    <h4 class="sub-title">Clients Satisfaits</h4>
+                <h2 class="number" data-num="174">0</h2>
+                <h4 class="sub-title">Clients Satisfaits</h4>
             </div>
         </div>
 
@@ -140,6 +141,7 @@
     </div>
 </section>
 
+<!-- Section Blog -->
 <section class="blog section" id="blog">
     <div class="container">
         <div class="section-header">
@@ -150,7 +152,7 @@
         </div>
 
         <div class="blog-wrapper">
-            <?php for ($i = 0; $i < 3; $i++) { ?>
+            <?php for ($i = 0; $i < 3; $i++) : ?>
                 <div class="blog-wrap">
                     <img src="" alt="" class="points points-sq" />
 
@@ -168,11 +170,11 @@
                             <p class="blog-text">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem poimus? Tempora expedita eos autem!
                             </p>
-                            <a href="blog/post?id=<?php /* echo $article_id; */ 1 ?>" class="btn small">Lire la Suite</a>
+                            <a href="blog/post?id=<?php echo $i + 1; ?>" class="btn small">Lire la Suite</a>
                         </div>
                     </div>
                 </div>
-            <?php } ?>
+            <?php endfor; ?>
         </div>
         <div class="more-btn">
             <a href="blog" class="btn">Voir plus</a>
@@ -180,6 +182,7 @@
     </div>
 </section>
 
+<!-- Section Contact -->
 <section class="contact" id="contact">
     <div class="container">
         <div class="contact-box">
@@ -206,17 +209,16 @@
                     <a href="#"><i class="bx bxl-instagram-alt"></i></a>
                     <a href="#"><i class="bx bxl-twitter"></i></a>
                     <a href="#"><i class="bx bxl-dribbble"></i></a>
-                    <a href="#"><i class="bx bxl-youtube"></i></a>
                 </div>
             </div>
             <div class="contact-form">
                 <div class="row">
-                    <input type="text" class="form-input" placeholder="First Name" />
-                    <input type="text" class="form-input" placeholder="Last Name" />
+                    <input type="text" class="form-input" placeholder="Prénom" />
+                    <input type="text" class="form-input" placeholder="Nom" />
                 </div>
 
                 <div class="row">
-                    <input type="text" class="form-input" placeholder="Phone" />
+                    <input type="text" class="form-input" placeholder="Téléphone" />
                     <input type="email" class="form-input" placeholder="Email" />
                 </div>
 

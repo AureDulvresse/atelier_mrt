@@ -968,6 +968,31 @@
       line-height: 67px;
   }
 
+  .contact-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+  }
+
+  .contact-social a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      background-color: #f5f5f5;
+      border-radius: 50%;
+      color: #333;
+      font-size: 18px;
+      transition: background-color 0.3s, color 0.3s;
+      text-decoration: none;
+  }
+
+  .contact-social a:hover {
+      background-color: var(--main-color);
+      color: #fff;
+  }
+
   .info-text {
       font-size: 1.3rem;
       display: inline-block;

@@ -58,7 +58,7 @@
         </div>
     </div>
     <div class="back-btn-wrap">
-        <a href="#" class="back-btn">
+        <a href="#header" class="back-btn">
             <i class="bx bx-chevron-up"></i>
         </a>
     </div>
@@ -66,8 +66,11 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <?php includeJS('isotope.pkgd.min.js'); ?>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <?php includeJS('scripts.js'); ?>
 </body>
 

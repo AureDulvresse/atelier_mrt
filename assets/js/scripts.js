@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  
-  AOS.init();
 
   const itemsPerPage = 6;
   let currentPage = 1;
