@@ -1560,10 +1560,6 @@
           margin: 0.4rem 0;
       }
 
-      .hireme {
-          padding: 8rem 0;
-      }
-
       .footer {
           padding: 4rem 0;
       }
@@ -1833,7 +1829,7 @@
           top: 25%;
       }
 
-      .footer .grid-4 {
+      .footer .grid-3 {
           grid-template-columns: repeat(2, 1fr);
           max-width: 500px;
           margin: 0 auto;
