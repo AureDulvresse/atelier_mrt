@@ -225,7 +225,7 @@
                 <div class="row">
                     <textarea name="message" class="form-input textarea" placeholder="Message"></textarea>
                 </div>
-                <a href="#" class="btn">Envoyer</a>
+                <button class="btn" id="send-mail">Envoyer</button>
             </div>
         </div>
     </div>
