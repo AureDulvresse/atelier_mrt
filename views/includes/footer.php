@@ -70,11 +70,11 @@
 <?php includeJS('isotope.pkgd.min.js'); ?>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <?php includeJS('scripts.js'); ?>
-<?php includeJS('sendmail.js'); ?>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();
 </script>
+<?php includeJS('sendmail.js'); ?>
 </body>
 
 </html>

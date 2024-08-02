@@ -28,21 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Configurations du serveur
     $mail->SMTPDebug = SMTP::DEBUG_SERVER;  
     $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com'; // Hôte du serveur SMTP pour Gmail
+    $mail->Host = 'smtp.gmail.com';                             // Hôte du serveur SMTP pour Gmail
     $mail->SMTPAuth = true;
-    $mail->Username = 'adentrepreneur02@gmail.com'; // Adresse email Gmail
-    $mail->Password = 'Afuld qxjp jmov aeyf'; // Mot de passe Gmail (ou mot de passe d'application)
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Utilise STARTTLS
-    $mail->Port = 465; // Port du serveur SMTP
+    $mail->Username = 'adentrepreneur02@gmail.com';             // Adresse email Gmail
+    $mail->Password = 'Afuld qxjp jmov aeyf';                   // Mot de passe Gmail (ou mot de passe d'application)
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-    // Désactiver la vérification SSL (non recommandé pour production)
-    $mail->SMTPOptions = array(
-      'ssl' => array(
-        'verify_peer' => false,
-        'verify_peer_name' => false,
-        'allow_self_signed' => true
-      )
-    );
 
     // Expéditeur et destinataire
     $mail->setFrom('adentrepreneur02@gmail.com', 'Atelier mrt'); // Adresse email de l'expéditeur

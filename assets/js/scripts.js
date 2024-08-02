@@ -130,4 +130,43 @@ document.addEventListener("DOMContentLoaded", function () {
       nextEl: ".swiper-button-next",
     },
   });
+
+  $("#send-mail").on("click", function (e) {
+    e.preventDefault(); // Empêcher l'envoi classique du formulaire
+
+    // Désactiver le bouton d'envoi pour éviter les envois multiples
+    var $button = $(this);
+    $button.prop("disabled", true).text("Envoi en cours...");
+
+    // Récupérer les valeurs des champs du formulaire
+    var formData = {
+      prenom: $("#first_name").val(),
+      nom: $("#last_name").val(),
+      telephone: $("#phone").val(),
+      email: $("#email").val(),
+      message: $("#message").val(),
+    };
+
+    // Envoyer les données via AJAX
+    $.ajax({
+      type: "POST",
+      url: "/atelier_mrt/contact", // URL de ton script PHP
+      data: formData,
+      success: function (response) {
+        var result = JSON.parse(response);
+        alert(result.message);
+        console.log(result.message);
+      },
+      error: function (error) {
+        alert("Une erreur est survenue.");
+        console.log(error);
+      },
+      complete: function () {
+        // Réactiver le bouton et réinitialiser le texte
+        $button.prop("disabled", false).text("Envoyer");
+      },
+    });
+  });
+
+
 });
