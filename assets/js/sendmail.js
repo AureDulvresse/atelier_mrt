@@ -1,37 +1,28 @@
-const send_mail = document.querySelector("#send-mail");
+$(document).ready(function () {
+  $("#contact-form").on("submit", function (e) {
+    e.preventDefault(); // Empêcher l'envoi classique du formulaire
 
-send_mail.addEventListener("click", function (e) {
-  e.preventDefault(); // Empêcher l'envoi classique du formulaire
+    // Récupérer les valeurs des champs du formulaire
+    var formData = {
+      prenom: $("#first_name").val(),
+      nom: $("#last_name").val(),
+      telephone: $("#phone").val(),
+      email: $("#email").val(),
+      message: $("#message").val(),
+    };
 
-  // Récupérer les valeurs des champs du formulaire
-  const prenom = document.querySelector('#first_name').value;
-  const nom = document.querySelector('#last_name').value;
-  const telephone = document.querySelector('#phone').value;
-  const email = document.querySelector('#email').value;
-  const message = document.querySelector('#message').value;
-
-  // Envoyer les données via AJAX
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/contact", true);
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-      var response = JSON.parse(xhr.responseText);
-      alert(response.message);
-    } else {
-      alert("Une erreur est survenue.");
-    }
-  };
-  xhr.send(
-    "prenom=" +
-      encodeURIComponent(prenom) +
-      "&nom=" +
-      encodeURIComponent(nom) +
-      "&telephone=" +
-      encodeURIComponent(telephone) +
-      "&email=" +
-      encodeURIComponent(email) +
-      "&message=" +
-      encodeURIComponent(message)
-  );
+    // Envoyer les données via AJAX
+    $.ajax({
+      type: "POST",
+      url: "/atelier_mrt/contact", // URL de ton script PHP
+      data: formData,
+      success: function (response) {
+        var result = JSON.parse(response);
+        alert(result.message);
+      },
+      error: function () {
+        alert("Une erreur est survenue.");
+      },
+    });
+  });
 });
