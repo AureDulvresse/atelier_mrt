@@ -82,7 +82,7 @@
                                         <h3>Peinture</h3>
                                         <h5>Voir Démo</h5>
                                     </div>
-                                    <a href="shop/artwork?id=<?php echo $i + 1; ?>" class="btn black small">Détail</a>
+                                    <a href="shop/artwork/<?php echo $i + 1; ?>" class="btn black small">Détail</a>
                                 </div>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                             <p class="blog-text">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem poimus? Tempora expedita eos autem!
                             </p>
-                            <a href="blog/post?id=<?php echo $i + 1; ?>" class="btn small">Lire la Suite</a>
+                            <a href="blog/post/<?php echo $i + 1; ?>" class="btn small">Lire la Suite</a>
                         </div>
                     </div>
                 </div>

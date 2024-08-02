@@ -57,7 +57,7 @@ switch ($request) {
     case (preg_match('/^\/shop\/artwork\/(\d+)$/', $request, $matches) ? true : false):
         $pageTitle = 'Détail de l\'œuvre';
         $_GET['id'] = $matches[1];
-        require __DIR__ . '/views/shop/artwork.php';
+        require __DIR__ . '/views/shop/artwork-detail.php';
         break;
     case '/blog':
         $pageTitle = 'Blog';
