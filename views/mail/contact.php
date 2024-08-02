@@ -3,11 +3,6 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Inclure les fichiers nécessaires
-require 'path/to/PHPMailer/src/Exception.php';
-require 'path/to/PHPMailer/src/PHPMailer.php';
-require 'path/to/PHPMailer/src/SMTP.php';
-
 // Vérifier si les données ont été envoyées via POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $prenom = $_POST['prenom'] ?? '';

@@ -4,15 +4,15 @@ send_mail.addEventListener("click", function (e) {
   e.preventDefault(); // Empêcher l'envoi classique du formulaire
 
   // Récupérer les valeurs des champs du formulaire
-  var prenom = document.querySelector('input[name="prenom"]').value;
-  var nom = document.querySelector('input[name="nom"]').value;
-  var telephone = document.querySelector('input[name="telephone"]').value;
-  var email = document.querySelector('input[name="email"]').value;
-  var message = document.querySelector('textarea[name="message"]').value;
+  const prenom = document.querySelector('#first_name').value;
+  const nom = document.querySelector('#last_name').value;
+  const telephone = document.querySelector('#phone').value;
+  const email = document.querySelector('#email').value;
+  const message = document.querySelector('#message').value;
 
   // Envoyer les données via AJAX
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "path/to/send_email.php", true);
+  xhr.open("POST", "/contact", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.onload = function () {
     if (xhr.status === 200) {
