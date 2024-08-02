@@ -14,15 +14,10 @@
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <?php includeCSS('styles.css'); ?>
 
-    <style>
-        #home {
-            background-image: url(<?php echo htmlspecialchars($artist_banner); ?>) !important;
-        }
-    </style>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
@@ -31,21 +26,21 @@
         <!-- En-tête -->
         <header id="header">
             <div class="overlay overlay-lg">
-                <img src="./assets/images/shapes/square.png" class="shape square" alt="" />
-                <img src="./assets/images/shapes/circle.png" class="shape circle" alt="" />
-                <img src="./assets/images/shapes/half-circle.png" class="shape half-circle1" alt="" />
-                <img src="./assets/images/shapes/half-circle.png" class="shape half-circle2" alt="" />
-                <img src="./assets/images/shapes/x.png" class="shape xshape" alt="" />
-                <img src="./assets/images/shapes/wave.png" class="shape wave wave1" alt="" />
-                <img src="./assets/images/shapes/wave.png" class="shape wave wave2" alt="" />
-                <img src="./assets/images/shapes/triangle.png" class="shape triangle" alt="" />
-                <img src="./assets/images/shapes/points1.png" class="points points1" alt="" />
+                <img src="/atelier_mrt/assets/images/shapes/square.png" class="shape square" alt="" />
+                <img src="/atelier_mrt/assets/images/shapes/circle.png" class="shape circle" alt="" />
+                <img src="/atelier_mrt/assets/images/shapes/half-circle.png" class="shape half-circle1" alt="" />
+                <img src="/atelier_mrt/assets/images/shapes/half-circle.png" class="shape half-circle2" alt="" />
+                <img src="/atelier_mrt/assets/images/shapes/x.png" class="shape xshape" alt="" />
+                <img src="/atelier_mrt/assets/images/shapes/wave.png" class="shape wave wave1" alt="" />
+                <img src="/atelier_mrt/assets/images/shapes/wave.png" class="shape wave wave2" alt="" />
+                <img src="/atelier_mrt/assets/images/shapes/triangle.png" class="shape triangle" alt="" />
+                <img src="/atelier_mrt/assets/images/shapes/points1.png" class="points points1" alt="" />
             </div>
 
             <nav>
                 <div class="container">
                     <div class="logo">
-                        <img src="./assets/images/logo.png" alt="" />
+                        <img src="/atelier_mrt/assets/images/logo.png" alt="" />
                     </div>
 
                     <div class="links">
