@@ -3,6 +3,7 @@ $(document).ready(function () {
     e.preventDefault(); // Empêcher l'envoi classique du formulaire
 
     // Récupérer les valeurs des champs du formulaire
+    $("#send-mail").html = "Envoie en cours...";
     var formData = {
       prenom: $("#first_name").val(),
       nom: $("#last_name").val(),
@@ -20,6 +21,7 @@ $(document).ready(function () {
         var result = JSON.parse(response);
         console.log(result.message);
         alert(result.message);
+        $("#send-mail").HTML = "Envoyer";
       },
       error: function (error) {
         alert("Une erreur est survenue.");

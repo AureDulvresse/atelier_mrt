@@ -164,7 +164,6 @@
                         <div class="blog-content">
                             <div class="blog-info">
                                 <h5 class="blog-date">19 Mars, 2020</h5>
-                                <h5 class="blog-user"><i class="bx bx-user"></i>Admin</h5>
                             </div>
                             <h3 class="title-sm">Un Titre Court</h3>
                             <p class="blog-text">
