@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 // Activez les erreurs pour déboguer
 // ini_set('display_errors', 1);
@@ -28,8 +27,11 @@ include './views/includes/breadcrumb.php';
 <section class="section cart">
     <div class="container">
         <?php if ($cart_empty) : ?>
-            <p><?php echo $msg; ?></p>
-            <a href="/" class="btn">Retour à la boutique</a>
+            <div style="text-align: center;">
+                <p><?php echo $msg; ?></p>
+                <a href="/" class="btn">Retour à la boutique</a>
+            </div>
+
         <?php else : ?>
             <h1><?php echo $msg; ?></h1>
             <table class="cart-table">
