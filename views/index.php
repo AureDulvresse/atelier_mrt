@@ -213,17 +213,17 @@
             </div>
             <div class="contact-form">
                 <div class="row">
-                    <input type="text" class="form-input" placeholder="Prénom" />
-                    <input type="text" class="form-input" placeholder="Nom" />
+                    <input type="text" class="form-input" name="first_name" id="first_name" placeholder="Prénom" />
+                    <input type="text" class="form-input" name="last_name" id="last_name" placeholder="Nom" />
                 </div>
 
                 <div class="row">
-                    <input type="text" class="form-input" placeholder="Téléphone" />
-                    <input type="email" class="form-input" placeholder="Email" />
+                    <input type="text" class="form-input" name="phone" id="phone" placeholder="Téléphone" />
+                    <input type="email" class="form-input" name="email" id="email" placeholder="Email" />
                 </div>
 
                 <div class="row">
-                    <textarea name="message" class="form-input textarea" placeholder="Message"></textarea>
+                    <textarea name="message" class="form-input textarea" name="message" id="message" placeholder="Message"></textarea>
                 </div>
                 <button class="btn" id="send-mail">Envoyer</button>
             </div>
