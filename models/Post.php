@@ -15,9 +15,9 @@ class Post
     public $created_at;
     public $updated_at;
 
-    public function __construct()
+    public function __construct($pdo)
     {
-        $this->conn = Database::getConnection();
+        $this->conn = $pdo;
     }
 
     public function create()
