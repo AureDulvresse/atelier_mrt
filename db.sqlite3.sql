@@ -1,5 +1,4 @@
 -- Suppression des anciennes tables
-DROP TABLE IF EXISTS post_event_artworks;
 DROP TABLE IF EXISTS checkout_orders;
 DROP TABLE IF EXISTS checkouts;
 DROP TABLE IF EXISTS order_items;
@@ -10,6 +9,8 @@ DROP TABLE IF EXISTS artworks;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS mediums;
+DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS post_event_artworks;
 
 -- Tables de base
 CREATE TABLE categories (
@@ -96,11 +97,10 @@ CREATE TABLE order_items (
     FOREIGN KEY (artwork_id) REFERENCES artworks(id)
 );
 
-
 CREATE TABLE checkouts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     uuid VARCHAR(30) NOT NULL UNIQUE,
-    created_at DATETIME NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     customer_id INT NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES customers(id)
 );
@@ -113,10 +113,25 @@ CREATE TABLE checkout_orders (
     FOREIGN KEY (order_id) REFERENCES orders(id)
 );
 
+-- Table pour les posts
+CREATE TABLE posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(180) NOT NULL,
+    slug VARCHAR(200) NOT NULL UNIQUE,
+    content TEXT NOT NULL,
+    post_type ENUM('news', 'event') NOT NULL,
+    event_date DATETIME NULL, -- Date pour les événements uniquement
+    event_location VARCHAR(200) NULL, -- Lieu pour les événements uniquement
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Table pour lier les posts aux artworks
 CREATE TABLE post_event_artworks (
     id INT AUTO_INCREMENT PRIMARY KEY,
     post_id INT NOT NULL,
     artwork_id INT NOT NULL,
     FOREIGN KEY (post_id) REFERENCES posts(id),
-    FOREIGN KEY (artwork_id) REFERENCES artworks(id)
+    FOREIGN KEY (artwork_id) REFERENCES artworks(id),
+    UNIQUE KEY unique_post_artwork (post_id, artwork_id)
 );
