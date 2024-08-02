@@ -1,7 +1,7 @@
 <?php
 
-require 'models/Cart.php';
-require 'models/Order.php';
+use App\Models\Cart;
+use App\Models\CartItem;
 
 class CartController
 {

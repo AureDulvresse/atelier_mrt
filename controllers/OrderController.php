@@ -1,7 +1,7 @@
 <?php
 
-require_once 'models/Order.php';
-require_once 'models/OrderItem.php';
+use App\Models\Order;
+use App\Models\OrderItem;
 
 class OrderController
 {
