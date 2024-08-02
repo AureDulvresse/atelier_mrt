@@ -7,15 +7,15 @@
 
 $msg = "Cette oeuvre vous plait";
 
-echo $_GET['id'];
+// echo $_GET['id'];
 
 
 include './views/includes/breadcrumb.php';
 ?>
 <section class="section gallery">
     <div class="container">
-        <div class="row">
-            <div class="img">
+        <div class="grid">
+            <div class="">
                 <img src="/assets/images/sample.jpg" alt="" />
             </div>
             <div class="detail">
