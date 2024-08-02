@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $("#contact-form").on("submit", function (e) {
+  $("#send-mail").on("click", function (e) {
     e.preventDefault(); // Empêcher l'envoi classique du formulaire
 
     // Récupérer les valeurs des champs du formulaire
