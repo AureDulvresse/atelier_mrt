@@ -1,7 +1,11 @@
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+require 'vendor/autoload.php';
 
 // Vérifier si les données ont été envoyées via POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -22,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   try {
     // Configurations du serveur
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER;  
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com'; // Hôte du serveur SMTP pour Gmail
     $mail->SMTPAuth = true;
@@ -41,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Expéditeur et destinataire
     $mail->setFrom('adentrepreneur02@gmail.com', 'Atelier mrt'); // Adresse email de l'expéditeur
-    $mail->addAddress($email, ''); // Adresse email du destinataire
+    $mail->addAddress('adentrepreneur02@gmail.com', ''); // Adresse email du destinataire
 
 
     // Contenu de l'email
