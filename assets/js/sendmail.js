@@ -18,10 +18,12 @@ $(document).ready(function () {
       data: formData,
       success: function (response) {
         var result = JSON.parse(response);
+        console.log(result.message);
         alert(result.message);
       },
-      error: function () {
+      error: function (error) {
         alert("Une erreur est survenue.");
+        console.log(error);
       },
     });
   });
