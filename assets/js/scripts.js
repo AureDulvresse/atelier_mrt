@@ -91,8 +91,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!checkScroll(recordsWrap)) return;
     recordsNumbers.forEach((numb) => {
       const updateCount = () => {
-        const currentNum = +numb.innerText;
-        const maxNum = +numb.dataset.num;
+        const currentNum =+ numb.innerText;
+        const maxNum =+ numb.dataset.num;
         const increment = Math.ceil(maxNum / 100);
 
         if (currentNum < maxNum) {
@@ -168,5 +168,31 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  const atc_btn = document.querySelector("#addToCartBtn");
+  atc_btn.addEventListener('click', () => {
+    const artword_id = document.querySelector("#artword_id").value();
+    const cart_id = document.querySelector("#artword_id").value();
+    addToCart(cart_id, artword_id);
+  })
 
+  const addToCart = async (cartId, artworkId, quantity = 1) => {
+    $.ajax({
+      url: "controllers/CartController.php",
+      type: "POST",
+      data: {
+        action: "addToCart",
+        cart_id: cartId,
+        artwork_id: artworkId,
+        quantity: quantity,
+      },
+      success: function (response) {
+        let data = JSON.parse(response);
+        alert(data.message);
+      },
+      error: function (error) {
+        alert("Une erreur est survenue.");
+        console.log(error);
+      },
+    });
+  };
 });

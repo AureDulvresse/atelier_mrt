@@ -43,7 +43,15 @@ include './views/includes/breadcrumb.php';
                     <p class="artwork-details__stock">Stock: <?php echo intval($artwork['stock']); ?> pièces disponibles</p>
                     <p class="artwork-details__price">Prix: <?php echo number_format($artwork['price'], 2, ',', ' '); ?> €</p>
                 </div>
-                <a href="add_to_cart.php?id=<?php echo intval($artwork['id']); ?>" class="btn">Ajouter au panier</a>
+                <?php if ($isLoggedIn) : ?>
+                    <input type="hidden" name="cart_id" id="cart_id" value="<?php echo intval($_SESSION['cart']); ?>" />
+                    <input type="hidden" name="artwork_id" id="artwork_id" value="<?php echo intval($artwork['id']); ?>" />
+                    <!-- Utilisateur connecté -->
+                    <button id="addToCartBtn" class="btn">Ajouter au panier</button>
+                <?php else : ?>
+                    <!-- Utilisateur non connecté -->
+                    <a href="login" class="btn">Connexion pour Ajouter au panier</a>
+                <?php endif; ?>
             </div>
         </div>
     </div>

@@ -74,7 +74,6 @@
 <script>
     AOS.init();
 </script>
-<?php includeJS('sendmail.js'); ?>
 </body>
 
 </html>
