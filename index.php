@@ -73,9 +73,13 @@ switch ($request) {
         require __DIR__ . '/views/blog/post.php';
         break;
     case '/login':
-        $pageTitle = 'Connexion';
-        require __DIR__ . '/views/auth/login.php';
-        break;
+        if ($isLoggedIn) {
+            header('Location: /atelier_mrt');
+        } else {
+            $pageTitle = 'Connexion';
+            require __DIR__ . '/views/auth/login.php';
+            break;
+        }
     case '/register':
         $pageTitle = 'Inscription';
         require __DIR__ . '/views/auth/register.php';
