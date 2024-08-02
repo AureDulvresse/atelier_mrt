@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->Username = 'adentrepreneur02@gmail.com'; // Adresse email Gmail
     $mail->Password = 'Afuld qxjp jmov aeyf'; // Mot de passe Gmail (ou mot de passe d'application)
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Utilise STARTTLS
-    $mail->Port = 587; // Port du serveur SMTP
+    $mail->Port = 465; // Port du serveur SMTP
 
     // Désactiver la vérification SSL (non recommandé pour production)
     $mail->SMTPOptions = array(
@@ -40,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     );
 
     // Expéditeur et destinataire
-    $mail->setFrom('adentrepreneur02@gmail.com', 'Nom de l\'expéditeur'); // Adresse email de l'expéditeur
-    $mail->addAddress('adentrepreneur02@gmail.com', 'Nom du destinataire'); // Adresse email du destinataire
+    $mail->setFrom('adentrepreneur02@gmail.com', 'Atelier mrt'); // Adresse email de l'expéditeur
+    $mail->addAddress($email, ''); // Adresse email du destinataire
 
 
     // Contenu de l'email
