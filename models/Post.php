@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Database.php'; // Assure-toi que le fichier Database.php existe et est correctement configuré
+namespace App\Models;
 
 class Post
 {

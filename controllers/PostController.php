@@ -1,6 +1,6 @@
 <?php
 
-require_once '../models/Post.php';
+use App\Models\Post;
 
 class PostController
 {
