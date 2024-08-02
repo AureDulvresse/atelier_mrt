@@ -3,7 +3,7 @@
 use PHPAuth\Config as PHPAuthConfig;
 use PHPAuth\Auth as PHPAuth;
 
-require 'models/Customer.php';
+use App\Models\Customer;
 
 class AuthController
 {
