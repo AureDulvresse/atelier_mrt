@@ -1,143 +1,60 @@
 <?php
 
-class ArtworkController
+require_once 'models/Order.php';
+require_once 'models/OrderItem.php';
+
+class OrderController
 {
-    private $pdo;
+    private $db;
+    private $order;
+    private $orderItem;
 
     public function __construct($pdo)
     {
-        $this->pdo = $pdo;
+        $this->db = $pdo;
+        $this->order = new Order($this->db);
+        $this->orderItem = new OrderItem($this->db);
     }
 
-    public function readOrder($id)
+    public function createOrder()
     {
-        try {
-            // Préparer la requête de sélection
-            $sql = "SELECT o.*, a.title AS artwork_title, c.first_name AS customer_first_name
-                    FROM `order` o
-                    JOIN artwork a ON o.artwork_id = a.id
-                    JOIN customer c ON o.customer_id = c.id
-                    WHERE o.id = :id";
-            
-            // Préparer et exécuter la requête avec les paramètres
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([':id' => $id]);
-            
-            // Récupérer le résultat
-            $order = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            if ($order) {
-                return $order;
-            } else {
-                throw new Exception("Order not found.");
+        $customer_id = $_POST['customer_id'];
+        $total_amount = $_POST['total_amount'];
+        $status = 'pending'; // Initial status
+
+        $this->order->customer_id = $customer_id;
+        $this->order->total_amount = $total_amount;
+        $this->order->status = $status;
+
+        if ($this->order->create()) {
+            $order_id = $this->db->conn->lastInsertId();
+
+            // Add order items
+            $items = json_decode($_POST['items'], true);
+            foreach ($items as $item) {
+                $this->orderItem->order_id = $order_id;
+                $this->orderItem->artwork_id = $item['artwork_id'];
+                $this->orderItem->quantity = $item['quantity'];
+                $this->orderItem->price = $item['price'];
+                $this->orderItem->add();
             }
-        } catch (PDOException $e) {
-            echo 'Erreur lors de l\'exécution de la requête : ' . $e->getMessage();
-        } catch (Exception $e) {
-            echo $e->getMessage();
+
+            echo json_encode(['message' => 'Order created successfully', 'order_id' => $order_id]);
+        } else {
+            echo json_encode(['message' => 'Failed to create order']);
         }
     }
 
-    public function addOrder()
+    public function viewOrder()
     {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Récupérer les données du formulaire
-            $uuid = $_POST['uuid'];
-            $quantity = $_POST['quantity'];
-            $ordered = $_POST['ordered'];
-            $ordered_at = $_POST['ordered_at'];
-            $artwork_id = $_POST['artwork_id'];
-            $customer_id = $_POST['customer_id'];
+        $order_id = $_POST['order_id'];
+        $orderItems = $this->orderItem->read($order_id);
 
-            try {
-                // Préparer la requête d'insertion
-                $sql = "INSERT INTO `order` (uuid, quantity, ordered, created_at, updated_at, ordered_at, artwork_id, customer_id)
-                        VALUES (:uuid, :quantity, :ordered, NOW(), NOW(), :ordered_at, :artwork_id, :customer_id)";
-
-                // Préparer et exécuter la requête avec les paramètres
-                $stmt = $this->pdo->prepare($sql);
-                $params = [
-                    ':uuid' => $uuid,
-                    ':quantity' => $quantity,
-                    ':ordered' => $ordered,
-                    ':ordered_at' => $ordered_at,
-                    ':artwork_id' => $artwork_id,
-                    ':customer_id' => $customer_id
-                ];
-
-                if ($stmt->execute($params)) {
-                    echo "Nouvelle commande créée avec succès.";
-                } else {
-                    echo "Erreur lors de l'insertion de la commande.";
-                }
-            } catch (PDOException $e) {
-                echo 'Erreur lors de l\'exécution de la requête : ' . $e->getMessage();
-            }
+        $items = [];
+        while ($row = $orderItems->fetch(PDO::FETCH_ASSOC)) {
+            $items[] = $row;
         }
+
+        echo json_encode($items);
     }
-
-    public function deleteOrder($id)
-    {
-        try {
-            // Préparer la requête de suppression
-            $sql = "DELETE FROM `order` WHERE id = :id";
-
-            // Préparer et exécuter la requête avec le paramètre ID
-            $stmt = $this->pdo->prepare($sql);
-            $params = [
-                ':id' => $id
-            ];
-
-            if ($stmt->execute($params)) {
-                echo "Commande supprimée avec succès.";
-            } else {
-                echo "Erreur lors de la suppression de la commande.";
-            }
-        } catch (PDOException $e) {
-            echo 'Erreur lors de l\'exécution de la requête : ' . $e->getMessage();
-        }
-    }
-
-    public function editOrder($id)
-    {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Récupérer les données du formulaire
-            $uuid = $_POST['uuid'];
-            $quantity = $_POST['quantity'];
-            $ordered = $_POST['ordered'];
-            $ordered_at = $_POST['ordered_at'];
-            $artwork_id = $_POST['artwork_id'];
-            $customer_id = $_POST['customer_id'];
-
-            try {
-                // Préparer la requête de mise à jour
-                $sql = "UPDATE `order` 
-                        SET uuid = :uuid, quantity = :quantity, ordered = :ordered, updated_at = NOW(), 
-                            ordered_at = :ordered_at, artwork_id = :artwork_id, customer_id = :customer_id 
-                        WHERE id = :id";
-
-                // Préparer et exécuter la requête avec les paramètres
-                $stmt = $this->pdo->prepare($sql);
-                $params = [
-                    ':uuid' => $uuid,
-                    ':quantity' => $quantity,
-                    ':ordered' => $ordered,
-                    ':ordered_at' => $ordered_at,
-                    ':artwork_id' => $artwork_id,
-                    ':customer_id' => $customer_id,
-                    ':id' => $id
-                ];
-
-                if ($stmt->execute($params)) {
-                    echo "Commande mise à jour avec succès.";
-                } else {
-                    echo "Erreur lors de la mise à jour de la commande.";
-                }
-            } catch (PDOException $e) {
-                echo 'Erreur lors de l\'exécution de la requête : ' . $e->getMessage();
-            }
-        }
-    }
-
-
 }

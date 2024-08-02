@@ -2,6 +2,8 @@
 
 class Customer
 {
+    private $table_name = 'customers';
+
     public $id;
     public $password;
     public $last_login;
@@ -40,7 +42,7 @@ class Customer
 
     public function save($pdo)
     {
-        $sql = "INSERT INTO customers (first_name, last_name, email, password, is_superuser, is_staff, is_active, date_joined) 
+        $sql = "INSERT INTO". $this->table_name. "(first_name, last_name, email, password, is_superuser, is_staff, is_active, date_joined) 
                 VALUES (:first_name, :last_name, :email, :password, :is_superuser, :is_staff, :is_active, :date_joined)";
         $stmt = $pdo->prepare($sql);
         $params = [
@@ -54,6 +56,33 @@ class Customer
             ':date_joined' => $this->date_joined
         ];
         return $stmt->execute($params);
+    }
+
+    public function update($pdo)
+    {
+        $sql = "UPDATE" . $this->table_name." SET first_name = :first_name, last_name = :last_name, email = :email, 
+                password = :password, is_superuser = :is_superuser, is_staff = :is_staff, is_active = :is_active, 
+                last_login = :last_login WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        $params = [
+            ':first_name' => $this->first_name,
+            ':last_name' => $this->last_name,
+            ':email' => $this->email,
+            ':password' => $this->password,
+            ':is_superuser' => $this->is_superuser,
+            ':is_staff' => $this->is_staff,
+            ':is_active' => $this->is_active,
+            ':last_login' => $this->last_login,
+            ':id' => $this->id
+        ];
+        return $stmt->execute($params);
+    }
+
+    public static function all($pdo)
+    {
+        $sql = "SELECT * FROM customers";
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_CLASS, 'Customer');
     }
 
     public static function findById($pdo, $id)
@@ -79,26 +108,6 @@ class Customer
         return null;
     }
 
-    public function update($pdo)
-    {
-        $sql = "UPDATE customers SET first_name = :first_name, last_name = :last_name, email = :email, 
-                password = :password, is_superuser = :is_superuser, is_staff = :is_staff, is_active = :is_active, 
-                last_login = :last_login WHERE id = :id";
-        $stmt = $pdo->prepare($sql);
-        $params = [
-            ':first_name' => $this->first_name,
-            ':last_name' => $this->last_name,
-            ':email' => $this->email,
-            ':password' => $this->password,
-            ':is_superuser' => $this->is_superuser,
-            ':is_staff' => $this->is_staff,
-            ':is_active' => $this->is_active,
-            ':last_login' => $this->last_login,
-            ':id' => $this->id
-        ];
-        return $stmt->execute($params);
-    }
-
     public static function delete($pdo, $id)
     {
         $sql = "DELETE FROM customers WHERE id = :id";
@@ -106,10 +115,4 @@ class Customer
         return $stmt->execute([':id' => $id]);
     }
 
-    public static function all($pdo)
-    {
-        $sql = "SELECT * FROM customers";
-        $stmt = $pdo->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_CLASS, 'Customer');
-    }
 }
