@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS artworks;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS mediums;
-DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS posts;
 DROP TABLE IF EXISTS post_event_artworks;
 
 -- Tables de base
