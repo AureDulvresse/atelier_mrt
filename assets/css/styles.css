@@ -702,6 +702,66 @@
       justify-content: center;
   }
 
+  /* Styles pour la section de détails de l'œuvre */
+  .artwork-details {
+      padding: 60px 0;
+      background-color: var(--light-two);
+  }
+
+  .artwork-details__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+  }
+
+  .artwork-details__image {
+      min-height: 100%;
+  }
+
+  .artwork-details__image img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .artwork-details__info {
+      background-color: var(--light-one);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .artwork-details__title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      font-weight: bold;
+      color: var(--main-color);
+  }
+
+  .artwork-details__description {
+      font-size: 1.02rem;
+      margin-bottom: 25px;
+      line-height: 1.5;
+      color: #666;
+  }
+
+  .artwork-details__attributes {
+      margin-bottom: 25px;
+  }
+
+  .artwork-details__attributes p {
+      font-size: 1.125rem;
+      margin: 10px 0;
+      color: #444;
+  }
+
+  .artwork-details__price {
+      font-weight: bold;
+      color: var(--main-color) !important;
+  }
+
   /* End Gallery */
 
   /* Records */

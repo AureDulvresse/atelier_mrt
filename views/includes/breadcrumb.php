@@ -61,7 +61,7 @@
                                 <a href="/atelier_mrt/#contact">Contact</a>
                             </li>
                             <li>
-                                <a href="login" class="active">Connexion</a>
+                                <a href="/atelier_mrt/login" class="active">Connexion</a>
                             </li>
                         </ul>
                     </div>
