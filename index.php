@@ -54,6 +54,10 @@ switch ($request) {
         $pageTitle = 'Boutique';
         require __DIR__ . '/views/shop/gallery.php';
         break;
+    case '/cart':
+        $pageTitle = 'Panier';
+        require __DIR__ . '/views/cart.php';
+        break;
     case (preg_match('/^\/shop\/artwork\/(\d+)$/', $request, $matches) ? true : false):
         $pageTitle = 'Détail de l\'œuvre';
         $_GET['id'] = $matches[1];
