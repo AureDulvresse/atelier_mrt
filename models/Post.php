@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Database.php'; // Assure-toi que le fichier Database.php existe et est correctement configuré
+
 class Post
 {
     private $conn;
@@ -61,27 +63,27 @@ class Post
         return $stmt->execute();
     }
 
-    public function attachArtwork($postId, $artworkId)
+    public function attachArtwork($artworkId)
     {
         $query = "INSERT INTO post_event_artworks (post_id, artwork_id) VALUES (?, ?)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("ii", $postId, $artworkId);
+        $stmt->bind_param("ii", $this->id, $artworkId);
         return $stmt->execute();
     }
 
-    public function detachArtwork($postId, $artworkId)
+    public function detachArtwork($artworkId)
     {
         $query = "DELETE FROM post_event_artworks WHERE post_id = ? AND artwork_id = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("ii", $postId, $artworkId);
+        $stmt->bind_param("ii", $this->id, $artworkId);
         return $stmt->execute();
     }
 
-    public function getArtworks($postId)
+    public function getArtworks()
     {
         $query = "SELECT a.* FROM artworks a JOIN post_event_artworks pea ON a.id = pea.artwork_id WHERE pea.post_id = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", $postId);
+        $stmt->bind_param("i", $this->id);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
