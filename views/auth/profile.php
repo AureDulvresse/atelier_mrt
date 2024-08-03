@@ -37,11 +37,6 @@ include './views/includes/breadcrumb.php';
                     </div>
 
                     <div class="row">
-                        <label for="telephone">Téléphone:</label>
-                        <input type="text" class="form-input" id="telephone" name="telephone" value="<?php echo $customer->phone ?>">
-                    </div>
-
-                    <div class="row">
                         <button type="submit" class="btn black">Mettre à jour</button>
                         <button id="delete-account" class="btn">Supprimer le compte</button>
                     </div>
