@@ -46,6 +46,7 @@ include './views/includes/breadcrumb.php';
                 <?php if ($isLoggedIn) : ?>
                     <form action="/atelier_mrt/utils/add_to_cart.php" method="post">
                         <input type="hidden" name="artwork_id" id="artwork_id" value="<?php echo intval($artwork['id']); ?>" />
+                        <input type="number" class="form-input" name="quantity" id="quantity" value="1" />
                         <!-- Utilisateur connecté -->
                         <button type="submit" class="btn">Ajouter au panier</button>
                     </form>
