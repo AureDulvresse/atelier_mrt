@@ -67,10 +67,13 @@ class AuthController
             $_SESSION['auth_hash'] = $login['hash'];
 
             // Récuperer le panier de l'utilisateur
-
             $cart = Cart::get($this->pdo, $customer->id);
-            $_SESSION['cart'] = $cart;
 
+            if (empty($cart)) {
+                $cart = Cart::create($this->pdo, $customer->id);
+            }
+            
+            $_SESSION['cart'] = $cart;
 
             echo "Connexion réussie.";
         }
