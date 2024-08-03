@@ -1,6 +1,6 @@
 <?php
 
-require 'models/Artwork.php';
+use App\Models\Artwork;
 
 class ArtworkController
 {

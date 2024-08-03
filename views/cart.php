@@ -14,12 +14,14 @@ $artworks = [
 ];
 
 // Vérifier si le panier existe
-if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
-    $msg = "Votre panier est vide.";
+if (!isset($_SESSION['cart']) && empty($_SESSION['cart'])) {
+    $message = "Votre panier est vide.";
     $cart_empty = true;
 } else {
     $cart_empty = false;
 }
+
+$msg = "Votre panier";
 
 include './views/includes/breadcrumb.php';
 ?>
@@ -28,7 +30,7 @@ include './views/includes/breadcrumb.php';
     <div class="container">
         <?php if ($cart_empty) : ?>
             <div style="text-align: center;">
-                <p><?php echo $msg; ?></p>
+                <p><?php echo $message; ?></p>
                 <a href="/atelier_mrt/" class="btn">Retour à la boutique</a>
             </div>
 

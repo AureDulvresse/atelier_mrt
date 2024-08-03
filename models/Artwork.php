@@ -1,6 +1,10 @@
 <?php
 // models/Artwork.php
 
+namespace App\Models;
+
+use PDO;
+
 require 'utils/slugify.php';
 
 class Artwork

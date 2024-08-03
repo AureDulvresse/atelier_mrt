@@ -152,97 +152,68 @@ document.addEventListener("DOMContentLoaded", function () {
         $button.prop("disabled", false).text("Envoyer");
       },
     });
-  });
 
-  const atc_btn = document.querySelector("#addToCartBtn");
-  atc_btn.addEventListener("click", () => {
-    const artword_id = document.querySelector("#artword_id").value();
-    const cart_id = document.querySelector("#cart_id").value();
-    atc_btn.textContent = "En cours...";
-    addToCart(cart_id, artword_id);
-  });
+    const updateProfileForm = document.getElementById("update-profile-form");
+    updateProfileForm.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-  const addToCart = async (cartId, artworkId, quantity = 1) => {
-    $.ajax({
-      url: "controllers/CartController.php",
-      type: "POST",
-      data: {
-        action: "addToCart",
-        cart_id: cartId,
-        artwork_id: artworkId,
-        quantity: quantity,
-      },
-      success: function (response) {
-        let data = JSON.parse(response);
-        alert(data.message);
-      },
-      error: function (error) {
-        alert("Une erreur est survenue.");
-        console.log(error);
-      },
-    });
-  };
+      // Récupérer les valeurs des champs
+      const formData = new FormData(updateProfileForm);
 
-  const updateProfileForm = document.getElementById("update-profile-form");
-  updateProfileForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    // Récupérer les valeurs des champs
-    const formData = new FormData(updateProfileForm);
-
-    // Envoyer les données via AJAX
-    fetch("/atelier_mrt/update_profile.php", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        alert(data.message);
-      })
-      .catch((error) => {
-        console.error("Erreur:", error);
-        alert("Une erreur est survenue.");
-      });
-  });
-
-  // Suppression du compte
-  const deleteAccountButton = document.getElementById("delete-account");
-  deleteAccountButton.addEventListener("click", function () {
-    if (
-      confirm(
-        "Voulez-vous vraiment supprimer votre compte ? Cette action est irréversible."
-      )
-    ) {
-      // Envoyer la requête de suppression via AJAX
-      fetch("/atelier_mrt/delete_account.php", {
+      // Envoyer les données via AJAX
+      fetch("/atelier_mrt/utils/update_profile.php", {
         method: "POST",
+        body: formData,
       })
         .then((response) => response.json())
         .then((data) => {
           alert(data.message);
-          if (data.status === "success") {
-            // Rediriger l'utilisateur après la suppression
-            window.location.href = "/atelier_mrt/";
-          }
         })
         .catch((error) => {
           console.error("Erreur:", error);
           alert("Une erreur est survenue.");
         });
-    }
-  });
+    });
 
-  // Swiper initialization
-  var mySwiper = new Swiper(".swiper-container", {
-    speed: 1100,
-    slidesPerView: 1,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-    },
-    navigation: {
-      prevEl: ".swiper-button-prev",
-      nextEl: ".swiper-button-next",
-    },
+    // Suppression du compte
+    const deleteAccountButton = document.getElementById("delete-account");
+    deleteAccountButton.addEventListener("click", function () {
+      if (
+        confirm(
+          "Voulez-vous vraiment supprimer votre compte ? Cette action est irréversible."
+        )
+      ) {
+        // Envoyer la requête de suppression via AJAX
+        fetch("/atelier_mrt/utils/delete_account.php", {
+          method: "POST",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            alert(data.message);
+            if (data.status === "success") {
+              // Rediriger l'utilisateur après la suppression
+              window.location.href = "/atelier_mrt/";
+            }
+          })
+          .catch((error) => {
+            console.error("Erreur:", error);
+            alert("Une erreur est survenue.");
+          });
+      }
+    });
+
+    // Swiper initialization
+    var mySwiper = new Swiper(".swiper-container", {
+      speed: 1100,
+      slidesPerView: 1,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+      },
+      navigation: {
+        prevEl: ".swiper-button-prev",
+        nextEl: ".swiper-button-next",
+      },
+    });
   });
 });
