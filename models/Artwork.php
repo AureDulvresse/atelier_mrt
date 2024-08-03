@@ -41,23 +41,26 @@ class Artwork
         $this->updated_at = date('Y-m-d H:i:s');
     }
 
-    // public static function createFromDatabaseRow($row)
-    // {
-    //     $instance = new self(
-    //         $row['first_name'],
-    //         $row['last_name'],
-    //         $row['email'],
-    //         $row['password'],
-    //         $row['is_superuser'],
-    //         $row['is_staff'],
-    //     );
+    public static function createFromDatabaseRow($row)
+    {
+        $instance = new self(
+            $row['title'],
+            $row['description'],
+            $row['price'],
+            $row['stock'],
+            $row['width'],
+            $row['height'],
+            $row['thumbnail'],
+            $row['category_id'],
+            $row['medium_id']
+        );
 
-    //     $instance->id = $row['id'];
-    //     $instance->created_at = $row['created_at'];
-    //     $instance->updated_at = $row['updated_at'];
+        $instance->id = $row['id'];
+        $instance->created_at = $row['created_at'];
+        $instance->updated_at = $row['updated_at'];
 
-    //     return $instance;
-    // }
+        return $instance;
+    }
 
     public function save($pdo)
     {
@@ -109,15 +112,14 @@ class Artwork
         $sql = "SELECT * FROM artworks WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([':id' => $id]);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, Artwork::class);
-        return $stmt->fetch();
-        // $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, Artwork::class);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // if ($row) {
-        //     return self::createFromDatabaseRow($row);
-        // }
+        if ($row) {
+            return self::createFromDatabaseRow($row);
+        }
 
-        // return null;
+        return null;
     }
 
     public static function all($pdo)

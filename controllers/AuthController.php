@@ -75,7 +75,7 @@ class AuthController
                 $cart = Cart::create($this->pdo, $customer->id);
             }
             
-            $_SESSION['cart'] = $cart;
+            $_SESSION['cart'] = $cart['id'];
             $_SESSION['current_id'] = $customer->id;
 
             echo "Connexion réussie.";

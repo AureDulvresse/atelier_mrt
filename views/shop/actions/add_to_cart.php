@@ -7,7 +7,7 @@ use App\Controllers\CartController;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $artwork = Artwork::find($pdo, $_POST['artwork_id'] ?? 1);
-        $cart = Cart::get($pdo,  $_SESSION['cart']['id'] ?? 1);
+        $cart = Cart::get($pdo,  $_SESSION['cart'] ?? 1);
         $qte = $_POST['quantity'];
 
         $cart_controller = new CartController($pdo);

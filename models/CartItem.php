@@ -60,10 +60,10 @@ class CartItem
 
     public function read($cart_id)
     {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE cart_id = ?";
+        $query = "SELECT * FROM " . $this->table_name . " WHERE cart_id = :cart_id";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(1, $cart_id);
+        $stmt->bindParam(':cart_id', $cart_id);
         $stmt->execute();
-        return $stmt;
+        return $stmt->fetchAll();
     }
 }

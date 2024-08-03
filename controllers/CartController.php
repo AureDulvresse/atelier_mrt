@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Cart;
 use App\Models\CartItem;
-use PDO;
+use PDO; 
 
 
 class CartController
@@ -26,7 +26,7 @@ class CartController
         $this->cartItem->artwork_id = $artwork_id;
         $this->cartItem->quantity = $quantity;
 
-        if ($this->cartItem->update()) {
+        if ($this->cartItem->add()) {
             return json_encode(['message' => 'Cart updated']);
         } else {
             return json_encode(['message' => 'Failed to update cart']);

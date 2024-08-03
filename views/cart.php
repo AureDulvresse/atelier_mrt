@@ -7,11 +7,12 @@
 
 // Exemple de tableau d'œuvres pour la démonstration
 // Remplacez cela par une requête à votre base de données
-$artworks = [
-    1 => ['title' => 'Lumière et Ombre', 'price' => 1500.00],
-    2 => ['title' => 'Nature Morte', 'price' => 750.00],
-    // Ajoutez d'autres œuvres ici
-];
+
+use App\Models\CartItem;
+
+$cartItem = new CartItem($pdo);
+
+$user_cart = $cartItem->read($_SESSION['cart']['id']);
 
 // Vérifier si le panier existe
 if (!isset($_SESSION['cart']) && empty($_SESSION['cart'])) {
@@ -50,7 +51,8 @@ include './views/includes/breadcrumb.php';
                 <tbody>
                     <?php
                     $totalPrice = 0;
-                    foreach ($_SESSION['cart'] as $artworkId => $quantity) {
+                    var_dump($user_cart);
+                    foreach ($items as $user_cart) {
                         if (isset($artworks[$artworkId])) {
                             $artwork = $artworks[$artworkId];
                             $subtotal = $artwork['price'] * $quantity;
