@@ -32,10 +32,10 @@ class Cart
 
     public static function get($pdo, $customer_id)
     {
-        $query = "SELECT id FROM carts WHERE customer_id = ?";
+        $query = "SELECT id FROM carts WHERE customer_id = :customer_id";
         // $stmt = $this->conn->prepare($query);
         $stmt = $pdo->prepare($query);
-        $stmt->bindParam(1, $customer_id);
+        $stmt->bindParam(':customer_id', $customer_id);
         $stmt->execute();
         if ($stmt->rowCount() === 1) {
             return $stmt->fetch(PDO::FETCH_ASSOC);

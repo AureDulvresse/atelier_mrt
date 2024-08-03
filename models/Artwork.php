@@ -41,6 +41,24 @@ class Artwork
         $this->updated_at = date('Y-m-d H:i:s');
     }
 
+    // public static function createFromDatabaseRow($row)
+    // {
+    //     $instance = new self(
+    //         $row['first_name'],
+    //         $row['last_name'],
+    //         $row['email'],
+    //         $row['password'],
+    //         $row['is_superuser'],
+    //         $row['is_staff'],
+    //     );
+
+    //     $instance->id = $row['id'];
+    //     $instance->created_at = $row['created_at'];
+    //     $instance->updated_at = $row['updated_at'];
+
+    //     return $instance;
+    // }
+
     public function save($pdo)
     {
         $sql = "INSERT INTO" . $this->table_name . " (title, slug, description, price, stock, width, height, thumbnail, category_id, medium_id, created_at, updated_at) 
@@ -88,23 +106,30 @@ class Artwork
 
     public static function find($pdo, $id)
     {
-        $sql = "SELECT * FROM artwork WHERE id = :id";
+        $sql = "SELECT * FROM artworks WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([':id' => $id]);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Artwork');
+        $stmt->setFetchMode(PDO::FETCH_CLASS, Artwork::class);
         return $stmt->fetch();
+        // $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // if ($row) {
+        //     return self::createFromDatabaseRow($row);
+        // }
+
+        // return null;
     }
 
     public static function all($pdo)
     {
-        $sql = "SELECT * FROM artwork";
+        $sql = "SELECT * FROM artworks";
         $stmt = $pdo->query($sql);
         return $stmt->fetchAll(PDO::FETCH_CLASS, 'Artwork');
     }
 
     public static function delete($pdo, $id)
     {
-        $sql = "DELETE FROM artwork WHERE id = :id";
+        $sql = "DELETE FROM artworks WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         return $stmt->execute([':id' => $id]);
     }
