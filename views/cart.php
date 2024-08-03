@@ -29,7 +29,7 @@ include './views/includes/breadcrumb.php';
         <?php if ($cart_empty) : ?>
             <div style="text-align: center;">
                 <p><?php echo $msg; ?></p>
-                <a href="/" class="btn">Retour à la boutique</a>
+                <a href="/atelier_mrt/" class="btn">Retour à la boutique</a>
             </div>
 
         <?php else : ?>
