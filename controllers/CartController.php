@@ -1,7 +1,10 @@
 <?php
 
+namespace App\Controllers;
+
 use App\Models\Cart;
 use App\Models\CartItem;
+use PDO;
 
 
 class CartController
@@ -54,4 +57,3 @@ class CartController
         echo json_encode($items);
     }
 }
-
