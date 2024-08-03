@@ -37,6 +37,12 @@ class Cart
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(1, $customer_id);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($stmt->rowCount() === 1) {
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        else {
+            return [];
+        }
+        
     }
 }
