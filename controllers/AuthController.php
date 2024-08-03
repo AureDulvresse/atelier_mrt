@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controllers;
+
 use App\Models\Cart;
 use PHPAuth\Config as PHPAuthConfig;
 use PHPAuth\Auth as PHPAuth;
@@ -86,6 +88,8 @@ class AuthController
             $hash = $_SESSION['auth_hash'];
             $this->auth->logout($hash);
             unset($_SESSION['auth_hash']);
+            unset($_SESSION['cart']);
+            unset($_SESSION['current_id']);
             echo "Déconnexion réussie.";
         } else {
             echo "Erreur lors de la déconnexion.";

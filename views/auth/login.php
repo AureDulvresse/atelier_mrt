@@ -1,11 +1,11 @@
 <?php
 
+use App\Controllers\AuthController;
+
 // Afficher les erreurs pour le débogage (optionnel, décommentez pour activer)
 // ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
-
-require './controllers/AuthController.php'; // Inclure le contrôleur d'authentification
 
 // Initialiser le contrôleur d'authentification
 $authController = new AuthController($pdo);

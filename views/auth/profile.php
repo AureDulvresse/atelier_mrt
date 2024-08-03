@@ -5,7 +5,11 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
+use App\Models\Customer;
+
 $msg = "Gérez votre profil !";
+
+$customer = Customer::findById($pdo, $_SESSION['current_id']);
 
 include './views/includes/breadcrumb.php';
 ?>
@@ -19,22 +23,22 @@ include './views/includes/breadcrumb.php';
                 <form id="update-profile-form">
                     <div class="row">
                         <label for="prenom">Prénom:</label>
-                        <input type="text" class="form-input" id="prenom" name="prenom" value="John">
+                        <input type="text" class="form-input" id="prenom" name="prenom" value="<?php echo $customer->first_name ?>">
                     </div>
 
                     <div class="row">
                         <label for="nom">Nom:</label>
-                        <input type="text" class="form-input" id="nom" name="nom" value="Doe">
+                        <input type="text" class="form-input" id="nom" name="nom" value="<?php echo $customer->last_name ?>">
                     </div>
 
                     <div class="row">
                         <label for="email">Email:</label>
-                        <input type="email" class="form-input" id="email" name="email" value="john.doe@example.com">
+                        <input type="email" class="form-input" id="email" name="email" value="<?php echo $customer->email ?>">
                     </div>
 
                     <div class="row">
                         <label for="telephone">Téléphone:</label>
-                        <input type="text" class="form-input" id="telephone" name="telephone" value="+1234567890">
+                        <input type="text" class="form-input" id="telephone" name="telephone" value="<?php echo $customer->phone ?>">
                     </div>
 
                     <div class="row">

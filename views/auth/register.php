@@ -5,7 +5,7 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-require './controllers/AuthController.php';
+use App\Controllers\AuthController;
 
 // Initialiser le contrôleur d'authentification
 $authController = new AuthController($pdo);

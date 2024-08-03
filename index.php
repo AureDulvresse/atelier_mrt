@@ -85,6 +85,11 @@ switch ($request) {
         require __DIR__ . '/views/auth/register.php';
         break;
 
+    case '/logout':
+        $pageTitle = 'Déconnexion';
+        require __DIR__ . '/views/auth/logout.php';
+        break;
+
     case '/forgot-password':
         $pageTitle = 'Réinitialiser le mot de passe';
         require __DIR__ . '/views/auth/forgot-password.php';
