@@ -65,8 +65,6 @@ class AuthController
             $customer->last_login = date('Y-m-d H:i:s');
             $customer->update($this->pdo);
 
-            var_dump($customer);
-
             // Stocker le hash de session dans la session PHP
             $_SESSION['auth_hash'] = $login['hash'];
 
