@@ -26,7 +26,8 @@ class Customer
         $this->password = password_hash($password, PASSWORD_BCRYPT);
         $this->is_superuser = $is_superuser;
         $this->is_staff = $is_staff;
-        $this->is_active = $is_active;    }
+        $this->is_active = $is_active;
+    }
 
     public static function createFromDatabaseRow($row)
     {
@@ -43,7 +44,7 @@ class Customer
 
     public function save($pdo)
     {
-        $sql = "INSERT INTO ". $this->table_name. " (first_name, last_name, email, password, is_superuser, is_staff, is_active) 
+        $sql = "INSERT INTO " . $this->table_name . " (first_name, last_name, email, password, is_superuser, is_staff, is_active) 
                 VALUES (:first_name, :last_name, :email, :password, :is_superuser, :is_staff, :is_active)";
         $stmt = $pdo->prepare($sql);
         $params = [
@@ -60,7 +61,7 @@ class Customer
 
     public function update($pdo)
     {
-        $sql = "UPDATE " . $this->table_name." SET first_name = :first_name, last_name = :last_name, email = :email, 
+        $sql = "UPDATE " . $this->table_name . " SET first_name = :first_name, last_name = :last_name, email = :email, 
                 password = :password, is_superuser = :is_superuser, is_staff = :is_staff, is_active = :is_active, 
                 last_login = :last_login WHERE id = :id";
         $stmt = $pdo->prepare($sql);
@@ -90,8 +91,13 @@ class Customer
         $sql = "SELECT * FROM customers WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([':id' => $id]);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Customer');
-        return $stmt->fetch();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row) {
+            return self::createFromDatabaseRow($row);
+        }
+
+        return null;
     }
 
     public static function findByEmail($pdo, $email)
@@ -114,5 +120,4 @@ class Customer
         $stmt = $pdo->prepare($sql);
         return $stmt->execute([':id' => $id]);
     }
-
 }
