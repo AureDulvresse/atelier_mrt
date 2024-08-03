@@ -50,7 +50,7 @@ include './views/includes/breadcrumb.php';
                     <button id="addToCartBtn" class="btn">Ajouter au panier</button>
                 <?php else : ?>
                     <!-- Utilisateur non connecté -->
-                    <a href="login" class="btn">Connexion pour Ajouter au panier</a>
+                    <a href="login" class="btn">Se connecter pour Ajouter au panier</a>
                 <?php endif; ?>
             </div>
         </div>

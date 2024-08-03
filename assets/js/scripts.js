@@ -91,8 +91,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!checkScroll(recordsWrap)) return;
     recordsNumbers.forEach((numb) => {
       const updateCount = () => {
-        const currentNum =+ numb.innerText;
-        const maxNum =+ numb.dataset.num;
+        const currentNum = +numb.innerText;
+        const maxNum = +numb.dataset.num;
         const increment = Math.ceil(maxNum / 100);
 
         if (currentNum < maxNum) {
@@ -115,20 +115,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener("scroll", () => {
     countUp();
-  });
-
-  // Swiper initialization
-  var mySwiper = new Swiper(".swiper-container", {
-    speed: 1100,
-    slidesPerView: 1,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-    },
-    navigation: {
-      prevEl: ".swiper-button-prev",
-      nextEl: ".swiper-button-next",
-    },
   });
 
   $("#send-mail").on("click", function (e) {
@@ -169,11 +155,12 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   const atc_btn = document.querySelector("#addToCartBtn");
-  atc_btn.addEventListener('click', () => {
+  atc_btn.addEventListener("click", () => {
     const artword_id = document.querySelector("#artword_id").value();
-    const cart_id = document.querySelector("#artword_id").value();
+    const cart_id = document.querySelector("#cart_id").value();
+    atc_btn.textContent = "En cours...";
     addToCart(cart_id, artword_id);
-  })
+  });
 
   const addToCart = async (cartId, artworkId, quantity = 1) => {
     $.ajax({
@@ -195,9 +182,6 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
   };
-
-
-
 
   const updateProfileForm = document.getElementById("update-profile-form");
   updateProfileForm.addEventListener("submit", function (event) {
@@ -248,4 +232,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Swiper initialization
+  var mySwiper = new Swiper(".swiper-container", {
+    speed: 1100,
+    slidesPerView: 1,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+    },
+    navigation: {
+      prevEl: ".swiper-button-prev",
+      nextEl: ".swiper-button-next",
+    },
+  });
 });
