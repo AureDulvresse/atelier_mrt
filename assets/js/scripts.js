@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
           alert(data.message);
           if (data.status === "success") {
             // Rediriger l'utilisateur après la suppression
-            window.location.href = "/";
+            window.location.href = "/atelier_mrt/";
           }
         })
         .catch((error) => {

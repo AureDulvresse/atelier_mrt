@@ -19,22 +19,22 @@ include './views/includes/breadcrumb.php';
                 <form id="update-profile-form">
                     <div class="row">
                         <label for="prenom">Prénom:</label>
-                        <input type="text" id="prenom" name="prenom" value="John">
+                        <input type="text" class="form-input" id="prenom" name="prenom" value="John">
                     </div>
 
                     <div class="row">
                         <label for="nom">Nom:</label>
-                        <input type="text" id="nom" name="nom" value="Doe">
+                        <input type="text" class="form-input" id="nom" name="nom" value="Doe">
                     </div>
 
                     <div class="row">
                         <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" value="john.doe@example.com">
+                        <input type="email" class="form-input" id="email" name="email" value="john.doe@example.com">
                     </div>
 
                     <div class="row">
                         <label for="telephone">Téléphone:</label>
-                        <input type="text" id="telephone" name="telephone" value="+1234567890">
+                        <input type="text" class="form-input" id="telephone" name="telephone" value="+1234567890">
                     </div>
 
                     <div class="row">
