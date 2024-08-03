@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controllers;
+
 use App\Models\Artwork;
 
 class ArtworkController
@@ -11,32 +13,23 @@ class ArtworkController
         $this->pdo = $pdo;
     }
 
-    public function readArtwork($id)
+    public function list()
     {
-        try {
-            // Préparer la requête de sélection
-            $sql = "SELECT * FROM artwork WHERE id = :id";
-            
-            // Préparer et exécuter la requête avec les paramètres
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([':id' => $id]);
-            
-            // Récupérer le résultat
-            $artwork = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            if ($artwork) {
-                return $artwork;
-            } else {
-                throw new Exception("Artwork not found.");
-            }
-        } catch (PDOException $e) {
-            echo 'Erreur lors de l\'exécution de la requête : ' . $e->getMessage();
-        } catch (Exception $e) {
-            echo $e->getMessage();
+        return Artwork::all($this->pdo);
+    }
+
+    public function find($id)
+    {
+        $artwork = Artwork::find($this->pdo, $id);
+
+        if ($artwork) {
+            return $artwork;
+        } else {
+            echo json_encode(["message" => "Artwork not found."]);
         }
     }
 
-    public function addArtwork()
+    public function add()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Récupérer les données du formulaire
@@ -77,7 +70,7 @@ class ArtworkController
         }
     }
 
-    public function deleteArtwork($id)
+    public function delete($id)
     {
         if (Artwork::delete($this->pdo, $id)) {
             echo "Œuvre supprimée avec succès.";
@@ -86,7 +79,7 @@ class ArtworkController
         }
     }
 
-    public function editArtwork($id)
+    public function update($id)
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Récupérer les données du formulaire
@@ -145,21 +138,5 @@ class ArtworkController
                 echo "Œuvre non trouvée.";
             }
         }
-    }
-
-    public function viewArtwork($id)
-    {
-        $artwork = Artwork::find($this->pdo, $id);
-        if ($artwork) {
-            return $artwork;
-        } else {
-            echo "Œuvre non trouvée.";
-            return null;
-        }
-    }
-
-    public function listArtworks()
-    {
-        return Artwork::all($this->pdo);
     }
 }

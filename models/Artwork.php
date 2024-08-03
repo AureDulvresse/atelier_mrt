@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use PDO;
+require_once 'utils/slugify.php';
 
-require 'utils/slugify.php';
+use PDO;
 
 class Artwork
 {
@@ -43,7 +43,7 @@ class Artwork
 
     public function save($pdo)
     {
-        $sql = "INSERT INTO" . $this->table_name ." (title, slug, description, price, stock, width, height, thumbnail, category_id, medium_id, created_at, updated_at) 
+        $sql = "INSERT INTO" . $this->table_name . " (title, slug, description, price, stock, width, height, thumbnail, category_id, medium_id, created_at, updated_at) 
                 VALUES (:title, :slug, :description, :price, :stock, :width, :height, :thumbnail, :category_id, :medium_id, :created_at, :updated_at)";
         $stmt = $pdo->prepare($sql);
         $params = [
@@ -65,7 +65,7 @@ class Artwork
 
     public function update($pdo)
     {
-        $sql = "UPDATE" . $this->table_name ." SET title = :title, slug = :slug, description = :description, price = :price, stock = :stock, 
+        $sql = "UPDATE" . $this->table_name . " SET title = :title, slug = :slug, description = :description, price = :price, stock = :stock, 
                 width = :width, height = :height, thumbnail = :thumbnail, category_id = :category_id, medium_id = :medium_id, 
                 updated_at = :updated_at WHERE id = :id";
         $stmt = $pdo->prepare($sql);

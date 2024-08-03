@@ -2,6 +2,7 @@
 
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\Artwork;
 
 class CartController
 {
@@ -51,5 +52,27 @@ class CartController
         }
 
         echo json_encode($items);
+    }
+}
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $action = $_POST['action'];
+    switch ($action) {
+        case 'add':
+            $artwork = Artwork::find($pdo, $_POST['artwork_id'] ?? 1);
+            $cart = Cart::get($pdo, $_SESSION['cart'] ?? 1);
+            $qte = $_POST['quantity'];
+
+            $cart_controller = new CartController($pdo);
+
+            $result = $cart_controller->addToCart($cart, $artwork, $qte);
+
+            header('Location: /atelier/shop/artwork/' . $_POST['artwork_id']);
+            break;
+        
+        default:
+            # code...
+            break;
     }
 }
