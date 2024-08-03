@@ -9,14 +9,16 @@ class Customer
     private $table_name = 'customers';
 
     public $id;
-    public $password;
-    public $last_login;
-    public $is_superuser;
     public $first_name;
     public $last_name;
     public $email;
+    public $password;
+    public $last_login;
     public $is_staff;
+    public $is_superuser;
     public $is_active;
+    public $created_at;
+    public $updated_at;
 
     public function __construct($first_name, $last_name, $email, $password, $is_superuser = false, $is_staff = false, $is_active = true)
     {
@@ -31,8 +33,7 @@ class Customer
 
     public static function createFromDatabaseRow($row)
     {
-        return new self(
-            $row['id'],
+        $instance = new self(
             $row['first_name'],
             $row['last_name'],
             $row['email'],
@@ -40,6 +41,12 @@ class Customer
             $row['is_superuser'],
             $row['is_staff'],
         );
+
+        $instance->id = $row['id'];
+        $instance->created_at = $row['created_at'];
+        $instance->updated_at = $row['updated_at'];
+
+        return $instance;
     }
 
     public function save($pdo)
