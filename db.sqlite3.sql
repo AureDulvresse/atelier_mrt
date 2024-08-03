@@ -19,14 +19,14 @@ CREATE TABLE categories (
     description TEXT NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE mediums (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(128) NOT NULL UNIQUE,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE customers (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -35,6 +35,8 @@ CREATE TABLE customers (
     email VARCHAR(191) NOT NULL UNIQUE,
     password VARCHAR(128) NOT NULL,
     last_login DATETIME NULL,
+    is_staff BOOLEAN NOT NULL DEFAULT FALSE,
+    is_superuser BOOLEAN NOT NULL DEFAULT FALSE,
     is_active BOOLEAN NOT NULL DEFAULT TRUE,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -56,14 +58,14 @@ CREATE TABLE artworks (
     medium_id INT NOT NULL,
     FOREIGN KEY (category_id) REFERENCES categories(id),
     FOREIGN KEY (medium_id) REFERENCES mediums(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE carts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT NOT NULL UNIQUE,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (customer_id) REFERENCES customers(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE cart_items (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -74,7 +76,7 @@ CREATE TABLE cart_items (
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (cart_id) REFERENCES carts(id),
     FOREIGN KEY (artwork_id) REFERENCES artworks(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -85,7 +87,7 @@ CREATE TABLE orders (
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     ordered_at DATETIME NULL,
     FOREIGN KEY (customer_id) REFERENCES customers(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE order_items (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -95,7 +97,7 @@ CREATE TABLE order_items (
     price DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (order_id) REFERENCES orders(id),
     FOREIGN KEY (artwork_id) REFERENCES artworks(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE checkouts (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -103,7 +105,7 @@ CREATE TABLE checkouts (
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     customer_id INT NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES customers(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE checkout_orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -111,7 +113,7 @@ CREATE TABLE checkout_orders (
     order_id INT NOT NULL,
     FOREIGN KEY (checkout_id) REFERENCES checkouts(id),
     FOREIGN KEY (order_id) REFERENCES orders(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Table pour les posts
 CREATE TABLE posts (
@@ -124,7 +126,7 @@ CREATE TABLE posts (
     event_location VARCHAR(200) NULL, -- Lieu pour les événements uniquement
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Table pour lier les posts aux artworks
 CREATE TABLE post_event_artworks (
@@ -134,4 +136,4 @@ CREATE TABLE post_event_artworks (
     FOREIGN KEY (post_id) REFERENCES posts(id),
     FOREIGN KEY (artwork_id) REFERENCES artworks(id),
     UNIQUE KEY unique_post_artwork (post_id, artwork_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

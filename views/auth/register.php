@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Vérification du token CSRF
     if ($csrfToken !== $_SESSION['csrf_token']) {
-        $message = 'Token CSRF invalide.';
+        $message = ['error' => 'Token CSRF invalide.'];
     } else {
         // Appel au contrôleur pour l'inscription
         $authController->register($firstName, $lastName, $email, $password, $repeatPassword);
@@ -50,8 +50,8 @@ include './views/includes/breadcrumb.php';
                 <h3 class="title">Inscription</h3>
                 <form action="/atelier_mrt/register" method="post">
 
-                    <?php if ($message) : ?>
-                        <div class="message"><?php echo htmlspecialchars($message); ?></div>
+                    <?php if (isset($message['error'])) : ?>
+                        <div class="alert error"><?php echo htmlspecialchars($message['error']); ?></div>
                     <?php endif; ?>
 
                     <!-- Affichage du token CSRF -->

@@ -264,6 +264,31 @@
       cursor: not-allowed;
   }
 
+  /* Alert styles */
+
+  .alert {
+      text-align: center;
+      border-radius: var(--radius);
+      padding: 1rem 0.8rem;
+      width: 100%;
+      height: auto;
+  }
+
+  .alert.success {
+      background-color: #5ed57a;
+      color: #28a745;
+  }
+
+  .alert.error {
+      background-color: #d55e6a;
+      color: #a72828;
+  }
+
+  .alert.warning {
+      background-color: #d59d5e;
+      color: #a76c28;
+  }
+
   /* End Genral Styles */
 
   /* Header */
@@ -1237,7 +1262,7 @@
       opacity: 0.8;
   }
 
-/* End Panier */
+  /* End Panier */
 
   /* Footer */
 

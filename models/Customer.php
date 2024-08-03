@@ -17,7 +17,6 @@ class Customer
     public $email;
     public $is_staff;
     public $is_active;
-    public $date_joined;
 
     public function __construct($first_name, $last_name, $email, $password, $is_superuser = false, $is_staff = false, $is_active = true)
     {
@@ -27,9 +26,7 @@ class Customer
         $this->password = password_hash($password, PASSWORD_BCRYPT);
         $this->is_superuser = $is_superuser;
         $this->is_staff = $is_staff;
-        $this->is_active = $is_active;
-        $this->date_joined = date('Y-m-d H:i:s');
-    }
+        $this->is_active = $is_active;    }
 
     public static function createFromDatabaseRow($row)
     {
@@ -46,8 +43,8 @@ class Customer
 
     public function save($pdo)
     {
-        $sql = "INSERT INTO". $this->table_name. "(first_name, last_name, email, password, is_superuser, is_staff, is_active, date_joined) 
-                VALUES (:first_name, :last_name, :email, :password, :is_superuser, :is_staff, :is_active, :date_joined)";
+        $sql = "INSERT INTO ". $this->table_name. " (first_name, last_name, email, password, is_superuser, is_staff, is_active) 
+                VALUES (:first_name, :last_name, :email, :password, :is_superuser, :is_staff, :is_active)";
         $stmt = $pdo->prepare($sql);
         $params = [
             ':first_name' => $this->first_name,
@@ -57,14 +54,13 @@ class Customer
             ':is_superuser' => $this->is_superuser,
             ':is_staff' => $this->is_staff,
             ':is_active' => $this->is_active,
-            ':date_joined' => $this->date_joined
         ];
         return $stmt->execute($params);
     }
 
     public function update($pdo)
     {
-        $sql = "UPDATE" . $this->table_name." SET first_name = :first_name, last_name = :last_name, email = :email, 
+        $sql = "UPDATE " . $this->table_name." SET first_name = :first_name, last_name = :last_name, email = :email, 
                 password = :password, is_superuser = :is_superuser, is_staff = :is_staff, is_active = :is_active, 
                 last_login = :last_login WHERE id = :id";
         $stmt = $pdo->prepare($sql);

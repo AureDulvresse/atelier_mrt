@@ -31,8 +31,8 @@ class AuthController
 
 
         if ($password !== $repeatPassword) {
-            echo "Les mots de passe ne correspondent pas.";
-            return;
+            $this->registerMessage =  ["error" => "Les mots de passe ne correspondent pas."];
+            return $this->registerMessage;
         }
 
         // Enregistrement avec PHPAuth
@@ -61,7 +61,7 @@ class AuthController
             // Mettre à jour la date de dernière connexion
             $customer = Customer::findByEmail($this->pdo, $email);
             $customer->last_login = date('Y-m-d H:i:s');
-            $customer->update($this->pdo); 
+            $customer->update($this->pdo);
 
             // Stocker le hash de session dans la session PHP
             $_SESSION['auth_hash'] = $login['hash'];
@@ -70,7 +70,7 @@ class AuthController
 
             $cart = Cart::get($this->pdo, $customer->id);
             $_SESSION['cart'] = $cart;
-              
+
 
             echo "Connexion réussie.";
         }
