@@ -44,8 +44,7 @@ include './views/includes/breadcrumb.php';
                     <p class="artwork-details__price">Prix: <?php echo number_format($artwork['price'], 2, ',', ' '); ?> €</p>
                 </div>
                 <?php if ($isLoggedIn) : ?>
-                    <form action="/atelier_mrt/controllers/CartController.php" method="post">
-                        <input type="hidden" name="action" id="action" value="add" />
+                    <form action="/atelier_mrt/utils/add_to_cart.php" method="post">
                         <input type="hidden" name="artwork_id" id="artwork_id" value="<?php echo intval($artwork['id']); ?>" />
                         <!-- Utilisateur connecté -->
                         <button type="submit" class="btn">Ajouter au panier</button>
