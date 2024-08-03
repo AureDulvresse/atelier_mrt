@@ -1,5 +1,4 @@
 <?php
-// models/Artwork.php
 
 namespace App\Models;
 
