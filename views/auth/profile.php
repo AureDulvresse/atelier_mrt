@@ -10,10 +10,7 @@ $msg = "Gérez votre profil !";
 include './views/includes/breadcrumb.php';
 ?>
 
-<div class="profile-container">
-    <div class="profile-header">
-        <h1>Votre Profil</h1>
-    </div>
+<div class="container">
     <div class="profile-content">
         <div class="profile-info">
             <h2 class="title">Informations Personnelles</h2>
