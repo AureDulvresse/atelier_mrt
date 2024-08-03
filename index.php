@@ -54,6 +54,10 @@ switch ($request) {
         $pageTitle = 'Boutique';
         require __DIR__ . '/views/shop/gallery.php';
         break;
+    case '/add_to_cart':
+        $pageTitle = 'Add to Cart';
+        require __DIR__ . '/views/shop/actions/add_to_cart.php';
+        break;
     case '/cart':
         $pageTitle = 'Panier';
         require __DIR__ . '/views/cart.php';
