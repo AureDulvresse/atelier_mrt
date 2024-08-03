@@ -93,6 +93,10 @@ switch ($request) {
         $pageTitle = 'Réinitialiser le mot de passe';
         require __DIR__ . '/views/auth/reset-password.php';
         break;
+    case '/profile':
+        $pageTitle = 'Mon compte';
+        require __DIR__ . '/views/auth/profile.php';
+        break;
     case '/order/checkout':
         $pageTitle = 'Commande';
         require __DIR__ . '/views/order/checkout.php';

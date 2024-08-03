@@ -195,4 +195,57 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
   };
+
+
+
+
+  const updateProfileForm = document.getElementById("update-profile-form");
+  updateProfileForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    // Récupérer les valeurs des champs
+    const formData = new FormData(updateProfileForm);
+
+    // Envoyer les données via AJAX
+    fetch("/atelier_mrt/update_profile.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data.message);
+      })
+      .catch((error) => {
+        console.error("Erreur:", error);
+        alert("Une erreur est survenue.");
+      });
+  });
+
+  // Suppression du compte
+  const deleteAccountButton = document.getElementById("delete-account");
+  deleteAccountButton.addEventListener("click", function () {
+    if (
+      confirm(
+        "Voulez-vous vraiment supprimer votre compte ? Cette action est irréversible."
+      )
+    ) {
+      // Envoyer la requête de suppression via AJAX
+      fetch("/atelier_mrt/delete_account.php", {
+        method: "POST",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          alert(data.message);
+          if (data.status === "success") {
+            // Rediriger l'utilisateur après la suppression
+            window.location.href = "/";
+          }
+        })
+        .catch((error) => {
+          console.error("Erreur:", error);
+          alert("Une erreur est survenue.");
+        });
+    }
+  });
+
 });

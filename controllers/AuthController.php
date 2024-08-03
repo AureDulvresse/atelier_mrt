@@ -74,6 +74,7 @@ class AuthController
             }
             
             $_SESSION['cart'] = $cart;
+            $_SESSION['current_id'] = $customer->id;
 
             echo "Connexion réussie.";
         }

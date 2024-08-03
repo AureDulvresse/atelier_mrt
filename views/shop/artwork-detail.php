@@ -5,8 +5,6 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-use App\Models\Cart;
-
 $msg = "En savoir plus sur l'oeuvre !";
 
 // Récupérer l'ID de l'œuvre depuis l'URL
