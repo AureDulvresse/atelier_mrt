@@ -62,11 +62,11 @@
                             </li>
                             <?php if ($isLoggedIn) : ?>
                                 <!-- Utilisateur connecté -->
-                                <li><a href="cart" class="cart-icon"><i class='bx bx-cart'></i></a></li>
-                                <li><a href="profile" class="user-icon"><i class='bx bx-user'></i></a></li>
+                                <li><a href="/atelier_mrt/cart" class="cart-icon"><i class='bx bx-cart'></i></a></li>
+                                <li><a href="/atelier_mrt/profile" class="user-icon"><i class='bx bx-user'></i></a></li>
                             <?php else : ?>
                                 <!-- Utilisateur non connecté -->
-                                <li><a href="login" class="active">Connexion</a></li>
+                                <li><a href="/atelier_mrt/login" class="active">Connexion</a></li>
                             <?php endif; ?>
                         </ul>
                     </div>
