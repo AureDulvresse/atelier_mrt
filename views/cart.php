@@ -36,7 +36,6 @@ include './views/includes/breadcrumb.php';
             </div>
 
         <?php else : ?>
-            <h1><?php echo $msg; ?></h1>
             <table class="cart-table">
                 <thead>
                     <tr>
