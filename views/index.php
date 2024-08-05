@@ -151,7 +151,7 @@
             </p>
         </div>
 
-        <div class="blog-wrapper" data-aos="fade-up" data-aos-duration="2000">
+        <div class="blog-wrapper">
             <?php for ($i = 0; $i < 3; $i++) : ?>
                 <div class="blog-wrap">
                     <img src="" alt="" class="points points-sq" />
