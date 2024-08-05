@@ -30,8 +30,8 @@ include './views/includes/breadcrumb.php';
                 <p class="artwork-details__description"><?php echo htmlspecialchars($artwork->description); ?></p>
                 <div class="artwork-details__attributes">
                     <p class="artwork-details__dimensions">Dimensions: <?php echo intval($artwork->width); ?> cm x <?php echo intval($artwork->height); ?> cm</p>
-                    <p class="artwork-details__category">Catégorie: <?php echo htmlspecialchars($artwork->category_id); ?></p>
-                    <p class="artwork-details__medium">Technique: <?php echo htmlspecialchars($artwork->medium_id); ?></p>
+                    <p class="artwork-details__category">Catégorie: <?php echo htmlspecialchars($artwork->category_name); ?></p>
+                    <p class="artwork-details__medium">Technique: <?php echo htmlspecialchars($artwork->medium_name); ?></p>
                     <p class="artwork-details__stock">Stock: <?php echo intval($artwork->stock); ?> pièces disponibles</p>
                     <p class="artwork-details__price">Prix: <?php echo number_format($artwork->price, 2, ',', ' '); ?> €</p>
                 </div>
