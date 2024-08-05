@@ -1,11 +1,38 @@
 <?php
 session_start();
-require_once 'config/config.php';
+
+// Charger la configuration de la base de données et créer l'instance PDO
+$pdo = require __DIR__ . '/config/database.php';
+
+// Charger la configuration des services tiers
+$services = require __DIR__ . '/config/services.php';
+
+// Utiliser les configurations
+$stripeSecretKey = $services['stripe']['secret_key'];
+$stripePublishableKey = $services['stripe']['publishable_key'];
+$paypalClientId = $services['paypal']['client_id'];
+$paypalSecret = $services['paypal']['secret'];
+$paypalSandbox = $services['paypal']['sandbox'];
+
+// Exemple d'initialisation des services
+\Stripe\Stripe::setApiKey($stripeSecretKey);
+
+// PayPal SDK initialisation
+$apiContext = new \PayPal\Rest\ApiContext(
+    new \PayPal\Auth\OAuthTokenCredential(
+        $paypalClientId,
+        $paypalSecret
+    )
+);
+
+$apiContext->setConfig([
+    'mode' => $paypalSandbox ? 'sandbox' : 'live'
+]);
 
 // Afficher les erreurs pour le débogage
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 // Obtenez l'URI de la requête
 $request = $_SERVER['REQUEST_URI'];
@@ -61,6 +88,10 @@ switch ($request) {
     case '/add_to_cart':
         $pageTitle = 'Add to Cart';
         require __DIR__ . '/views/shop/actions/add_to_cart.php';
+        break;
+    case '/checkout':
+        $pageTitle = 'Checkout';
+        require __DIR__ . '/views/order/checkout.php';
         break;
     case (preg_match('/^\/shop\/artwork\/(\d+)$/', $request, $matches) ? true : false):
         $pageTitle = 'Détail de l\'œuvre';
