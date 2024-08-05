@@ -53,7 +53,7 @@ include './views/includes/breadcrumb.php';
 
                 <?php else : ?>
                     <!-- Utilisateur non connecté -->
-                    <a href="login" class="btn">Se connecter pour Ajouter au panier</a>
+                    <a href="/atelier_mrt/login" class="btn">Se connecter pour Ajouter au panier</a>
                 <?php endif; ?>
             </div>
         </div>
