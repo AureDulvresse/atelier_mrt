@@ -1,6 +1,4 @@
 <?php
-session_start();
-$config = require 'config.php';
 
 // Simulez les données du panier pour l'exemple
 $cartItems = [
@@ -11,46 +9,43 @@ $totalAmount = array_reduce($cartItems, function ($sum, $item) {
     return $sum + ($item['price'] * $item['quantity']);
 }, 0);
 
-// Inclure les SDKs Stripe et PayPal
-require 'vendor/autoload.php';
-
-\Stripe\Stripe::setApiKey($config['stripe']['secret_key']);
-
 $msg = "Finaliser votre paiement";
 
-include './views/includes/breadcrumb.php';
-
+include __DIR__ . '/../includes/breadcrumb.php';
 ?>
 
-<div class="row">
-    <div class="col-md-6">
-        <h4>Cart Items</h4>
-        <ul class="list-group">
-            <?php foreach ($cartItems as $item) : ?>
-                <li class="list-group-item">
-                    <?php echo $item['name']; ?> - $<?php echo $item['price']; ?> x <?php echo $item['quantity']; ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-        <h4>Total: $<?php echo $totalAmount; ?></h4>
+<div class="checkout-container">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Cart Items</h4>
+            <ul class="list-group">
+                <?php foreach ($cartItems as $item) : ?>
+                    <li class="list-group-item">
+                        <?php echo $item['name']; ?> - $<?php echo $item['price']; ?> x <?php echo $item['quantity']; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <h4>Total: $<?php echo $totalAmount; ?></h4>
+        </div>
+        <div class="col-md-6">
+            <h4>Payment</h4>
+            <!-- Stripe Payment Form -->
+            <form id="stripe-form">
+                <div class="form-group">
+                    <label for="card-element">Credit or debit card</label>
+                    <div id="card-element" class="form-control"></div>
+                </div>
+                <button id="stripe-button" class="btn btn-primary">Pay with Stripe</button>
+            </form>
+            <hr>
+            <!-- PayPal Payment Button -->
+            <div id="paypal-button"></div>
+        </div>
     </div>
-    <div class="col-md-6">
-        <h4>Payment</h4>
-        <!-- Stripe Payment Form -->
-        <form id="stripe-form">
-            <div class="form-group">
-                <label for="card-element">Credit or debit card</label>
-                <div id="card-element" class="form-control"></div>
-            </div>
-            <button id="stripe-button" class="btn btn-primary">Pay with Stripe</button>
-        </form>
-        <hr>
-        <!-- PayPal Payment Button -->
-        <div id="paypal-button"></div>
-    </div>
-</div>
 </div>
 
+<script src="https://js.stripe.com/v3/"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=<?php echo $config['paypal']['client_id']; ?>&currency=USD"></script>
 <script>
     // Stripe Integration
     var stripe = Stripe('<?php echo $config['stripe']['publishable_key']; ?>');
@@ -117,7 +112,4 @@ include './views/includes/breadcrumb.php';
     }).render('#paypal-button');
 </script>
 
-<script src="https://www.paypal.com/sdk/js?client-id=<?php echo $config['paypal']['client_id']; ?>&currency=USD"></script>
-</body>
-
-</html>
+<?php include __DIR__ . '/../includes/footer.php'; ?>

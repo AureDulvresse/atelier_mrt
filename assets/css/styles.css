@@ -1264,6 +1264,50 @@
 
   /* End Panier */
 
+  /* Checkout */
+
+
+  .checkout-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+  }
+
+  .checkout-container .row {
+      display: flex;
+      flex-wrap: wrap;
+  }
+
+  .checkout-container .col-md-6 {
+      flex: 1;
+      padding: 10px;
+  }
+
+  .list-group-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+  }
+
+  .form-group {
+      margin-bottom: 15px;
+  }
+
+  #stripe-button,
+  #paypal-button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+  }
+
+  @media (max-width: 768px) {
+      .checkout-container .row {
+          flex-direction: column;
+      }
+  }
+
+  /* End Checkout */
+
   /* Profile */
   /* En-tête du profil */
   .profile {
@@ -1304,7 +1348,6 @@
           flex-direction: column;
       }
   }
-
 
   /* End Profile */
 
