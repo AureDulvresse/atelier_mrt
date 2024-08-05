@@ -54,17 +54,16 @@ include './views/includes/breadcrumb.php';
                     var_dump($user_cart);
                         foreach ($user_cart as $item) {
                             if (isset($item->artwork->id)) {
-                                $artwork = $item['artwork_id'];
-                            $subtotal = $artwork['price'] * $quantity;
+                            $subtotal = $item->artwork->price * $quantity;
                             $totalPrice += $subtotal;
                     ?>
                             <tr>
                                 <td><img src="/assets/images/sample.jpg" alt="Artwork Image" class="cart-image" /></td>
-                                <td><?php echo $artwork['title']; ?></td>
-                                <td><?php echo number_format($artwork['price'], 2, ',', ' '); ?> €</td>
+                                <td><?php echo $item->artwork->title; ?></td>
+                                <td><?php echo number_format($item->artwork->price, 2, ',', ' '); ?> €</td>
                                 <td><?php echo $quantity; ?></td>
                                 <td><?php echo number_format($subtotal, 2, ',', ' '); ?> €</td>
-                                <td><a href="remove_from_cart.php?id=<?php echo $artworkId; ?>" class="btn remove-from-cart">Retirer</a></td>
+                                <td><a href="remove_from_cart.php?id=<?php echo $item->artwork_id; ?>" class="btn remove-from-cart">Retirer</a></td>
                             </tr>
                     <?php
                         }
