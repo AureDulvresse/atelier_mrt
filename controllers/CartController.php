@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\Artwork;
 use App\Models\Cart;
 use App\Models\CartItem;
-use PDO; 
 
 
 class CartController
@@ -52,11 +51,6 @@ class CartController
     {
         $cartItems = $this->cartItem->read($cart_id);
 
-        $items = [];
-        while ($row = $cartItems->fetch(PDO::FETCH_ASSOC)) {
-            $items[] = $row;
-        }
-
-        echo json_encode($items);
+        return json_encode($cartItems);
     }
 }
