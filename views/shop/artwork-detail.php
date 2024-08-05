@@ -14,8 +14,6 @@ $artworkId = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 $artwork = Artwork::find($pdo, $artworkId);
 
-var_dump($artwork);
-
 include './views/includes/breadcrumb.php';
 ?>
 
