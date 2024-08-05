@@ -7,10 +7,17 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
 // Paramètres de la base de données
-$host = getenv('DB_HOST');
-$dbname = getenv('DB_NAME');
-$user = getenv('DB_USER');
-$pass = getenv('DB_PASS');
+$host = $_ENV['DB_HOST'];
+$dbname = $_ENV['DB_NAME'];
+$user = $_ENV['DB_USER'];
+$pass = $_ENV['DB_PASS'];
+
+// Vérifier les valeurs des variables d'environnement
+if (!$host || !$dbname || !$user || $pass === false) {
+    die('Erreur: Une ou plusieurs variables d\'environnement de la base de données ne sont pas définies.');
+}
+
+
 
 // Créer une instance de PDO pour la connexion à la base de données
 try {
