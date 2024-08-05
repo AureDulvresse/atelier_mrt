@@ -30,9 +30,9 @@ class CartController
         $result = CartItem::add($this->pdo, $cart_id, $artwork, $quantity);
 
         if ($result) {
-            echo json_encode(['status' => 'success', 'message' => 'L\'article a été ajouté au panier.']);
+            return json_encode(['status' => 'success', 'message' => 'L\'article a été ajouté au panier.']);
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Une erreur est survenue.']);
+            return json_encode(['status' => 'error', 'message' => 'Une erreur est survenue.']);
         }
     }
 
