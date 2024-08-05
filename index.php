@@ -14,16 +14,13 @@ $paypalClientId = $services['paypal']['client_id'];
 $paypalSecret = $services['paypal']['secret'];
 $paypalSandbox = $services['paypal']['sandbox'];
 
-// Exemple d'initialisation des services
-\Stripe\Stripe::setApiKey($stripeSecretKey);
-
 // PayPal SDK initialisation
-$apiContext = new \PayPal\Rest\ApiContext(
-    new \PayPal\Auth\OAuthTokenCredential(
-        $paypalClientId,
-        $paypalSecret
-    )
-);
+// $apiContext = new \PayPal\Rest\ApiContext(
+//     new \PayPal\Auth\OAuthTokenCredential(
+//         $paypalClientId,
+//         $paypalSecret
+//     )
+// );
 
 $apiContext->setConfig([
     'mode' => $paypalSandbox ? 'sandbox' : 'live'

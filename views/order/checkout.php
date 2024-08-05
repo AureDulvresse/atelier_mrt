@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Models\CartItem;
 
 $cartItem = new CartItem($pdo);
@@ -12,6 +11,9 @@ $totalAmount = array_reduce($cartItems, function ($sum, $item) {
 }, 0);
 
 $msg = "Finaliser votre paiement";
+
+// Exemple d'initialisation des services
+\Stripe\Stripe::setApiKey($stripeSecretKey);
 
 include __DIR__ . '/../includes/breadcrumb.php';
 ?>
