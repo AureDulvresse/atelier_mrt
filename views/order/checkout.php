@@ -1,48 +1,90 @@
 <?php
 
-// Simulez les données du panier pour l'exemple
-$cartItems = [
-    ['name' => 'Artwork 1', 'price' => 100, 'quantity' => 1],
-    ['name' => 'Artwork 2', 'price' => 200, 'quantity' => 1],
-];
+
+use App\Models\CartItem;
+
+$cartItem = new CartItem($pdo);
+
+$cartItems = $cartItem->read($_SESSION['cart']);
+
 $totalAmount = array_reduce($cartItems, function ($sum, $item) {
-    return $sum + ($item['price'] * $item['quantity']);
+    return $sum + ($item->artwork->price * $item->quantity);
 }, 0);
 
 $msg = "Finaliser votre paiement";
 
 include __DIR__ . '/../includes/breadcrumb.php';
 ?>
+<section class="section cart">
+    <div class="container">
+        <div class="grid-2">
+            <table class="cart-table">
+                <thead>
+                    <th>Oeuvre</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Total</th>
+                </thead>
 
-<div class="checkout-container">
-    <div class="row">
-        <div class="col-md-6">
-            <h4>Cart Items</h4>
-            <ul class="list-group">
-                <?php foreach ($cartItems as $item) : ?>
-                    <li class="list-group-item">
-                        <?php echo $item['name']; ?> - $<?php echo $item['price']; ?> x <?php echo $item['quantity']; ?>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-            <h4>Total: $<?php echo $totalAmount; ?></h4>
-        </div>
-        <div class="col-md-6">
-            <h4>Payment</h4>
-            <!-- Stripe Payment Form -->
-            <form id="stripe-form">
-                <div class="form-group">
-                    <label for="card-element">Credit or debit card</label>
-                    <div id="card-element" class="form-control"></div>
-                </div>
-                <button id="stripe-button" class="btn btn-primary">Pay with Stripe</button>
-            </form>
-            <hr>
-            <!-- PayPal Payment Button -->
-            <div id="paypal-button"></div>
+                <tbody>
+                    <?php
+                    $totalPrice = 0;
+                    foreach ($cartItems as $item) :
+                    ?>
+                        <tr>
+                            <td><?php echo $item->artwork->title; ?></td>
+                            <td>
+                                <?php echo $item->artwork->price; ?>
+                            </td>
+                            <td>
+                                <?php echo $item->quantity; ?>
+                            </td>
+                            <td>
+                                <?php echo $item->artwork->price * $item->quantity; ?> €
+                            </td>
+                        </tr>
+
+                    <?php
+                    endforeach; ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Total</td>
+                        <td><?php echo number_format($totalAmount, 2, ',', ' '); ?> €</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="checkout-form">
+                <h3>Informations client</h3>
+                <!-- Stripe Payment Form -->
+                <form id="stripe-form">
+                    <div class="row">
+                        <input type="text" class="form-input" name="full_name" id="full_name" placeholder="Nom complet" />
+                    </div>
+
+                    <div class="row">
+                        <input type="email" class="form-input" name="email" id="email" placeholder="Email" />
+                    </div>
+                    <div class="row">
+                        <h3>Payment</h3>
+                    </div>
+
+                    <div class="row">
+                        <label for="card-element">Credit or debit card</label>
+                        <div id="card-element" class="form-control"></div>
+                    </div>
+
+                    <button id="stripe-button" class="btn black">Pay with Stripe</button>
+                </form>
+                <hr>
+                <!-- PayPal Payment Button -->
+                <div id="paypal-button"></div>
+            </div>
         </div>
     </div>
-</div>
+</section>
+
 
 <script src="https://js.stripe.com/v3/"></script>
 <script src="https://www.paypal.com/sdk/js?client-id=<?php echo $config['paypal']['client_id']; ?>&currency=USD"></script>
