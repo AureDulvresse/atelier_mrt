@@ -66,16 +66,22 @@ class CartItem
 
     public function read($cart_id)
     {
-        $query = "SELECT cart_items.*, artworks.* FROM " . $this->table_name . " 
-              INNER JOIN artworks 
-              ON " . $this->table_name . ".artwork_id = artworks.id
+        $query = "SELECT cart_items.*, 
+                     artworks.id AS artwork_id, artworks.title, artworks.description, artworks.price, artworks.stock, 
+                     artworks.width, artworks.height, artworks.thumbnail, artworks.category_id, artworks.medium_id, 
+                     artworks.created_at, artworks.updated_at,
+                     categories.name AS category_name,
+                     mediums.name AS medium_name
+              FROM " . $this->table_name . " 
+              INNER JOIN artworks ON " . $this->table_name . ".artwork_id = artworks.id
+              INNER JOIN categories ON artworks.category_id = categories.id
+              INNER JOIN mediums ON artworks.medium_id = mediums.id
               WHERE cart_id = :cart_id";
 
         $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(':cart_id', $cart_id, PDO::PARAM_INT);
         $stmt->execute();
 
-        // Utilisation de FETCH_CLASS pour mapper les résultats
         $cartItems = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -85,8 +91,18 @@ class CartItem
             $cartItem->quantity = $row['quantity'];
 
             // Mapper les colonnes des artworks à l'objet Artwork
-            $cartItem->artwork = new Artwork($row['title'], $row['description'], $row['price'], $row['stock'], $row['width'], $row['height'], $row['thumbnail'], $row['category_id'], $row['medium_id']);
-            $cartItem->artwork->id = $row['id'];
+            $cartItem->artwork = new Artwork(
+                $row['title'],
+                $row['description'],
+                $row['price'],
+                $row['stock'],
+                $row['width'],
+                $row['height'],
+                $row['thumbnail'],
+                $row['category_id'],
+                $row['medium_id']
+            );
+            $cartItem->artwork->id = $row['artwork_id'];
             $cartItem->artwork->category_name = $row['category_name'];
             $cartItem->artwork->medium_name = $row['medium_name'];
             $cartItem->artwork->created_at = $row['created_at'];
@@ -97,5 +113,6 @@ class CartItem
 
         return $cartItems;
     }
+
 
 }
