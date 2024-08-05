@@ -74,6 +74,7 @@
 <script>
     AOS.init();
 </script>
+<script src="https://www.paypal.com/sdk/js?client-id=<?php echo $config['paypal']['client_id']; ?>&currency=USD"></script>
 </body>
 
 </html>
