@@ -8,12 +8,12 @@ $dotenv->load();
 
 return [
     'stripe' => [
-        'secret_key' => getenv('STRIPE_SECRET_KEY'),
-        'publishable_key' => getenv('STRIPE_PUBLISHABLE_KEY'),
+        'secret_key' => $_ENV['STRIPE_SECRET_KEY'],
+        'publishable_key' => $_ENV['STRIPE_PUBLISHABLE_KEY'],
     ],
     'paypal' => [
-        'client_id' => getenv('PAYPAL_CLIENT_ID'),
-        'secret' => getenv('PAYPAL_SECRET'),
-        'sandbox' => getenv('PAYPAL_SANDBOX') === 'true',
+        'client_id' => $_ENV['PAYPAL_CLIENT_ID'],
+        'secret' => $_env['PAYPAL_SECRET'],
+        'sandbox' => $_env['PAYPAL_SANDBOX'] === 'true',
     ],
 ];
