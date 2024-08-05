@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use PDO;
+
 class CartItem
 {
     private $conn;
@@ -17,18 +19,21 @@ class CartItem
         $this->conn = $db;
     }
 
-    public function add()
+    public static function add($pdo, $cart_id, $artwork, $quantity)
     {
-        $query = "INSERT INTO " . $this->table_name . " SET cart_id=:cart_id, artwork_id=:artwork_id, quantity=:quantity";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':cart_id', $this->cart_id);
-        $stmt->bindParam(':artwork_id', $this->artwork_id);
-        $stmt->bindParam(':quantity', $this->quantity);
+        // Extraire l'id du tableau $cart_id et de l'objet $artwork
+        $cart_id_value = $cart_id['id'];
+        $artwork_id_value = $artwork->id;
 
-        if ($stmt->execute()) {
-            return true;
-        }
-        return false;
+        $sql = "INSERT INTO cart_items (cart_id, artwork_id, quantity) VALUES (:cart_id, :artwork_id, :quantity)";
+        $stmt = $pdo->prepare($sql);
+
+        // Lier les valeurs extraites aux paramètres de la requête
+        $stmt->bindParam(':cart_id', $cart_id_value, PDO::PARAM_INT);
+        $stmt->bindParam(':artwork_id', $artwork_id_value, PDO::PARAM_INT);
+        $stmt->bindParam(':quantity', $quantity, PDO::PARAM_INT);
+
+        return $stmt->execute();
     }
 
     public function update()

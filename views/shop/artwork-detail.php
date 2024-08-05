@@ -21,7 +21,7 @@ include './views/includes/breadcrumb.php';
     <div class="container">
         <div class="artwork-details__grid">
             <div class="artwork-details__image" data-aos="fade-up" data-aos-duration="2000">
-                <img src="<?php echo ($artwork->thumbnail) ? htmlspecialchars($artwork->thumbnail) : ""; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" />
+                <img src="<?php echo "/atelier_mrt/assets/images/sample.jpg"; // echo ($artwork->thumbnail) ?  "/uploads/artworks/". htmlspecialchars($artwork->thumbnail) : ""; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" />
             </div>
             <div class="artwork-details__info" data-aos="fade-up" data-aos-duration="1500">
                 <h1 class="artwork-details__title"><?php echo htmlspecialchars($artwork->title); ?></h1>

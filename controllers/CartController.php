@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Artwork;
 use App\Models\Cart;
 use App\Models\CartItem;
 use PDO; 
@@ -9,27 +10,29 @@ use PDO;
 
 class CartController
 {
-    private $db;
+    private $pdo;
     private $cart;
     private $cartItem;
 
     public function __construct($pdo)
     {
-        $this->db = $pdo;
-        $this->cart = new Cart($this->db);
-        $this->cartItem = new CartItem($this->db);
+        $this->pdo = $pdo;
+        $this->cart = new Cart($this->pdo);
+        $this->cartItem = new CartItem($this->pdo);
     }
 
     public function addToCart($cart_id, $artwork_id, $quantity)
     {
-        $this->cartItem->cart_id = $cart_id;
-        $this->cartItem->artwork_id = $artwork_id;
-        $this->cartItem->quantity = $quantity;
+        // Trouver l'artwork par son ID
+        $artwork = Artwork::find($this->pdo, $artwork_id);
 
-        if ($this->cartItem->add()) {
-            return json_encode(['message' => 'Cart updated']);
+        // Ajouter l'article au panier
+        $result = CartItem::add($this->pdo, $cart_id, $artwork, $quantity);
+
+        if ($result) {
+            echo json_encode(['status' => 'success', 'message' => 'L\'article a été ajouté au panier.']);
         } else {
-            return json_encode(['message' => 'Failed to update cart']);
+            echo json_encode(['status' => 'error', 'message' => 'Une erreur est survenue.']);
         }
     }
 
