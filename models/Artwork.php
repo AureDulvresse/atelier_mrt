@@ -21,7 +21,9 @@ class Artwork
     public $height;
     public $thumbnail;
     public $category_id;
+    public $category_name;
     public $medium_id;
+    public $medium_name;
     public $created_at;
     public $updated_at;
 
@@ -56,6 +58,8 @@ class Artwork
         );
 
         $instance->id = $row['id'];
+        $instance->category_name = $row['category_name'];
+        $instance->medium_name = $row['medium_name'];
         $instance->created_at = $row['created_at'];
         $instance->updated_at = $row['updated_at'];
 
@@ -109,10 +113,14 @@ class Artwork
 
     public static function find($pdo, $id)
     {
-        $sql = "SELECT * FROM artworks WHERE id = :id";
+        $sql = "SELECT artworks.*, categories.name as category_name, mediums.name as medium_name
+            FROM artworks
+            INNER JOIN categories ON artworks.category_id = categories.id
+            INNER JOIN mediums ON artworks.medium_id = mediums.id
+            WHERE artworks.id = :id";
+
         $stmt = $pdo->prepare($sql);
         $stmt->execute([':id' => $id]);
-        // $stmt->setFetchMode(PDO::FETCH_CLASS, Artwork::class);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($row) {
@@ -122,9 +130,13 @@ class Artwork
         return null;
     }
 
+
     public static function all($pdo)
     {
-        $sql = "SELECT * FROM artworks";
+        $sql = "SELECT artworks.*, categories.name as category_name, mediums.name as medium_name
+            FROM artworks
+            INNER JOIN categories ON artworks.category_id = categories.id
+            INNER JOIN mediums ON artworks.medium_id = mediums.id";
         $stmt = $pdo->query($sql);
         return $stmt->fetchAll(PDO::FETCH_CLASS, 'Artwork');
     }
