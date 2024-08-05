@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
-    <?php includeCSS('styles.css'); ?>
+    <?php includeCSS('admin.css'); ?>
 
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -23,13 +23,20 @@
 
 <body>
     <main>
+
         <div class="sidebar">
             <div class="text-center mb-4">
                 <h4>Atelier MrT</h4>
             </div>
-            <ul class="nav flex-column">
+            <ul class="nav">
                 <li class="nav-item">
                     <a class="nav-link text-white bg-danger" href="#">Tableau de Bord</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="../admin/artwork_page.php">Categorie</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="../admin/artwork_page.php">Techniques</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="../admin/artwork_page.php">Mes œuvres</a>
@@ -43,9 +50,5 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="path/to/your/payment_page.php">Paiements</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="path/to/your/settings_page.php">Paramètres</a>
-                </li>
             </ul>
         </div>
-    

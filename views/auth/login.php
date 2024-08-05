@@ -26,6 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $message = $loginResult['message'];
         } else {
             $message = $loginResult['message'];
+
+            if (isset($_SESSION['auth_admin'])) {
+                header('Location: /atelier_mrt/admin');
+                exit;
+            }
             // Redirection ou gestion après connexion réussie
             header('Location: /atelier_mrt');
             exit;
@@ -49,6 +54,13 @@ include './views/includes/breadcrumb.php';
             <div class="form-box">
                 <h3 class="title">Connexion</h3>
                 <form action="/atelier_mrt/login" method="post">
+
+                    <?php if (isset($message) && !empty($message)) : ?>
+                        <div class="alert error">
+                            <?php echo htmlspecialchars($message); ?>
+                        </div>
+                    <?php endif; ?>
+
                     <!-- Affichage du token CSRF -->
                     <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
 
@@ -60,7 +72,7 @@ include './views/includes/breadcrumb.php';
                         <input type="password" name="password" class="form-input" placeholder="Entrer votre mot de passe" required />
                     </div>
                     <div class="row">
-                        <button type="submit" class="btn">Envoyer</button>
+                        <button type="submit" class="btn black">Envoyer</button>
                     </div>
                     <a href="forgot-password"> Mot de passe oublié? </a>
                 </form>

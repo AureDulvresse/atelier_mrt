@@ -5,13 +5,9 @@ include 'includes/sidebar.php';
 
 <div class="main-content flex-grow-1 p-4">
     <header class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3">Tableau de Bord</h1>
-        <div class="d-flex align-items-center">
-            <p class="mb-0 me-3">Samuel Smith</p>
-            <img src="img.jpeg" alt="Icône Utilisateur" class="rounded-circle" width="40">
-        </div>
+        <h3>Tableau de Bord</h3>
     </header>
-    <div class="row text-center mb-4">
+    <div class="grid grid-4">
         <div class="col-md-3">
             <div class="stat-box p-3 bg-light rounded h-100 d-flex flex-column justify-content-center">
                 <p class="display-6">55</p>

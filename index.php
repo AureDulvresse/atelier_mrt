@@ -66,6 +66,8 @@ $pageTitle = 'Accueil';
 // Vérifiez si l'utilisateur est connecté
 $isLoggedIn = isset($_SESSION['auth_hash']);
 
+$isAdministrator = isset($_SESSION['auth_admin']);
+
 // Gérer le routage et définir le titre en fonction de la page
 switch ($request) {
     case '':
@@ -142,8 +144,12 @@ switch ($request) {
         require __DIR__ . '/views/order/checkout.php';
         break;
     case '/admin':
-        $pageTitle = 'Administration';
-        require __DIR__ . '/views/admin/dashboard.php';
+        if ($isAdministrator) {
+            $pageTitle = 'Administration';
+            require __DIR__ . '/views/admin/dashboard.php';
+        } else {
+            header('Location: /atelier_mrt');
+        } 
         break;
     case '/admin/artwork/edit':
         $pageTitle = 'Éditer une œuvre';

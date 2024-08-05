@@ -280,7 +280,7 @@
   }
 
   .alert.error {
-      background-color: #d55e6a;
+      background-color: #d17179;
       color: #a72828;
   }
 
@@ -2206,3 +2206,4 @@
   }
 
   /* End Responsive */
+

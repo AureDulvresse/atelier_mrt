@@ -58,7 +58,7 @@ class AuthController
         $login = $this->auth->login($email, $password);
 
         if ($login['error'] == true) {
-            return $login['message'];
+            return $login;
         } else {
             // Mettre à jour la date de dernière connexion
             $customer = Customer::findByEmail($this->pdo, $email);
@@ -67,6 +67,10 @@ class AuthController
 
             // Stocker le hash de session dans la session PHP
             $_SESSION['auth_hash'] = $login['hash'];
+
+            if ($customer->is_staff && $customer->is_superuser) {
+                $_SESSION['auth_admin'] = bin2hex(random_bytes(32));;
+            }
 
             // Récuperer le panier de l'utilisateur
             $cart = Cart::get($this->pdo, $customer->id);
@@ -78,7 +82,7 @@ class AuthController
             $_SESSION['cart'] = $cart['id'];
             $_SESSION['current_id'] = $customer->id;
 
-            echo "Connexion réussie.";
+            return $login;
         }
     }
 
@@ -90,7 +94,7 @@ class AuthController
             unset($_SESSION['auth_hash']);
             unset($_SESSION['cart']);
             unset($_SESSION['current_id']);
-            echo "Déconnexion réussie.";
+            header('Location: /atelier_mrt');
         } else {
             echo "Erreur lors de la déconnexion.";
         }
