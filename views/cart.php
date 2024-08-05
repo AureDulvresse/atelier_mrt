@@ -58,7 +58,7 @@ include './views/includes/breadcrumb.php';
                             $totalPrice += $subtotal;
                     ?>
                             <tr>
-                                <td><img src="/assets/images/sample.jpg" alt="Artwork Image" class="cart-image" /></td>
+                                <td><img src="/atelier_mrt/assets/images/sample.jpg" alt="Artwork Image" class="cart-image" /></td>
                                 <td><?php echo $item->artwork->title; ?></td>
                                 <td><?php echo number_format($item->artwork->price, 2, ',', ' '); ?> €</td>
                                 <td><?php echo $item->quantity; ?></td>
