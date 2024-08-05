@@ -51,9 +51,8 @@ include './views/includes/breadcrumb.php';
                 <tbody>
                     <?php
                     $totalPrice = 0;
-                    var_dump($user_cart);
-                        foreach ($user_cart as $item) {
-                            if (isset($item->artwork->id)) {
+                    foreach ($user_cart as $item) {
+                        if (isset($item->artwork->id)) {
                             $subtotal = $item->artwork->price * $item->quantity;
                             $totalPrice += $subtotal;
                     ?>
@@ -79,8 +78,8 @@ include './views/includes/breadcrumb.php';
                 </tfoot>
             </table>
             <div class="cart-actions">
-                <a href="checkout.php" class="btn checkout">Passer à la caisse</a>
-                <a href="clear_cart.php" class="btn clear-cart">Vider le panier</a>
+                <a href="/atelier_mrt/checkout" class="btn checkout">Passer à la caisse</a>
+                <a href="/atelier_mrt/clear_cart" class="btn clear-cart">Vider le panier</a>
             </div>
         <?php endif; ?>
     </div>
