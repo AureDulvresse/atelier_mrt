@@ -12,7 +12,7 @@ use App\Models\CartItem;
 
 $cartItem = new CartItem($pdo);
 
-$user_cart = $cartItem->read($_SESSION['cart']['id']);
+$user_cart = $cartItem->read($_SESSION['cart']);
 
 // Vérifier si le panier existe
 if (!isset($_SESSION['cart']) && empty($_SESSION['cart'])) {
@@ -52,9 +52,9 @@ include './views/includes/breadcrumb.php';
                     <?php
                     $totalPrice = 0;
                     var_dump($user_cart);
-                    foreach ($items as $user_cart) {
-                        if (isset($artworks[$artworkId])) {
-                            $artwork = $artworks[$artworkId];
+                        foreach ($user_cart as $item) {
+                            if (isset($item->artwork->id)) {
+                                $artwork = $item['artwork_id'];
                             $subtotal = $artwork['price'] * $quantity;
                             $totalPrice += $subtotal;
                     ?>
