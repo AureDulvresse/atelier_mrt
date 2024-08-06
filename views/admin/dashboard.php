@@ -2,9 +2,17 @@
 
 use App\Models\Artwork;
 use App\Models\Order;
+use App\Models\Customer;
+use App\Models\Post;
 
 $artworks = Artwork::all($pdo);
 $orders = Order::all($pdo);
+
+// Compter les éléments
+$artworkCount = Artwork::count($pdo);
+$orderCount = Order::count($pdo);
+$customerCount = Customer::count($pdo);
+$eventCount = Post::countEvents($pdo);
 
 include 'includes/sidebar.php';
 ?>
@@ -15,20 +23,20 @@ include 'includes/sidebar.php';
     </header>
     <div class="stats-grid">
         <div class="stat-box">
-            <p class="stat-value">55</p>
-            <span class="stat-label">Occupants du Bâtiment</span>
+            <p class="stat-value"><?php echo htmlspecialchars($artworkCount); ?></p>
+            <span class="stat-label">Œuvres</span>
         </div>
         <div class="stat-box">
-            <p class="stat-value">150</p>
-            <span class="stat-label">Visiteurs de ce Mois</span>
+            <p class="stat-value"><?php echo htmlspecialchars($orderCount); ?></p>
+            <span class="stat-label">Commandes</span>
         </div>
         <div class="stat-box">
-            <p class="stat-value">15</p>
-            <span class="stat-label">Moyenne Quotidienne de Visiteurs</span>
+            <p class="stat-value"><?php echo htmlspecialchars($customerCount); ?></p>
+            <span class="stat-label">Clients</span>
         </div>
         <div class="stat-box">
-            <p class="stat-value">250</p>
-            <span class="stat-label">Visiteurs du Mois Dernier</span>
+            <p class="stat-value"><?php echo htmlspecialchars($eventCount); ?></p>
+            <span class="stat-label">Événements</span>
         </div>
     </div>
     <div class="tables-container">
@@ -72,7 +80,7 @@ include 'includes/sidebar.php';
                     <?php foreach ($orders as $order) : ?>
                         <tr>
                             <td><?php echo htmlspecialchars($order['artwork_title']); ?></td>
-                            <td><?php echo htmlspecialchars($order['customer_first_name']); ?></td>
+                            <td><?php echo htmlspecialchars($order['customer_name']); ?></td>
                             <td><?php echo htmlspecialchars($order['ordered_at']); ?></td>
                             <td><?php echo htmlspecialchars($order['quantity']); ?></td>
                         </tr>
