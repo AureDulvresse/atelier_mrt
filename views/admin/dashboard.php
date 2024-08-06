@@ -12,7 +12,8 @@ $orders = Order::all($pdo);
 $artworkCount = Artwork::count($pdo);
 $orderCount = Order::count($pdo);
 $customerCount = Customer::count($pdo);
-$eventCount = Post::countEvents($pdo);
+// $eventCount = Post::countEvents($pdo);
+$eventCount = 0;
 
 include 'includes/sidebar.php';
 ?>
@@ -80,7 +81,7 @@ include 'includes/sidebar.php';
                     <?php foreach ($orders as $order) : ?>
                         <tr>
                             <td><?php echo htmlspecialchars($order['artwork_title']); ?></td>
-                            <td><?php echo htmlspecialchars($order['customer_name']); ?></td>
+                            <td><?php echo htmlspecialchars($order['customer_first_name']); ?></td>
                             <td><?php echo htmlspecialchars($order['ordered_at']); ?></td>
                             <td><?php echo htmlspecialchars($order['quantity']); ?></td>
                         </tr>
