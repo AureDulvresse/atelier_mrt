@@ -127,4 +127,14 @@ class Customer
         $stmt = $pdo->prepare($sql);
         return $stmt->execute([':id' => $id]);
     }
+
+    public static function count($pdo)
+    {
+        $query = "SELECT COUNT(*) as count FROM customers";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'];
+    }
+
 }
