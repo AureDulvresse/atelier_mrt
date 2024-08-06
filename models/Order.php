@@ -22,6 +22,8 @@ class Order
         $this->conn = $db;
     }
 
+
+
     // Crée une nouvelle commande
     public function create()
     {
@@ -55,10 +57,31 @@ class Order
     // Lire toutes les commandes d'un client spécifique
     public function getByCustomer($customer_id)
     {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE customer_id = ?";
+        $query = "SELECT orders.*, customers.name as customer_name, artworks.title as artwork_title
+              FROM " . $this->table_name . "
+              INNER JOIN customers ON orders.customer_id = customers.id
+              INNER JOIN artworks ON orders.artwork_id = artworks.id
+              WHERE orders.customer_id = ?";
+
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $customer_id);
         $stmt->execute();
-        return $stmt;
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
+    public static function all($pdo)
+    {
+        $sql = "SELECT orders.*, customers.name as customer_name, artworks.title as artwork_title
+            FROM orders
+            INNER JOIN customers ON orders.customer_id = customers.id
+            INNER JOIN artworks ON orders.artwork_id = artworks.id";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

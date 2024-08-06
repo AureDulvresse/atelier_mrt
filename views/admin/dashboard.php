@@ -1,8 +1,10 @@
 <?php
 
 use App\Models\Artwork;
+use App\Models\Order;
 
 $artworks = Artwork::all($pdo);
+$orders = Order::all($pdo);
 
 include 'includes/sidebar.php';
 ?>
