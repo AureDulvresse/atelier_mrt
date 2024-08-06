@@ -1,14 +1,22 @@
 <?php
+require __DIR__ . '/../../vendor/autoload.php';  // Assurez-vous que le chemin est correct
 
-require 'vendor/autoload.php';
+use App\Models\CartItem;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
 
-\Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
+Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
 
-header('Content-Type: application/json');
+$cartItem = new CartItem($pdo);
+$cartItems = $cartItem->read($_SESSION['cart']);
+
+$totalAmount = array_reduce($cartItems, function ($sum, $item) {
+    return $sum + ($item->artwork->price * $item->quantity);
+}, 0);
 
 $YOUR_DOMAIN = 'https://your-domain.com';
 
-$checkout_session = \Stripe\Checkout\Session::create([
+$checkout_session = Session::create([
     'payment_method_types' => ['card'],
     'line_items' => [[
         'price_data' => [

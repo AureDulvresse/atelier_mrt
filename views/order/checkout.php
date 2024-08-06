@@ -26,40 +26,40 @@ $config = [
 ?>
 <section class="section cart">
     <div class="container">
-        <div class="grid-2">
-            <table class="cart-table">
-                <thead>
-                    <tr>
-                        <th>Oeuvre</th>
-                        <th>Prix</th>
-                        <th>Quantité</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($cartItems as $item) : ?>
+        <div class="checkout-wrapper">
+            <div class="cart-table-wrapper">
+                <h2 class="checkout-title">Votre Panier</h2>
+                <table class="cart-table">
+                    <thead>
                         <tr>
-                            <td><?php echo htmlspecialchars($item->artwork->title, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php echo htmlspecialchars($item->artwork->price, ENT_QUOTES, 'UTF-8'); ?> €</td>
-                            <td><?php echo htmlspecialchars($item->quantity, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php echo htmlspecialchars($item->artwork->price * $item->quantity, ENT_QUOTES, 'UTF-8'); ?> €</td>
+                            <th>Oeuvre</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+                            <th>Total</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3">Total</td>
-                        <td><?php echo number_format($totalAmount, 2, ',', ' '); ?> €</td>
-                    </tr>
-                </tfoot>
-            </table>
-            <div class="checkout-form">
-                <div class="row">
-                    <h3>Payment</h3>
-                </div>
-                <button id="stripe-button" class="btn black">Pay with Stripe</button>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($cartItems as $item) : ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($item->artwork->title, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($item->artwork->price, ENT_QUOTES, 'UTF-8'); ?> €</td>
+                                <td><?php echo htmlspecialchars($item->quantity, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($item->artwork->price * $item->quantity, ENT_QUOTES, 'UTF-8'); ?> €</td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">Total</td>
+                            <td><?php echo number_format($totalAmount, 2, ',', ' '); ?> €</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="checkout-form-wrapper">
+                <h2 class="checkout-title">Paiement</h2>
+                <button id="stripe-button" class="btn btn-stripe">Pay with Stripe</button>
                 <hr>
-                <!-- PayPal Payment Button -->
                 <div id="paypal-button"></div>
             </div>
         </div>
@@ -122,7 +122,7 @@ $config = [
     var checkoutButton = document.getElementById('stripe-button');
 
     checkoutButton.addEventListener('click', function() {
-        fetch('/atelier_mrt/views/order/create_checkout_session.php', {
+        fetch('/atelier_mrt/order/create_checkout_session', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
