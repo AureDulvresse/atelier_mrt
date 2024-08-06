@@ -16,39 +16,37 @@
 
     <?php includeCSS('admin.css'); ?>
 
-
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 </head>
 
 <body>
     <main>
-
         <div class="sidebar">
             <div class="text-center mb-4">
                 <h4>Atelier MrT</h4>
             </div>
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link text-white bg-danger" href="#">Tableau de Bord</a>
+                    <a class="nav-link active" href="#"><i class='bx bx-home'></i>Tableau de Bord</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="../admin/artwork_page.php">Categorie</a>
+                    <a class="nav-link" href="../admin/artwork_page.php"><i class='bx bx-category'></i>Categorie</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="../admin/artwork_page.php">Techniques</a>
+                    <a class="nav-link" href="../admin/artwork_page.php"><i class='bx bx-brush'></i>Techniques</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="../admin/artwork_page.php">Mes œuvres</a>
+                    <a class="nav-link" href="../admin/artwork_page.php"><i class='bx bx-paint'></i>Mes œuvres</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="../admin/event_page.php">Événements</a>
+                    <a class="nav-link" href="../admin/event_page.php"><i class='bx bx-calendar-event'></i>Événements</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="../admin/order_page.php">Commandes</a>
+                    <a class="nav-link" href="../admin/order_page.php"><i class='bx bx-cart'></i>Commandes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="path/to/your/payment_page.php">Paiements</a>
+                    <a class="nav-link" href="path/to/your/payment_page.php"><i class='bx bx-credit-card'></i>Paiements</a>
                 </li>
             </ul>
         </div>
