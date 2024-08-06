@@ -82,4 +82,14 @@ SET uuid=:uuid, customer_id=:customer_id, total_amount=:total_amount, status=:st
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function count($pdo)
+    {
+        $query = "SELECT COUNT(*) as count FROM orders";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'];
+    }
+
 }
