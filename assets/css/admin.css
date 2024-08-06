@@ -289,8 +289,6 @@
   }
 
   /* End Genral Styles */
-
-  /* Administration */
 main {
     display: flex;
     width: 100%;
@@ -346,23 +344,11 @@ main {
 }
 
 /* Main Content Styles */
-
-  .main-content {
-      padding: 1rem;
-      width: 100%;
-  }
-
-  .grid {
-      display: grid;
-  }
-
-  .grid.grid-4 {
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 12px;
-  }.main-content {
+.main-content {
+    margin-left: 250px;
     padding: 2rem;
-    background-color: #f0f0f0;
-    /* Couleur de fond du tableau de bord */
+    background-color: #f8f9fa;
+    width: calc(100% - 250px);
 }
 
 .header {
@@ -375,6 +361,7 @@ main {
     color: #343a40;
 }
 
+/* Stats Grid */
 .stats-grid {
     display: flex;
     flex-wrap: wrap;
@@ -401,6 +388,7 @@ main {
     color: #6c757d;
 }
 
+/* Tables Container */
 .tables-container {
     display: flex;
     flex-direction: column;
@@ -445,4 +433,4 @@ main {
     background-color: #f1f1f1;
 }
 
-  /* End Administration */
+/* End Administration */
