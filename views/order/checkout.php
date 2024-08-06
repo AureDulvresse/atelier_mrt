@@ -12,9 +12,6 @@ $totalAmount = array_reduce($cartItems, function ($sum, $item) {
 
 $msg = "Finaliser votre paiement";
 
-// Exemple d'initialisation des services
-\Stripe\Stripe::setApiKey($stripeSecretKey);
-
 include __DIR__ . '/../includes/breadcrumb.php';
 ?>
 <section class="section cart">
