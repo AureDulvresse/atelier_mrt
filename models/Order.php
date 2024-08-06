@@ -23,8 +23,6 @@ class Order
         $this->conn = $db;
     }
 
-
-
     // Crée une nouvelle commande
     public function create()
     {
@@ -75,10 +73,9 @@ class Order
 
     public static function all($pdo)
     {
-        $sql = "SELECT orders.*, customers.name as customer_name, artworks.title as artwork_title
+        $sql = "SELECT orders.*, customers.first_name as customer_first_name
             FROM orders
-            INNER JOIN customers ON orders.customer_id = customers.id
-            INNER JOIN artworks ON orders.artwork_id = artworks.id";
+            INNER JOIN customers ON orders.customer_id = customers.id";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
