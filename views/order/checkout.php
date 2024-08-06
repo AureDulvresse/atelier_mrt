@@ -13,69 +13,51 @@ $totalAmount = array_reduce($cartItems, function ($sum, $item) {
 $msg = "Finaliser votre paiement";
 
 include __DIR__ . '/../includes/breadcrumb.php';
+
+// Configurations pour JavaScript
+$config = [
+    'stripe' => [
+        'publishable_key' => $_ENV['STRIPE_PUBLISHABLE_KEY']
+    ],
+    'paypal' => [
+        'client_id' => $_ENV['PAYPAL_CLIENT_ID']
+    ]
+];
 ?>
 <section class="section cart">
     <div class="container">
         <div class="grid-2">
             <table class="cart-table">
                 <thead>
-                    <th>Oeuvre</th>
-                    <th>Prix</th>
-                    <th>Quantité</th>
-                    <th>Total</th>
+                    <tr>
+                        <th>Oeuvre</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                        <th>Total</th>
+                    </tr>
                 </thead>
-
                 <tbody>
-                    <?php
-                    $totalPrice = 0;
-                    foreach ($cartItems as $item) :
-                    ?>
+                    <?php foreach ($cartItems as $item) : ?>
                         <tr>
-                            <td><?php echo $item->artwork->title; ?></td>
-                            <td>
-                                <?php echo $item->artwork->price; ?>
-                            </td>
-                            <td>
-                                <?php echo $item->quantity; ?>
-                            </td>
-                            <td>
-                                <?php echo $item->artwork->price * $item->quantity; ?> €
-                            </td>
+                            <td><?php echo htmlspecialchars($item->artwork->title, ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td><?php echo htmlspecialchars($item->artwork->price, ENT_QUOTES, 'UTF-8'); ?> €</td>
+                            <td><?php echo htmlspecialchars($item->quantity, ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td><?php echo htmlspecialchars($item->artwork->price * $item->quantity, ENT_QUOTES, 'UTF-8'); ?> €</td>
                         </tr>
-
-                    <?php
-                    endforeach; ?>
+                    <?php endforeach; ?>
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="3">Total</td>
                         <td><?php echo number_format($totalAmount, 2, ',', ' '); ?> €</td>
-                        <td></td>
                     </tr>
                 </tfoot>
             </table>
             <div class="checkout-form">
-                <h3>Informations client</h3>
-                <!-- Stripe Payment Form -->
-                <form id="stripe-form">
-                    <div class="row">
-                        <input type="text" class="form-input" name="full_name" id="full_name" placeholder="Nom complet" />
-                    </div>
-
-                    <div class="row">
-                        <input type="email" class="form-input" name="email" id="email" placeholder="Email" />
-                    </div>
-                    <div class="row">
-                        <h3>Payment</h3>
-                    </div>
-
-                    <div class="row">
-                        <label for="card-element">Credit or debit card</label>
-                        <div id="card-element" class="form-control"></div>
-                    </div>
-
-                    <button id="stripe-button" class="btn black">Pay with Stripe</button>
-                </form>
+                <div class="row">
+                    <h3>Payment</h3>
+                </div>
+                <button id="stripe-button" class="btn black">Pay with Stripe</button>
                 <hr>
                 <!-- PayPal Payment Button -->
                 <div id="paypal-button"></div>
@@ -89,64 +71,36 @@ include __DIR__ . '/../includes/breadcrumb.php';
         <div class="grid-3">
             <div class="grid-3-col footer-about">
                 <h3 class="title-sm">Atelier <span>MrT</span></h3>
-                <p class="text">
-                    Découvrez une collection exceptionnelle d'œuvres d'art contemporaine
-                </p>
+                <p class="text">Découvrez une collection exceptionnelle d'œuvres d'art contemporaine</p>
             </div>
-
             <div class="grid-3-col footer-links">
                 <h3 class="title-sm">Liens Rapide</h3>
                 <ul>
-                    <li>
-                        <a href="#header">Accueil</a>
-                    </li>
-                    <li>
-                        <a href="#gallery">Galerie</a>
-                    </li>
-                    <li>
-                        <a href="#about">A Propos</a>
-                    </li>
-                    <li>
-                        <a href="#blog">Actualité & évènements</a>
-                    </li>
-                    <li>
-                        <a href="#contact">Contact</a>
-                    </li>
+                    <li><a href="#header">Accueil</a></li>
+                    <li><a href="#gallery">Galerie</a></li>
+                    <li><a href="#about">A Propos</a></li>
+                    <li><a href="#blog">Actualité & évènements</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
-
             <div class="grid-3-col footer-links">
                 <h3 class="title-sm">Contact</h3>
                 <ul>
-                    <li>
-                        <a href="#">Web Design</a>
-                    </li>
-                    <li>
-                        <a href="#">Web Dev</a>
-                    </li>
-                    <li>
-                        <a href="#">App Design</a>
-                    </li>
-                    <li>
-                        <a href="#">Marketing</a>
-                    </li>
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">Web Dev</a></li>
+                    <li><a href="#">App Design</a></li>
+                    <li><a href="#">Marketing</a></li>
                 </ul>
             </div>
-
         </div>
-
         <div class="bottom-footer">
             <div class="copyright">
-                <p class="text">
-                    Copyright&copy;2024 Atelier MrT
-                </p>
+                <p class="text">Copyright&copy;2024 Atelier MrT</p>
             </div>
         </div>
     </div>
     <div class="back-btn-wrap">
-        <a href="#header" class="back-btn">
-            <i class="bx bx-chevron-up"></i>
-        </a>
+        <a href="#header" class="back-btn"><i class="bx bx-chevron-up"></i></a>
     </div>
 </footer>
 
@@ -161,39 +115,35 @@ include __DIR__ . '/../includes/breadcrumb.php';
     AOS.init();
 </script>
 <script src="https://js.stripe.com/v3/"></script>
-<script src="https://www.paypal.com/sdk/js?client-id=<?php echo $config['paypal']['client_id']; ?>&currency=USD"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=<?php echo htmlspecialchars($config['paypal']['client_id'], ENT_QUOTES, 'UTF-8'); ?>&currency=EUR"></script>
 <script>
-    // Stripe Integration
-    var stripe = Stripe('<?php echo $config['stripe']['publishable_key']; ?>');
-    var elements = stripe.elements();
-    var card = elements.create('card');
-    card.mount('#card-element');
+    // Stripe Checkout
+    var stripe = Stripe(<?php echo json_encode($config['stripe']['publishable_key']); ?>);
+    var checkoutButton = document.getElementById('stripe-button');
 
-    document.getElementById('stripe-form').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const {
-            token,
-            error
-        } = await stripe.createToken(card);
-        if (error) {
-            alert(error.message);
-        } else {
-            // Envoyer le token au serveur
-            fetch('process_payment.php', {
+    checkoutButton.addEventListener('click', function() {
+        fetch('/create_checkout_session', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    token: token.id,
-                    amount: <?php echo $totalAmount * 100; ?>
-                })
-            }).then(response => response.json()).then(data => {
-                alert(data.message);
-            }).catch(error => {
-                alert('Payment failed');
+            })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(session) {
+                return stripe.redirectToCheckout({
+                    sessionId: session.id
+                });
+            })
+            .then(function(result) {
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
             });
-        }
     });
 
     // PayPal Integration
@@ -202,7 +152,7 @@ include __DIR__ . '/../includes/breadcrumb.php';
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: '<?php echo $totalAmount; ?>'
+                        value: <?php echo json_encode($totalAmount); ?>
                     }
                 }]
             });
