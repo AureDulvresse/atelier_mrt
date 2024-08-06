@@ -15,16 +15,19 @@ $paypalSecret = $services['paypal']['secret'];
 $paypalSandbox = $services['paypal']['sandbox'];
 
 // PayPal SDK initialisation
-// $apiContext = new \PayPal\Rest\ApiContext(
-//     new \PayPal\Auth\OAuthTokenCredential(
-//         $paypalClientId,
-//         $paypalSecret
-//     )
-// );
+$apiContext = new \PayPal\Rest\ApiContext(
+    new \PayPal\Auth\OAuthTokenCredential(
+        $paypalClientId,
+        $paypalSecret
+    )
+);
 
 $apiContext->setConfig([
     'mode' => $paypalSandbox ? 'sandbox' : 'live'
 ]);
+
+// Exemple d'initialisation des services
+\Stripe\Stripe::setApiKey($stripeSecretKey);
 
 // Afficher les erreurs pour le débogage
 // ini_set('display_errors', 1);
