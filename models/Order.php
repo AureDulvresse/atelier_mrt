@@ -14,6 +14,7 @@ class Order
     public $customer_id;
     public $total_amount;
     public $status;
+    public $order;
     public $created_at;
     public $updated_at;
 
