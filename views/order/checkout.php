@@ -122,7 +122,7 @@ $config = [
     var checkoutButton = document.getElementById('stripe-button');
 
     checkoutButton.addEventListener('click', function() {
-        fetch('/create_checkout_session', {
+        fetch('/atelier_mrt/views/order/create_checkout_session.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

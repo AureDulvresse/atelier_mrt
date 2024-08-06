@@ -95,10 +95,6 @@ switch ($request) {
         $pageTitle = 'Checkout';
         require __DIR__ . '/views/order/checkout.php';
         break;
-    case '/create_checkout_session':
-        $pageTitle = 'Stripe checkout';
-        require __DIR__ . '/views/order/create_checkout_session.php';
-        break;
     case (preg_match('/^\/shop\/artwork\/(\d+)$/', $request, $matches) ? true : false):
         $pageTitle = 'Détail de l\'œuvre';
         $_GET['id'] = $matches[1];
