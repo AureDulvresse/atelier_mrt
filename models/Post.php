@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use PDO;
+
 class Post
 {
     private $conn;
@@ -88,4 +90,14 @@ class Post
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public static function countEvents($pdo)
+    {
+        $query = "SELECT COUNT(*) as count FROM posts WHERE is_event = 1";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'];
+    }
+
 }
