@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Artwork;
+
+$artworks = Artwork::all($pdo);
+
 include 'includes/sidebar.php';
 ?>
 
@@ -41,9 +45,9 @@ include 'includes/sidebar.php';
                 <tbody>
                     <?php foreach ($artworks as $artwork) : ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($artwork['title']); ?></td>
-                            <td><?php echo htmlspecialchars($artwork['description']); ?></td>
-                            <td><?php echo htmlspecialchars($artwork['price']); ?></td>
+                            <td><?php echo htmlspecialchars($artwork->title); ?></td>
+                            <td><?php echo htmlspecialchars($artwork->description); ?></td>
+                            <td><?php echo htmlspecialchars($artwork->price); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

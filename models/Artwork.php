@@ -133,12 +133,31 @@ class Artwork
 
     public static function all($pdo)
     {
+        // Requête SQL pour récupérer les œuvres avec les noms des catégories et des mediums
         $sql = "SELECT artworks.*, categories.name as category_name, mediums.name as medium_name
             FROM artworks
             INNER JOIN categories ON artworks.category_id = categories.id
             INNER JOIN mediums ON artworks.medium_id = mediums.id";
-        $stmt = $pdo->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_CLASS, 'Artwork');
+
+        // Préparation et exécution de la requête
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+
+        // Récupération des résultats sous forme de tableau associatif
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Vérification si des résultats ont été trouvés
+        if ($rows) {
+            // Création d'objets Artwork à partir des résultats de la base de données
+            $artworks = [];
+            foreach ($rows as $row) {
+                $artworks[] = self::createFromDatabaseRow($row);
+            }
+            return $artworks;
+        }
+
+        // Retourne null s'il n'y a pas de résultats
+        return null;
     }
 
     public static function delete($pdo, $id)
