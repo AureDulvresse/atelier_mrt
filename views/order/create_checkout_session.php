@@ -14,7 +14,7 @@ $totalAmount = array_reduce($cartItems, function ($sum, $item) {
     return $sum + ($item->artwork->price * $item->quantity);
 }, 0);
 
-$YOUR_DOMAIN = 'https://your-domain.com';
+$YOUR_DOMAIN = 'http://localhost/atelier_mrt';
 
 $checkout_session = Session::create([
     'payment_method_types' => ['card'],
@@ -29,8 +29,8 @@ $checkout_session = Session::create([
         'quantity' => 1,
     ]],
     'mode' => 'payment',
-    'success_url' => $YOUR_DOMAIN . '/success.html',
-    'cancel_url' => $YOUR_DOMAIN . '/cancel.html',
+    'success_url' => $YOUR_DOMAIN . '/success_payment',
+    'cancel_url' => $YOUR_DOMAIN . '/cancel_payment',
 ]);
 
 echo json_encode(['id' => $checkout_session->id]);

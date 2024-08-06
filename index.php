@@ -98,6 +98,12 @@ switch ($request) {
     case '/order/create_checkout_session':
         require __DIR__ . '/views/order/create_checkout_session.php';
         break;
+    case '/success_payment':
+        require __DIR__ . '/views/order/payment_success.php';
+        break;
+    case '/cancel_payment':
+        require __DIR__ . '/views/order/payment_cancel.php';
+        break;
     case (preg_match('/^\/shop\/artwork\/(\d+)$/', $request, $matches) ? true : false):
         $pageTitle = 'Détail de l\'œuvre';
         $_GET['id'] = $matches[1];
