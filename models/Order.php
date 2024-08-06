@@ -71,11 +71,11 @@ SET uuid=:uuid, customer_id=:customer_id, total_amount=:total_amount, status=:st
     // Lire toutes les commandes et leurs articles
     public static function all($pdo)
     {
-        $sql = "SELECT orders.*, customers.name as customer_name, order_items.artwork_id, order_items.quantity, order_items.price as item_price, artworks.title as artwork_title
-FROM orders
-INNER JOIN customers ON orders.customer_id = customers.id
-INNER JOIN order_items ON orders.id = order_items.order_id
-INNER JOIN artworks ON order_items.artwork_id = artworks.id";
+        $sql = "SELECT orders.*, customers.first_name as customer_first_name, order_items.artwork_id, order_items.quantity, order_items.price as item_price, artworks.title as artwork_title
+                FROM orders
+                INNER JOIN customers ON orders.customer_id = customers.id
+                INNER JOIN order_items ON orders.id = order_items.order_id
+                INNER JOIN artworks ON order_items.artwork_id = artworks.id";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
