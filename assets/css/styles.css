@@ -7,7 +7,7 @@
       --light-one: #fff;
       --light-two: #f9fafb;
       --light-three: #222;
-      --radius: 12px;
+      --radius: 8px;
   }
 
   /* Genral Styles */
@@ -1208,7 +1208,7 @@
   /* Panier */
   .cart {
       padding: 2rem;
-      background-color: #f9f9f9;
+      background-color: var(--light-two);
   }
 
   .cart-table {
@@ -1224,7 +1224,7 @@
   }
 
   .cart-table thead {
-      background-color: #333;
+      background-color: var(--light-three);
       color: #fff;
   }
 
