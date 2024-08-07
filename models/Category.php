@@ -52,10 +52,10 @@ class Category
         return $stmt->execute();
     }
 
-    public function getAll()
+    public static function all($pdo)
     {
-        $query = "SELECT * FROM " . $this->table;
-        $result = $this->conn->query($query);
-        return $result->fetch_all(MYSQLI_ASSOC);
+        $query = "SELECT * FROM categories";
+        $result = $pdo->query($query);
+        return $result->fetchAll();
     }
 }
