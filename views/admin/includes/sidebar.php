@@ -28,10 +28,10 @@
             </div>
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#"><i class='bx bx-home'></i>Tableau de Bord</a>
+                    <a class="nav-link active" href="/admin"><i class='bx bx-home'></i>Tableau de Bord</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../admin/artwork_page.php"><i class='bx bx-category'></i>Categorie</a>
+                    <a class="nav-link" href="/admin/artworks"><i class='bx bx-category'></i>Categorie</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../admin/artwork_page.php"><i class='bx bx-brush'></i>Techniques</a>

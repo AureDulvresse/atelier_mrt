@@ -158,11 +158,15 @@ switch ($request) {
             require __DIR__ . '/views/admin/dashboard.php';
         } else {
             header('Location: /atelier_mrt');
-        } 
+        }
         break;
-    case '/admin/artwork/edit':
-        $pageTitle = 'Éditer une œuvre';
-        require __DIR__ . '/views/admin/edit_painting.php';
+    case '/admin/artwork':
+        if ($isAdministrator) {
+            $pageTitle = 'Administration - Oeuvres';
+            require __DIR__ . '/views/admin/artwork_page.php';
+        } else {
+            header('Location: /atelier_mrt');
+        }
         break;
     default:
         $pageTitle = 'Page Non Trouvée';
