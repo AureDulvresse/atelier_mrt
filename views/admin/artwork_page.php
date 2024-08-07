@@ -75,15 +75,15 @@ include 'includes/sidebar.php';
             <tbody>
                 <?php foreach ($artworks as $artwork) : ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($artwork['title']); ?></td>
-                        <td><?php echo htmlspecialchars($artwork['description']); ?></td>
-                        <td><?php echo htmlspecialchars($artwork['price']); ?></td>
-                        <td><?php echo htmlspecialchars($artwork['category_name']); ?></td>
-                        <td><?php echo htmlspecialchars($artwork['medium_name']); ?></td>
-                        <td><img src="uploads/<?php echo htmlspecialchars($artwork['image']); ?>" alt="<?php echo htmlspecialchars($artwork['title']); ?>" width="100"></td>
+                        <td><?php echo htmlspecialchars($artwork->title); ?></td>
+                        <td><?php echo htmlspecialchars($artwork->description); ?></td>
+                        <td><?php echo htmlspecialchars($artwork->price); ?></td>
+                        <td><?php echo htmlspecialchars($artwork->category_name); ?></td>
+                        <td><?php echo htmlspecialchars($artwork->medium_name); ?></td>
+                        <td><img src="uploads/<?php echo htmlspecialchars($artwork->thumbnail); ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" width="100"></td>
                         <td>
                             <button onclick="editArtwork(<?php echo htmlspecialchars(json_encode($artwork)); ?>)">Modifier</button>
-                            <button onclick="deleteArtwork(<?php echo $artwork['id']; ?>)">Supprimer</button>
+                            <button onclick="deleteArtwork(<?php echo $artwork->id; ?>)">Supprimer</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
