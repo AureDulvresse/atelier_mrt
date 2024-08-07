@@ -82,8 +82,8 @@ include 'includes/sidebar.php';
                         <td><?php echo htmlspecialchars($artwork->medium_name); ?></td>
                         <td><img src="uploads/<?php echo htmlspecialchars($artwork->thumbnail); ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" width="100"></td>
                         <td>
-                            <button onclick="editArtwork(<?php echo htmlspecialchars(json_encode($artwork)); ?>)">Modifier</button>
-                            <button onclick="deleteArtwork(<?php echo $artwork->id; ?>)">Supprimer</button>
+                            <button onclick="editArtwork(<?php echo htmlspecialchars(json_encode($artwork)); ?>)" class="btn black">Modifier</button>
+                            <button onclick="deleteArtwork(<?php echo $artwork->id; ?>)" class="btn">Supprimer</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
