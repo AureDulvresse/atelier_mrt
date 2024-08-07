@@ -7,6 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
     $description = $_POST['description'];
     $price = $_POST['price'];
+    $width = $_POST['width'];
+    $height = $_POST['height'];
+    $stock = $_POST['stock'];
     $category_id = $_POST['category_id'];
     $medium_id = $_POST['medium_id'];
     $image = $_FILES['image'];
