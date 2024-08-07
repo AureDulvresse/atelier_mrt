@@ -50,7 +50,9 @@ include './views/includes/breadcrumb.php';
                 <tbody>
                     <?php foreach ($user_cart as $item) : ?>
                         <tr>
-                            <td><img src="/atelier_mrt/assets/images/sample.jpg" alt="Artwork Image" class="cart-image" /></td>
+                            <td class="table-img">
+                                <img src="/atelier_mrt/<?php echo ($item->artwork->thumbnail != null) ? htmlspecialchars($item->artwork->thumbnail) : "assets/images/sample.jpg"; ?>" alt="<?php echo htmlspecialchars($item->artwork->title); ?>"  />
+                            </td>
                             <td><?php echo $item->artwork->title; ?></td>
                             <td><?php echo number_format($item->artwork->price, 2, ',', ' '); ?> €</td>
                             <td><?php echo $item->quantity; ?></td>

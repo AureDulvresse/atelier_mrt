@@ -454,6 +454,20 @@
       color: var(--main-color);
   }
 
+  .table-img {
+    width: 95px;
+    height: 95px;
+    border-radius: var(--radius);
+    position: relative;
+  }
+
+  .table-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+
   .form-container {
       margin: 20px 0;
       background-color: #fff;

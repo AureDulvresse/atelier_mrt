@@ -80,24 +80,26 @@ include 'includes/sidebar.php';
             <table class="data-table">
                 <thead>
                     <tr>
+                        <th>Image</th>
                         <th>Titre</th>
                         <th>Description</th>
                         <th>Prix</th>
                         <th>Catégorie</th>
                         <th>Medium</th>
-                        <th>Image</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($artworks as $artwork) : ?>
                         <tr>
+                            <td class="table-img">
+                                <img src="/atelier_mrt/<?php echo ($artwork->thumbnail != null) ? htmlspecialchars($artwork->thumbnail) : "assets/images/sample.jpg"; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" width="100">
+                            </td>
                             <td><?php echo htmlspecialchars($artwork->title); ?></td>
                             <td><?php echo htmlspecialchars($artwork->description); ?></td>
                             <td><?php echo htmlspecialchars($artwork->price); ?></td>
                             <td><?php echo htmlspecialchars($artwork->category_name); ?></td>
                             <td><?php echo htmlspecialchars($artwork->medium_name); ?></td>
-                            <td><img src="uploads/artworks<?php echo ($artwork->thumbnail) ? htmlspecialchars($artwork->thumbnail) : ""; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" width="100"></td>
                             <td>
                                 <button onclick="editArtwork(<?php echo htmlspecialchars(json_encode($artwork)); ?>)"><i class="bx bx-pencil"></i></button>
                                 <button onclick="deleteArtwork(<?php echo $artwork->id; ?>)"><i class="bx bx-trash"></i></button>
