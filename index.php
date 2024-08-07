@@ -176,6 +176,14 @@ switch ($request) {
             header('Location: /atelier_mrt');
         }
         break;
+    case (preg_match('/^\/admin\/artworks\/(\d+)$/delete/', $request, $matches) ? true : false):
+        if ($isAdministrator) {
+            $pageTitle = 'Administration - Oeuvres';
+            $_GET['id'] = $matches[1];
+            require __DIR__ . '/views/admin/actions/delete_artwork.php';
+        } else {
+            header('Location: /atelier_mrt');
+        }
     default:
         $pageTitle = 'Page Non Trouvée';
         http_response_code(404);

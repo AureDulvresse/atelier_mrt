@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image = $_FILES['image'];
 
 
-    if (isset($_POST['delete']) && $_POST['delete'] == true) {
+    if (isset($_GET['delete']) && $_GET['delete'] == true) {
         Artwork::delete($pdo, $id);
     }
 
