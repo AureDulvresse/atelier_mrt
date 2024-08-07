@@ -60,54 +60,58 @@ include 'includes/sidebar.php';
 
     <!-- Tableau des œuvres -->
     <div class="table-container">
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>Titre</th>
-                    <th>Description</th>
-                    <th>Prix</th>
-                    <th>Catégorie</th>
-                    <th>Medium</th>
-                    <th>Image</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($artworks as $artwork) : ?>
+        <div class="table-card">
+            <div class="table-header">
+                <h5>Œuvres</h5>
+            </div>
+            <table class="data-table">
+                <thead>
                     <tr>
-                        <td><?php echo htmlspecialchars($artwork->title); ?></td>
-                        <td><?php echo htmlspecialchars($artwork->description); ?></td>
-                        <td><?php echo htmlspecialchars($artwork->price); ?></td>
-                        <td><?php echo htmlspecialchars($artwork->category_name); ?></td>
-                        <td><?php echo htmlspecialchars($artwork->medium_name); ?></td>
-                        <td><img src="uploads/<?php echo ($artwork->thumbnail) ? htmlspecialchars($artwork->thumbnail) : ""; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" width="100"></td>
-                        <td>
-                            <button onclick="editArtwork(<?php echo htmlspecialchars(json_encode($artwork)); ?>)"><i class="bx bx-pencil"></i></button>
-                            <button onclick="deleteArtwork(<?php echo $artwork->id; ?>)"><i class="bx bx-trash"></i></button>
-                        </td>
+                        <th>Titre</th>
+                        <th>Description</th>
+                        <th>Prix</th>
+                        <th>Catégorie</th>
+                        <th>Medium</th>
+                        <th>Image</th>
+                        <th>Actions</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($artworks as $artwork) : ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($artwork->title); ?></td>
+                            <td><?php echo htmlspecialchars($artwork->description); ?></td>
+                            <td><?php echo htmlspecialchars($artwork->price); ?></td>
+                            <td><?php echo htmlspecialchars($artwork->category_name); ?></td>
+                            <td><?php echo htmlspecialchars($artwork->medium_name); ?></td>
+                            <td><img src="uploads/<?php echo ($artwork->thumbnail) ? htmlspecialchars($artwork->thumbnail) : ""; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" width="100"></td>
+                            <td>
+                                <button onclick="editArtwork(<?php echo htmlspecialchars(json_encode($artwork)); ?>)"><i class="bx bx-pencil"></i></button>
+                                <button onclick="deleteArtwork(<?php echo $artwork->id; ?>)"><i class="bx bx-trash"></i></button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-<script>
-    function editArtwork(artwork) {
-        document.getElementById('artwork_id').value = artwork.id;
-        document.getElementById('title').value = artwork.title;
-        document.getElementById('description').value = artwork.description;
-        document.getElementById('price').value = artwork.price;
-        document.getElementById('category').value = artwork.category_id;
-        document.getElementById('medium').value = artwork.medium_id;
-    }
-
-    function deleteArtwork(id) {
-        if (confirm('Voulez-vous vraiment supprimer cette œuvre ?')) {
-            window.location.href = 'delete_artwork.php?id=' + id;
+    <script>
+        function editArtwork(artwork) {
+            document.getElementById('artwork_id').value = artwork.id;
+            document.getElementById('title').value = artwork.title;
+            document.getElementById('description').value = artwork.description;
+            document.getElementById('price').value = artwork.price;
+            document.getElementById('category').value = artwork.category_id;
+            document.getElementById('medium').value = artwork.medium_id;
         }
-    }
-</script>
-</main>
-</body>
 
-</html>
+        function deleteArtwork(id) {
+            if (confirm('Voulez-vous vraiment supprimer cette œuvre ?')) {
+                window.location.href = 'delete_artwork.php?id=' + id;
+            }
+        }
+    </script>
+    </main>
+    </body>
+
+    </html>
