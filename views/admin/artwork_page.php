@@ -18,7 +18,7 @@ include 'includes/sidebar.php';
 
     <!-- Formulaire pour ajouter/modifier une œuvre -->
     <div class="form-container">
-        <form action="artwork_action.php" method="POST" enctype="multipart/form-data">
+        <form action="artworks/actions" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" id="artwork_id">
             <div class="form-group">
                 <label for="title">Titre</label>
@@ -26,7 +26,7 @@ include 'includes/sidebar.php';
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea name="description" id="description" required></textarea>
+                <textarea name="description" id="description"></textarea>
             </div>
             <div class="form-group">
                 <label for="price">Prix</label>
@@ -47,6 +47,20 @@ include 'includes/sidebar.php';
                         <option value="<?php echo $medium['id']; ?>"><?php echo $medium['name']; ?></option>
                     <?php endforeach; ?>
                 </select>
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label for="height">Hauteur</label>
+                    <input type="number" name="height" id="height" required>
+                </div>
+                <div class="form-group">
+                    <label for="width">Largeur</label>
+                    <input type="number" name="width" id="width" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="stock">Stock</label>
+                <input type="number" name="stock" id="stock" required>
             </div>
             <div class="form-group">
                 <label for="image">Image</label>
@@ -101,6 +115,9 @@ include 'includes/sidebar.php';
             document.getElementById('title').value = artwork.title;
             document.getElementById('description').value = artwork.description;
             document.getElementById('price').value = artwork.price;
+            document.getElementById('width').value = artwork.width;
+            document.getElementById('height').value = artwork.height;
+            document.getElementById('stock').value = artwork.stock;
             document.getElementById('category').value = artwork.category_id;
             document.getElementById('medium').value = artwork.medium_id;
         }

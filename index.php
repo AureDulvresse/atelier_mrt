@@ -168,6 +168,14 @@ switch ($request) {
             header('Location: /atelier_mrt');
         }
         break;
+    case '/admin/artworks/actions':
+        if ($isAdministrator) {
+            $pageTitle = 'Administration - Oeuvres';
+            require __DIR__ . '/views/admin/actions/artwork.php';
+        } else {
+            header('Location: /atelier_mrt');
+        }
+        break;
     default:
         $pageTitle = 'Page Non Trouvée';
         http_response_code(404);
