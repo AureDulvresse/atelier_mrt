@@ -160,7 +160,7 @@ switch ($request) {
             header('Location: /atelier_mrt');
         }
         break;
-    case '/admin/artwork':
+    case '/admin/artworks':
         if ($isAdministrator) {
             $pageTitle = 'Administration - Oeuvres';
             require __DIR__ . '/views/admin/artwork_page.php';
