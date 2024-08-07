@@ -1,9 +1,8 @@
 <?php
 
-// Afficher les erreurs pour le débogage (optionnel, décommentez pour activer)
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+use App\Models\Artwork;
+
+$artworks = Artwork::all($pdo);
 
 $msg = "Découvrer ma galerie";
 
@@ -22,7 +21,7 @@ include './views/includes/breadcrumb.php';
             </div>
 
             <div class="grid" data-aos="fade-up" data-aos-duration="11000">
-                <?php for ($i = 0; $i < 30; $i++) { ?>
+                  <?php foreach ($artworks as $artwork) : ?>
                     <div class="grid-item peinture">
                         <div class="gallery-image">
                             <img src="./assets/images/sample.jpg" alt="" />
@@ -37,7 +36,7 @@ include './views/includes/breadcrumb.php';
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+                <?php endforeach; ?>
             </div>
 
             <!-- Pagination -->
