@@ -81,11 +81,7 @@ include './views/includes/header.php'; ?>
                 <?php foreach ($artworks as $artwork) : ?>
                     <div class="grid-item peinture">
                         <div class="gallery-image">
-                            <?php if ($artwork->thumbnail == null) { ?>
-                                <img src="./assets/images/sample.jpg" alt="" />
-                            <?php } else { ?>
-                                <img src="<?php echo htmlspecialchars($artwork->thumbnail); ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" />
-                            <?php } ?>
+                            <img src="<?php echo ($artwork->thumbnail != null) ? htmlspecialchars($artwork->thumbnail) : "/atelier_mrt/assets/images/sample.jpg"; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" />
                             <div class="img-overlay">
                                 <div class="img-overlay-content">
                                     <div class="img-description">
