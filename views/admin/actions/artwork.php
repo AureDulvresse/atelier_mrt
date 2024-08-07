@@ -19,16 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $imagePath = null;
     }
 
-    $artwork = new Artwork($title, $description, $price, $category_id, $medium_id, $imagePath)
+    $artwork = new Artwork($title, $description, $price, $stock, $width, $height, $imagePath, $category_id, $medium_id);
 
     if (empty($id)) {
         // Ajouter une nouvelle œuvre
-        Artwork->save($title, $description, $price, $category_id, $medium_id, $imagePath);
+        $artwork->save($pdo);
     } else {
         // Modifier une œuvre existante
-        Artwork::update($pdo, $id, $title, $description, $price, $category_id, $medium_id, $imagePath);
+        $artwork->update($pdo);
     }
 
-    header('Location: artworks.php');
+    header('Location: /atelier_mrt/admin/artworks');
     exit;
 }
