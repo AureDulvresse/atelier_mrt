@@ -125,7 +125,7 @@ include 'includes/sidebar.php';
 
     function deleteArtwork(id) {
         if (confirm('Voulez-vous vraiment supprimer cette œuvre ?')) {
-            window.location.href = 'artworks/actions?id=' + id;
+            window.location.href = `artworks/actions/${id}/delete`;
         }
     }
 </script>
