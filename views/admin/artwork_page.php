@@ -53,7 +53,7 @@ include 'includes/sidebar.php';
                 <input type="file" name="image" id="image">
             </div>
             <div class="form-group">
-                <button type="submit">Enregistrer</button>
+                <button type="submit" class="btn">Enregistrer</button>
             </div>
         </form>
     </div>
