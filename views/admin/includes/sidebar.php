@@ -28,7 +28,7 @@
             </div>
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/admin"><i class='bx bx-home'></i>Tableau de Bord</a>
+                    <a class="nav-link active" href="/atelier_mrt/admin"><i class='bx bx-home'></i>Tableau de Bord</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href=""><i class='bx bx-category'></i>Categorie</a>
@@ -37,7 +37,7 @@
                     <a class="nav-link" href="../admin/artwork_page.php"><i class='bx bx-brush'></i>Techniques</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/artworks"><i class='bx bx-paint'></i>Mes œuvres</a>
+                    <a class="nav-link" href="/atelier_mrt/admin/artworks"><i class='bx bx-paint'></i>Mes œuvres</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../admin/event_page.php"><i class='bx bx-calendar-event'></i>Événements</a>
