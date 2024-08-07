@@ -28,15 +28,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $artwork = new Artwork($title, $description, $price, $stock, $width, $height, $imagePath, $category_id, $medium_id);
+    $artwork->id = $id;
 
     if (empty($id)) {
         // Ajouter une nouvelle œuvre
         $artwork->save($pdo);
     } else {
         // Modifier une œuvre existante
+        var_dump($artwork);
         $artwork->update($pdo);
     }
 
-    header('Location: /atelier_mrt/admin/artworks');
-    exit;
+    // header('Location: /atelier_mrt/admin/artworks');
+    // exit;
 }
