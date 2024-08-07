@@ -28,7 +28,7 @@ $config = [
     <div class="container">
         <div class="checkout-wrapper">
             <div class="cart-table-wrapper">
-                <h2 class="checkout-title">Votre Panier</h2>
+                <h2 class="checkout-title">Recapitulatif de votre panier</h2>
                 <table class="cart-table">
                     <thead>
                         <tr>
