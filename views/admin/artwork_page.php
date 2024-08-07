@@ -10,7 +10,6 @@ $mediums = Medium::all($pdo);
 
 include 'includes/sidebar.php';
 ?>
-
 <div class="main-content">
     <header class="header">
         <h3>Gestion des Œuvres</h3>
@@ -109,26 +108,29 @@ include 'includes/sidebar.php';
             </table>
         </div>
     </div>
-    <script>
-        function editArtwork(artwork) {
-            document.getElementById('artwork_id').value = artwork.id;
-            document.getElementById('title').value = artwork.title;
-            document.getElementById('description').value = artwork.description;
-            document.getElementById('price').value = artwork.price;
-            document.getElementById('width').value = artwork.width;
-            document.getElementById('height').value = artwork.height;
-            document.getElementById('stock').value = artwork.stock;
-            document.getElementById('category').value = artwork.category_id;
-            document.getElementById('medium').value = artwork.medium_id;
-        }
+</div>
 
-        function deleteArtwork(id) {
-            if (confirm('Voulez-vous vraiment supprimer cette œuvre ?')) {
-                window.location.href = 'delete_artwork.php?id=' + id;
-            }
-        }
-    </script>
-    </main>
-    </body>
+<script>
+    function editArtwork(artwork) {
+        document.getElementById('artwork_id').value = artwork.id;
+        document.getElementById('title').value = artwork.title;
+        document.getElementById('description').value = artwork.description;
+        document.getElementById('price').value = artwork.price;
+        document.getElementById('width').value = artwork.width;
+        document.getElementById('height').value = artwork.height;
+        document.getElementById('stock').value = artwork.stock;
+        document.getElementById('category').value = artwork.category_id;
+        document.getElementById('medium').value = artwork.medium_id;
+    }
 
-    </html>
+    function deleteArtwork(id) {
+        if (confirm('Voulez-vous vraiment supprimer cette œuvre ?')) {
+            window.location.href = 'artworks/actions?id=' + id;
+        }
+    }
+</script>
+
+</main>
+</body>
+
+</html>
