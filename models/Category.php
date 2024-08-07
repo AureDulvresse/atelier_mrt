@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use PDO;
+
 class Category
 {
     private $conn;
@@ -56,6 +58,6 @@ class Category
     {
         $query = "SELECT * FROM categories";
         $result = $pdo->query($query);
-        return $result->fetchAll();
+        return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 }
