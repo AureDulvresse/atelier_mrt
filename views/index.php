@@ -1,4 +1,10 @@
-<?php include './views/includes/header.php'; ?>
+<?php
+
+use App\Models\Artwork;
+
+$artworks = Artwork::all($pdo);
+
+include './views/includes/header.php'; ?>
 
 <!-- Section de présentation -->
 <div class="header-content">
@@ -72,22 +78,26 @@
             </div>
 
             <div class="grid" data-aos="fade-up" data-aos-duration="11000">
-                <?php for ($i = 0; $i < 6; $i++) : ?>
+                <?php foreach ($artworks as $artwork) : ?>
                     <div class="grid-item peinture">
                         <div class="gallery-image">
-                            <img src="./assets/images/sample.jpg" alt="" />
+                            <?php if ($artwork->thumbnail == null) { ?>
+                                <img src="./assets/images/sample.jpg" alt="" />
+                            <?php } else { ?>
+                                <img src="<?php echo htmlspecialchars($artwork->thumbnail); ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" />
+                            <?php } ?>
                             <div class="img-overlay">
                                 <div class="img-overlay-content">
                                     <div class="img-description">
-                                        <h3>Peinture</h3>
-                                        <h5>Voir Démo</h5>
+                                        <h3><?php echo htmlspecialchars($artwork->title); ?></h3>
+                                        <h5><?php echo htmlspecialchars($artwork->category_name); ?></h5>
                                     </div>
-                                    <a href="shop/artwork/<?php echo $i + 1; ?>" class="btn black small">Détail</a>
+                                    <a href="shop/artwork/<?php echo htmlspecialchars($artwork->id); ?>" class="btn black small">Détail</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                <?php endfor; ?>
+                <?php endforeach; ?>
             </div>
             <div class="more-btn">
                 <a href="shop" class="btn">Explorer la galerie</a>

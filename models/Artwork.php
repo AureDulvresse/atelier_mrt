@@ -131,18 +131,18 @@ class Artwork
     }
 
 
-    public static function all($pdo, $order_by = "updated_at")
+    public static function all($pdo, $order_by = "updated_at DESC")
     {
         // Requête SQL pour récupérer les œuvres avec les noms des catégories et des mediums
         $sql = "SELECT artworks.*, categories.name as category_name, mediums.name as medium_name
             FROM artworks
             INNER JOIN categories ON artworks.category_id = categories.id
             INNER JOIN mediums ON artworks.medium_id = mediums.id
-            ORDER BY :order";
+            ORDER BY ". $order_by;
 
         // Préparation et exécution de la requête
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([":order" => $order_by]);
+        $stmt->execute();
 
         // Récupération des résultats sous forme de tableau associatif
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);

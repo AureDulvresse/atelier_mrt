@@ -97,7 +97,7 @@ include 'includes/sidebar.php';
                             <td><?php echo htmlspecialchars($artwork->price); ?></td>
                             <td><?php echo htmlspecialchars($artwork->category_name); ?></td>
                             <td><?php echo htmlspecialchars($artwork->medium_name); ?></td>
-                            <td><img src="uploads/<?php echo ($artwork->thumbnail) ? htmlspecialchars($artwork->thumbnail) : ""; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" width="100"></td>
+                            <td><img src="uploads/artworks<?php echo ($artwork->thumbnail) ? htmlspecialchars($artwork->thumbnail) : ""; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" width="100"></td>
                             <td>
                                 <button onclick="editArtwork(<?php echo htmlspecialchars(json_encode($artwork)); ?>)"><i class="bx bx-pencil"></i></button>
                                 <button onclick="deleteArtwork(<?php echo $artwork->id; ?>)"><i class="bx bx-trash"></i></button>
