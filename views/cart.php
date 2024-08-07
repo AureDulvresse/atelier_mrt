@@ -51,7 +51,7 @@ include './views/includes/breadcrumb.php';
                     <?php foreach ($user_cart as $item) : ?>
                         <tr>
                             <td class="table-img">
-                                <img src="/atelier_mrt/<?php echo ($item->artwork->thumbnail != null) ? htmlspecialchars($item->artwork->thumbnail) : "assets/images/sample.jpg"; ?>" alt="<?php echo htmlspecialchars($item->artwork->title); ?>"  />
+                                <img src="/atelier_mrt/<?php echo ($item->artwork->thumbnail != null) ? htmlspecialchars($item->artwork->thumbnail) : "assets/images/sample.jpg"; ?>" alt="<?php echo htmlspecialchars($item->artwork->title); ?>" />
                             </td>
                             <td><?php echo $item->artwork->title; ?></td>
                             <td><?php echo number_format($item->artwork->price, 2, ',', ' '); ?> €</td>
