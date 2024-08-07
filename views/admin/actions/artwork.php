@@ -11,6 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $medium_id = $_POST['medium_id'];
     $image = $_FILES['image'];
 
+
+    if (isset($_POST['delete']) && $_POST['delete'] == true) {
+        Artwork::delete($pdo, $id);
+    }
+
     // Traitement de l'image uploadée
     if ($image['error'] == 0) {
         $imagePath = 'uploads/artworks/' . basename($image['name']);
