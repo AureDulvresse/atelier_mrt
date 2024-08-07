@@ -35,10 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $artwork->save($pdo);
     } else {
         // Modifier une œuvre existante
-        var_dump($artwork);
         $artwork->update($pdo);
     }
 
-    // header('Location: /atelier_mrt/admin/artworks');
-    // exit;
+    header('Location: /atelier_mrt/admin/artworks');
+    exit;
 }
