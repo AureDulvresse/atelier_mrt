@@ -90,7 +90,7 @@ class Artwork
 
     public function update($pdo)
     {
-        $sql = "UPDATE" . $this->table_name . " SET title = :title, slug = :slug, description = :description, price = :price, stock = :stock, 
+        $sql = "UPDATE " . $this->table_name . " SET title = :title, slug = :slug, description = :description, price = :price, stock = :stock, 
                 width = :width, height = :height, thumbnail = :thumbnail, category_id = :category_id, medium_id = :medium_id, 
                 updated_at = :updated_at WHERE id = :id";
         $stmt = $pdo->prepare($sql);
