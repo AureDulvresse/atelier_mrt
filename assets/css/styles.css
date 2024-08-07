@@ -1296,8 +1296,9 @@
   }
 
   .btn-stripe {
-      background-color: #6772e5;
+      background-color: var(--light-four);
       margin-bottom: 1rem;
+      width: 100%;
   }
 
   #paypal-button {
@@ -1311,19 +1312,16 @@
   /* End Checkout */
 
   /* Profile */
-  /* En-tête du profil */
   .profile {
       background: var(--light-two);
   }
 
-  /* Contenu du profil */
   .profile-content {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
   }
 
-  /* Informations personnelles */
   .profile-info,
   .profile-orders {
       flex: 1 1 45%;
@@ -1333,13 +1331,11 @@
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
 
-  /* Commandes */
   .order {
       border-bottom: 1px solid #ddd;
       padding: 10px 0;
   }
 
-  /* Dernière commande sans bordure */
   .order:last-child {
       border-bottom: none;
   }
