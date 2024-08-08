@@ -25,7 +25,7 @@
 
     <main>
         <!-- En-tête -->
-        <header id="header">
+        <header id="header" class="black">
             <div class="overlay overlay-lg">
                 <img src="/atelier_mrt/assets/images/shapes/square.png" class="shape square" alt="" />
                 <img src="/atelier_mrt/assets/images/shapes/circle.png" class="shape circle" alt="" />
