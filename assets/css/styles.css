@@ -302,7 +302,7 @@
   }
 
   header.black {
-    background: var(--light-three) !important;
+      background: var(--light-three) !important;
   }
 
   nav {
@@ -451,7 +451,7 @@
       color: var(--light-one);
   }
 
-  
+
   header .points1 {
       width: 420px;
       bottom: -75px;
@@ -985,7 +985,6 @@
       padding: 13.5rem 0 8.5rem;
   }
 
-  .contact:before,
   .contact:after {
       content: "";
       position: absolute;
@@ -994,12 +993,20 @@
       left: 0;
   }
 
-  .contact:before {
+  .map-section {
+      position: absolute;
       top: 0;
+      left: 0;
+      width: 100%;
       height: 40%;
       border-top-left-radius: var(--radius);
       border-top-right-radius: var(--radius);
-      background: var(--dark-two);
+      z-index: -1;
+      transition: z-index 0.6s ease-in-out;
+  }
+
+  .map-section:hover iframe {
+      z-index: 9;
   }
 
   .contact:after {
