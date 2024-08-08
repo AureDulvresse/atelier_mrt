@@ -223,7 +223,6 @@ include './views/includes/header.php'; ?>
                 </div>
 
                 <div class="row">
-                    <input type="text" class="form-input" name="phone" id="phone" placeholder="Téléphone" />
                     <input type="email" class="form-input" name="email" id="email" placeholder="Email" />
                 </div>
 
