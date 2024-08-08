@@ -296,7 +296,7 @@
 
   header {
       width: 100%;
-      background-color: var(--light-three);
+    background: url("../images/artist_banner.jpg") center center / cover;
       overflow: hidden;
       position: relative;
   }
@@ -820,12 +820,6 @@
       justify-content: center;
       color: var(--light-one);
   }
-
-  /* .record-circle.active {
-  background-color: var(--light-one);
-  color: var(--dark-one);
-  box-shadow: 0 0 0 15px rgb(255, 255, 255, 0.5);
-} */
 
   .number {
       font-weight: 400;
