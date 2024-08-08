@@ -38,7 +38,7 @@ include './views/includes/header.php'; ?>
 
             <div class="column-2 image" data-aos="fade-left" data-aos-duration="2000">
                 <img src="./assets/images/shapes/points4.png" class="points" alt="" />
-                <img src="./assets/images/about.png" class="z-index" alt="" />
+                <img src="./assets/images/logo.png" class="z-index" alt="" />
             </div>
         </div>
     </div>
