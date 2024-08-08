@@ -230,4 +230,13 @@ include './views/includes/header.php'; ?>
     </div>
 </section>
 
+<section class="map-section">
+    <h2 class="title">Retrouvez mon atelier</h2>
+    <!-- google map section -->
+    <div class="w-100">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.0420661135564!2d2.2922926156748405!3d48.85884407928767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d83d7c8bbf%3A0x8c8e13d2b0c7d9!2sEiffel+Tower%2C+Champ+de+Mars%2C+75007+Paris%2C+France!5e0!3m2!1sen!2sbd!4v1589262060663!5m2!1sen!2sbd" width="100%" height="450" frameborder="0" title="Address" style="border: 0" allowfullscreen="" class="embed-responsive-item"></iframe>
+    </div>
+    <!-- end google map section -->
+</section>
+
 <?php include './views/includes/footer.php'; ?>
