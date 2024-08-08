@@ -102,10 +102,9 @@ include './views/includes/header.php'; ?>
     </div>
 </section>
 
-<!-- Section Records -->
+<!-- Section Records
 <section class="records">
     <div class="overlay overlay-sm">
-        <!-- Images de fond -->
         <img src="./assets/images/shapes/square.png" alt="" class="shape square1" />
         <img src="./assets/images/shapes/square.png" alt="" class="shape square2" />
         <img src="./assets/images/shapes/circle.png" alt="" class="shape circle" />
@@ -145,7 +144,7 @@ include './views/includes/header.php'; ?>
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- Section Blog -->
 <section class="blog section" id="blog">
