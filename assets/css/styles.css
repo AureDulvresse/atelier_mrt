@@ -296,9 +296,13 @@
 
   header {
       width: 100%;
-    background: url("../images/artist_banner.jpg") center center / cover;
+      background: url("../images/artist_banner.jpg") center center / cover;
       overflow: hidden;
       position: relative;
+  }
+
+  header.black {
+    background-color: var(--light-three);
   }
 
   nav {
@@ -416,12 +420,12 @@
   }
 
   .header-content .caption-bg {
-    background-color: rgba(0, 0, 0, 0.365);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+      background-color: rgba(0, 0, 0, 0.365);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
   }
 
   .header-content .container.grid-2 {
@@ -447,7 +451,7 @@
       color: var(--light-one);
   }
 
-/* 
+  /* 
   header .points1 {
       width: 420px;
       bottom: -75px;
