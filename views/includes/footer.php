@@ -32,17 +32,14 @@
             <div class="grid-3-col footer-links">
                 <h3 class="title-sm">Contact</h3>
                 <ul>
-                    <li>
-                        <a href="#">Web Design</a>
+                    <li class="text">
+                        Boulevard, Paris, France
                     </li>
-                    <li>
-                        <a href="#">Web Dev</a>
+                    <li class="text">
+                        +33 123 456 789
                     </li>
-                    <li>
-                        <a href="#">App Design</a>
-                    </li>
-                    <li>
-                        <a href="#">Marketing</a>
+                    <li class="text">
+                        mtr.artiste@gmail.com
                     </li>
                 </ul>
             </div>

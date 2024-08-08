@@ -1390,26 +1390,6 @@
       color: var(--main-color);
   }
 
-  .footer-input-wrap {
-      display: grid;
-      grid-template-columns: auto 50px;
-      width: 100%;
-      height: 50px;
-      border-radius: 30px;
-      overflow: hidden;
-      margin-top: 1.2rem;
-  }
-
-  .footer-input {
-      background: #373737;
-      color: #333;
-      outline: none;
-      border: none;
-      padding: 0 1.5rem;
-      font-size: 1.1rem;
-      transition: 0.3s;
-  }
-
   .input-arrow {
       color: #fff;
       background-color: var(--main-color);
