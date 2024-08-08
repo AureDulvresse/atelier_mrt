@@ -999,7 +999,7 @@
       height: 40%;
       border-top-left-radius: var(--radius);
       border-top-right-radius: var(--radius);
-      background: url("../images/map.png") center center / cover;
+      background: var(--dark-two);
   }
 
   .contact:after {
@@ -1302,7 +1302,7 @@
 
   .btn-stripe {
       background-color: var(--light-four);
-      margin-bottom: 1rem;
+      margin-bottom: 0.4rem;
       width: 100%;
   }
 
