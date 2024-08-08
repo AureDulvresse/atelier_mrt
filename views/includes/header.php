@@ -26,7 +26,7 @@
     <main>
         <!-- En-tête -->
         <header id="header">
-            <div class="overlay overlay-lg">
+            <!-- <div class="overlay overlay-lg">
                 <img src="./assets/images/shapes/square.png" class="shape square" alt="" />
                 <img src="./assets/images/shapes/circle.png" class="shape circle" alt="" />
                 <img src="./assets/images/shapes/half-circle.png" class="shape half-circle1" alt="" />
@@ -36,7 +36,7 @@
                 <img src="./assets/images/shapes/wave.png" class="shape wave wave2" alt="" />
                 <img src="./assets/images/shapes/triangle.png" class="shape triangle" alt="" />
                 <img src="./assets/images/shapes/points1.png" class="points points1" alt="" />
-            </div>
+            </div> -->
 
             <nav>
                 <div class="container">

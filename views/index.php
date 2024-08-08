@@ -8,6 +8,7 @@ include './views/includes/header.php'; ?>
 
 <!-- Section de présentation -->
 <div class="header-content">
+    <div class="caption-bg"></div>
     <div class="container grid-2">
         <div class="column-1">
             <h1 class="header-title">Bienvenue sur <span>l'atelier MRT</span></h1>
@@ -15,11 +16,6 @@ include './views/includes/header.php'; ?>
                 Explorez notre collection d'art et trouvez l'inspiration !
             </p>
             <a href="#gallery" class="btn" data-aos="fade-up" data-aos-duration="1000">Découvrir mes tableaux</a>
-        </div>
-
-        <div class="column-2 image">
-            <img src="./assets/images/shapes/points2.png" class="points points2" alt="" />
-            <img src="./assets/images/person.png" class="img-element z-index" alt="" data-aos="fade-left" data-aos-duration="2000" />
         </div>
     </div>
 </div>
