@@ -302,7 +302,7 @@
   }
 
   header.black {
-    background-color: var(--light-three);
+    background: var(--light-three) !important;
   }
 
   nav {
@@ -451,7 +451,7 @@
       color: var(--light-one);
   }
 
-  /* 
+  
   header .points1 {
       width: 420px;
       bottom: -75px;
@@ -502,7 +502,7 @@
   header .circle {
       left: 38%;
       bottom: 63%;
-  } */
+  }
 
   /* End header */
 
