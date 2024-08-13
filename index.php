@@ -126,6 +126,14 @@ switch ($request) {
             require __DIR__ . '/views/auth/login.php';
             break;
         }
+    case '/auth/traitement/login':
+        $pageTitle = "Traitement login";
+        require __DIR__ . '/views/auth/actions/login_traitement.php';
+        break;
+    case '/auth/traitement/register':
+        $pageTitle = "Traitement login";
+        require __DIR__ . '/views/auth/actions/register_traitement.php';
+        break;
     case '/register':
         $pageTitle = 'Inscription';
         require __DIR__ . '/views/auth/register.php';
