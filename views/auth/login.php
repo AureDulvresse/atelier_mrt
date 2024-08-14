@@ -24,7 +24,7 @@ include './views/includes/breadcrumb.php';
                     <?php endif; ?>
 
                     <?php if (isset($_SESSION['message_register']) && !empty($_SESSION['message_register'])) : ?>
-                        <div class=" alert success">
+                        <div class="alert success fade-out">
                             <?php echo htmlspecialchars($_SESSION['message_register']); ?>
                         </div>
                     <?php endif; ?>
