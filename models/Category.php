@@ -54,7 +54,7 @@ class Category
         return $stmt->execute();
     }
 
-    public static function getAll($pdo)
+    public static function all($pdo)
     {
         $query = "SELECT * FROM categories";
         $result = $pdo->query($query);

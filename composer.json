@@ -2,7 +2,7 @@
   "name": "fenixad/atelier_mrt",
   "description": "Site vitrine et marchand",
   "require": {
-    "stripe/stripe-php": "^15.5",
+    "stripe/stripe-php": "^15.6",
     "phpmailer/phpmailer": "^6.9",
     "phpauth/phpauth": "^1.5",
     "vlucas/phpdotenv": "^5.6",

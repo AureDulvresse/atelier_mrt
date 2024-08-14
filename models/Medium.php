@@ -53,7 +53,7 @@ class Medium
         return $stmt->execute();
     }
 
-    public static function getAll($pdo)
+    public static function all($pdo)
     {
         $query = "SELECT * FROM mediums";
         $result = $pdo->query($query);

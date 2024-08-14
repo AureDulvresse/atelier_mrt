@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Controllers\AuthController;
 
 // Afficher les erreurs pour le débogage (optionnel, décommentez pour activer)
@@ -21,18 +20,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($csrfToken !== $_SESSION['csrf_token']) {
         $message = 'Token CSRF invalide.';
     } else {
+        // Appel à la méthode login qui retourne un objet Response
         $loginResult = $authController->login($email, $password);
 
-        if ($loginResult['error']) {
-            $message = $loginResult['message'];
+        // Vérification du statut de la réponse
+        if (!$loginResult->status) {
+            $message = $loginResult->message;
         } else {
-            $message = $loginResult['message'];
+            $message = $loginResult->message;
 
+            // Vérification si l'utilisateur est un administrateur
             if (isset($_SESSION['auth_admin'])) {
                 header('Location: /atelier_mrt/admin');
                 exit;
             }
-            // Redirection ou gestion après connexion réussie
+
+            // Redirection après connexion réussie
             header('Location: /atelier_mrt');
             exit;
         }

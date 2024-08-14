@@ -5,8 +5,8 @@ use App\Models\Artwork;
 use App\Models\Medium;
 
 $artworks = Artwork::all($pdo);
-$categories = Category::getAll($pdo);
-$mediums = Medium::getAll($pdo);
+$categories = Category::all($pdo);
+$mediums = Medium::all($pdo);
 
 include 'includes/sidebar.php';
 ?>
