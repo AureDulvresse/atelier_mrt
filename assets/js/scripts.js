@@ -4,8 +4,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const items = document.querySelectorAll(".grid-item");
   const totalItems = items.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const grid = document.querySelector(".grid");
   const pagination = document.querySelector(".pagination");
+  const hideDelay = 5000;
+
+  // Fonction pour masquer les messages d'alerte
+  function hideAlert(id) {
+    var alert = document.getElementById(id);
+    if (alert) {
+      setTimeout(function () {
+        alert.classList.add("hide");
+      }, hideDelay);
+    }
+  }
+
+  // Masquer les messages d'alerte après le délai
+  hideAlert("alert-message");
+  hideAlert("alert-register");
 
   function showPage(page) {
     const start = (page - 1) * itemsPerPage;

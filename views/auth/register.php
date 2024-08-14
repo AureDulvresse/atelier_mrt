@@ -17,11 +17,13 @@ include './views/includes/breadcrumb.php';
                 <form action="/atelier_mrt/auth/traitement/register" method="post">
 
                     <?php if (isset($message['error'])) : ?>
-                        <div class="alert error"><?php echo htmlspecialchars($message['error']); ?></div>
+                        <div class="alert error" id="alert-register">
+                            <?php echo htmlspecialchars($message['error']); ?>
+                        </div>
                     <?php endif; ?>
 
                     <?php if (isset($_SESSION['message_register']) && !empty($_SESSION['message_register'])) : ?>
-                        <div class="alert error">
+                        <div class="alert error" id="alert-register">
                             <?php echo htmlspecialchars($_SESSION['message_register']); ?>
                         </div>
                     <?php endif; ?>

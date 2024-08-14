@@ -18,7 +18,7 @@ include './views/includes/breadcrumb.php';
                 <form action="/atelier_mrt/auth/traitement/login" method="post">
 
                     <?php if (isset($message) && !empty($message)) : ?>
-                        <div class="alert error">
+                        <div class="alert error" id="alert-message">
                             <?php echo htmlspecialchars($message); ?>
                         </div>
                     <?php endif; ?>
