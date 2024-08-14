@@ -288,6 +288,17 @@
       color: #a76c28;
   }
 
+  /* Optionnel : Animation pour la disparition des messages */
+  .fade-out {
+      opacity: 1;
+      transition: opacity 1s ease-out;
+  }
+
+  .fade-out.hide {
+      opacity: 0;
+      display: none;
+  }
+
   /* End Genral Styles */
   main {
       display: flex;
