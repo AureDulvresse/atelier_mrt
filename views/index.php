@@ -126,9 +126,9 @@ include './views/includes/header.php'; ?>
                             </div>
                             <h3 class="title-sm"><?php echo ($post->title); ?></h3>
                             <p class="blog-text">
-                                <?php echo ($post->description); ?>
+                                <?php echo ($post->content); ?>
                             </p>
-                            <a href="blog/post/<?php echo $i + 1; ?>" class="btn small">Lire la Suite</a>
+                            <a href="blog/post/<?php echo htmlspecialchars($post->id); ?>" class="btn small">Lire la Suite</a>
                         </div>
                     </div>
                 </div>
