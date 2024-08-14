@@ -16,11 +16,18 @@ include './views/includes/breadcrumb.php';
                 <h3 class="title">Inscription</h3>
                 <form action="/atelier_mrt/auth/traitement/register" method="post">
 
-                    <?php if (isset($_SESSION['message_register']) && !empty($_SESSION['message_register'])) : ?>
+                    <?php if (isset($message) && !empty($message)) : ?>
                         <div class="alert error fade-out">
+                            <?php echo htmlspecialchars($message); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (isset($_SESSION['message_register']) && !empty($_SESSION['message_register'])) : ?>
+                        <div class="alert success fade-out">
                             <?php echo htmlspecialchars($_SESSION['message_register']); ?>
                         </div>
                     <?php endif; ?>
+
 
                     <!-- Affichage du token CSRF -->
                     <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
