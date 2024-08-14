@@ -47,38 +47,37 @@ include './views/includes/header.php'; ?>
 </section>
 
 <!-- Section Galerie -->
-<section class="gallery section" id="gallery">
-    <div class="background-bg">
-        <div class="overlay overlay-sm">
-            <!-- Images de fond -->
-            <img src="./assets/images/shapes/half-circle.png" class="shape half-circle1" alt="" data-aos="fade-up" data-aos-duration="1000" />
-            <img src="./assets/images/shapes/half-circle.png" class="shape half-circle2" alt="" data-aos="fade-up" data-aos-duration="2000" />
-            <img src="./assets/images/shapes/square.png" class="shape square" alt="" data-aos="fade-up" data-aos-duration="3000" />
-            <img src="./assets/images/shapes/wave.png" class="shape wave" alt="" data-aos="fade-up" data-aos-duration="4000" />
-            <img src="./assets/images/shapes/circle.png" class="shape circle" alt="" data-aos="fade-up" data-aos-duration="5000" />
-            <img src="./assets/images/shapes/triangle.png" class="shape triangle" alt="" data-aos="fade-up" data-aos-duration="6000" />
-            <img src="./assets/images/shapes/x.png" class="shape xshape" alt="" data-aos="fade-up" data-aos-duration="7000" />
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="section-header">
-            <h3 class="title" data-title="Découvrir ma galerie">Mes Œuvres</h3>
+<?php if (isset($artworks) && !empty($artworks)) { ?>
+    <section class="gallery section" id="gallery">
+        <div class="background-bg">
+            <div class="overlay overlay-sm">
+                <!-- Images de fond -->
+                <img src="./assets/images/shapes/half-circle.png" class="shape half-circle1" alt="" data-aos="fade-up" data-aos-duration="1000" />
+                <img src="./assets/images/shapes/half-circle.png" class="shape half-circle2" alt="" data-aos="fade-up" data-aos-duration="2000" />
+                <img src="./assets/images/shapes/square.png" class="shape square" alt="" data-aos="fade-up" data-aos-duration="3000" />
+                <img src="./assets/images/shapes/wave.png" class="shape wave" alt="" data-aos="fade-up" data-aos-duration="4000" />
+                <img src="./assets/images/shapes/circle.png" class="shape circle" alt="" data-aos="fade-up" data-aos-duration="5000" />
+                <img src="./assets/images/shapes/triangle.png" class="shape triangle" alt="" data-aos="fade-up" data-aos-duration="6000" />
+                <img src="./assets/images/shapes/x.png" class="shape xshape" alt="" data-aos="fade-up" data-aos-duration="7000" />
+            </div>
         </div>
 
-        <div class="section-body">
-            <div class="filter">
-                <button class="filter-btn active" data-filter="*">Toutes</button>
-                <button class="filter-btn" data-filter=".peinture">Peinture</button>
-                <button class="filter-btn" data-filter=".dessin">Dessin</button>
-                <button class="filter-btn" data-filter=".sculpture">Sculpture</button>
-                <button class="filter-btn" data-filter=".photographie">Photographie</button>
+        <div class="container">
+            <div class="section-header">
+                <h3 class="title" data-title="Découvrir ma galerie">Mes Œuvres</h3>
             </div>
 
-            <div class="grid" data-aos="fade-up" data-aos-duration="11000">
-                <?php
-                if (isset($artworks) && !empty($artworks)) {
-                    foreach ($artworks as $artwork) : ?>
+            <div class="section-body">
+                <div class="filter">
+                    <button class="filter-btn active" data-filter="*">Toutes</button>
+                    <button class="filter-btn" data-filter=".peinture">Peinture</button>
+                    <button class="filter-btn" data-filter=".dessin">Dessin</button>
+                    <button class="filter-btn" data-filter=".sculpture">Sculpture</button>
+                    <button class="filter-btn" data-filter=".photographie">Photographie</button>
+                </div>
+
+                <div class="grid" data-aos="fade-up" data-aos-duration="11000">
+                    <?php foreach ($artworks as $artwork) : ?>
                         <div class="grid-item peinture">
                             <div class="gallery-image">
                                 <img src="<?php echo ($artwork->thumbnail != null) ? htmlspecialchars($artwork->thumbnail) : "/atelier_mrt/assets/images/sample.jpg"; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" />
@@ -93,29 +92,29 @@ include './views/includes/header.php'; ?>
                                 </div>
                             </div>
                         </div>
-                <?php endforeach;
-                } ?>
-            </div>
-            <div class="more-btn">
-                <a href="shop" class="btn">Explorer la galerie</a>
+                    <?php endforeach; ?>
+                </div>
+                <div class="more-btn">
+                    <a href="shop" class="btn">Explorer la galerie</a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+<?php } ?>
 
 <!-- Section Blog -->
-<section class="blog section" id="blog">
-    <div class="container">
-        <div class="section-header">
-            <h3 class="title" data-title="Dernières Nouvelles">Mon Blog</h3>
-            <p class="text">
-                Découvrez les dernières actualités et exposition de l'atelier MRT.
-            </p>
-        </div>
+<?php if (isset($posts) && !empty($posts)) { ?>
+    <section class="blog section" id="blog">
+        <div class="container">
+            <div class="section-header">
+                <h3 class="title" data-title="Dernières Nouvelles">Mon Blog</h3>
+                <p class="text">
+                    Découvrez les dernières actualités et exposition de l'atelier MRT.
+                </p>
+            </div>
 
-        <div class="blog-wrapper">
-            <?php if (isset($artworks) && !empty($artworks)) {
-                foreach ($posts as $post): ?>
+            <div class="blog-wrapper">
+                <?php foreach ($posts as $post): ?>
                     <div class="blog-wrap">
 
                         <div class="blog-card">
@@ -135,14 +134,14 @@ include './views/includes/header.php'; ?>
                             </div>
                         </div>
                     </div>
-            <?php endforeach;
-            } ?>
+                <?php endforeach; ?>
+            </div>
+            <div class="more-btn">
+                <a href="blog" class="btn">Voir plus</a>
+            </div>
         </div>
-        <div class="more-btn">
-            <a href="blog" class="btn">Voir plus</a>
-        </div>
-    </div>
-</section>
+    </section>
+<?php } ?>
 
 <!-- Section Contact -->
 <section class="contact" id="contact">
