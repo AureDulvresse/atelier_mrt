@@ -55,9 +55,9 @@ class CategoryController
         }
     }
 
-    public function getAll()
+    public function getAll($pdo)
     {
-        $data = $this->category->getAll($this);
+        $data = Category::all($pdo);
         echo json_encode(["success" => true, "data" => $data]);
     }
 }
