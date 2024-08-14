@@ -7,6 +7,7 @@ use PHPAuth\Config as PHPAuthConfig;
 use PHPAuth\Auth as PHPAuth;
 
 use App\Models\Customer;
+use App\Utils\Response;
 
 class AuthController
 {
@@ -30,28 +31,26 @@ class AuthController
 
     public function register($firstName, $lastName, $email, $password, $repeatPassword)
     {
-
-
+        // Vérification des mots de passe
         if ($password !== $repeatPassword) {
-            $this->registerMessage =  ["error" => "Les mots de passe ne correspondent pas."];
-            return $this->registerMessage;
+            return new Response(false, "Les mots de passe ne correspondent pas.", ["password_mismatch" => "Les mots de passe ne correspondent pas."]);
         }
 
         // Enregistrement avec PHPAuth
         $register = $this->auth->register($email, $password, $repeatPassword);
 
         if ($register['error'] == true) {
-            $this->registerMessage = $register['message'];
+            return new Response(false, $register['message'], ["auth_error" => $register['message']]);
         } else {
             $customer = new Customer($firstName, $lastName, $email, $password);
             if ($customer->save($this->pdo)) {
-                $this->registerMessage = "Enregistrement réussi. Veuillez vérifier votre email pour activer votre compte.";
+                return new Response(true, "Enregistrement réussi. Veuillez vérifier votre email pour activer votre compte.");
             } else {
-                $this->registerMessage = "Erreur lors de l'enregistrement.";
+                return new Response(false, "Erreur lors de l'enregistrement.", ["db_error" => "Impossible de sauvegarder le client dans la base de données."]);
             }
         }
-        return $this->registerMessage;
     }
+
 
     public function login($email, $password)
     {
