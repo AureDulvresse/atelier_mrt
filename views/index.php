@@ -98,50 +98,6 @@ include './views/includes/header.php'; ?>
     </div>
 </section>
 
-<!-- Section Records
-<section class="records">
-    <div class="overlay overlay-sm">
-        <img src="./assets/images/shapes/square.png" alt="" class="shape square1" />
-        <img src="./assets/images/shapes/square.png" alt="" class="shape square2" />
-        <img src="./assets/images/shapes/circle.png" alt="" class="shape circle" />
-        <img src="./assets/images/shapes/half-circle.png" alt="" class="shape half-circle" />
-        <img src="./assets/images/shapes/wave.png" alt="" class="shape wave wave1" />
-        <img src="./assets/images/shapes/wave.png" alt="" class="shape wave wave2" />
-        <img src="./assets/images/shapes/x.png" alt="" class="shape xshape" />
-        <img src="./assets/images/shapes/triangle.png" alt="" class="shape triangle" />
-    </div>
-
-    <div class="container">
-        <div class="wrap">
-            <div class="record-circle">
-                <h2 class="number" data-num="235">0</h2>
-                <h4 class="sub-title">Projets</h4>
-            </div>
-        </div>
-
-        <div class="wrap">
-            <div class="record-circle active">
-                <h2 class="number" data-num="174">0</h2>
-                <h4 class="sub-title">Clients Satisfaits</h4>
-            </div>
-        </div>
-
-        <div class="wrap">
-            <div class="record-circle">
-                <h2 class="number" data-num="892">0</h2>
-                <h4 class="sub-title">Heures de Travail</h4>
-            </div>
-        </div>
-
-        <div class="wrap">
-            <div class="record-circle">
-                <h2 class="number" data-num="368">0</h2>
-                <h4 class="sub-title">Récompenses</h4>
-            </div>
-        </div>
-    </div>
-</section> -->
-
 <!-- Section Blog -->
 <section class="blog section" id="blog">
     <div class="container">
