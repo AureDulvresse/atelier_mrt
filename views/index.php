@@ -76,22 +76,25 @@ include './views/includes/header.php'; ?>
             </div>
 
             <div class="grid" data-aos="fade-up" data-aos-duration="11000">
-                <?php foreach ($artworks as $artwork) : ?>
-                    <div class="grid-item peinture">
-                        <div class="gallery-image">
-                            <img src="<?php echo ($artwork->thumbnail != null) ? htmlspecialchars($artwork->thumbnail) : "/atelier_mrt/assets/images/sample.jpg"; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" />
-                            <div class="img-overlay">
-                                <div class="img-overlay-content">
-                                    <div class="img-description">
-                                        <h3><?php echo htmlspecialchars($artwork->title); ?></h3>
-                                        <h5><?php echo htmlspecialchars($artwork->category_name); ?></h5>
+                <?php
+                if (isset($artworks) && !empty($artworks)) {
+                    foreach ($artworks as $artwork) : ?>
+                        <div class="grid-item peinture">
+                            <div class="gallery-image">
+                                <img src="<?php echo ($artwork->thumbnail != null) ? htmlspecialchars($artwork->thumbnail) : "/atelier_mrt/assets/images/sample.jpg"; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" />
+                                <div class="img-overlay">
+                                    <div class="img-overlay-content">
+                                        <div class="img-description">
+                                            <h3><?php echo htmlspecialchars($artwork->title); ?></h3>
+                                            <h5><?php echo htmlspecialchars($artwork->category_name); ?></h5>
+                                        </div>
+                                        <a href="shop/artwork/<?php echo htmlspecialchars($artwork->id); ?>" class="btn black small">Détail</a>
                                     </div>
-                                    <a href="shop/artwork/<?php echo htmlspecialchars($artwork->id); ?>" class="btn black small">Détail</a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                <?php endforeach;
+                } ?>
             </div>
             <div class="more-btn">
                 <a href="shop" class="btn">Explorer la galerie</a>
@@ -111,28 +114,29 @@ include './views/includes/header.php'; ?>
         </div>
 
         <div class="blog-wrapper">
-            <?php foreach ($posts as $post) : ?>
-                <div class="blog-wrap">
-                    <img src="" alt="" class="points points-sq" />
+            <?php if (isset($artworks) && !empty($artworks)) {
+                foreach ($posts as $post): ?>
+                    <div class="blog-wrap">
 
-                    <div class="blog-card">
-                        <div class="blog-image">
-                            <img src="<?php echo ($post->thumbnail != null) ? htmlspecialchars($artwork->thumbnail) : "/atelier_mrt/assets/images/sample.jpg"; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" />
-                        </div>
-
-                        <div class="blog-content">
-                            <div class="blog-info">
-                                <h5 class="blog-date"><?php echo ($post->event_date); ?></h5>
+                        <div class="blog-card">
+                            <div class="blog-image">
+                                <img src="<?php echo ($post->thumbnail != null) ? htmlspecialchars($artwork->thumbnail) : "/atelier_mrt/assets/images/sample.jpg"; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" />
                             </div>
-                            <h3 class="title-sm"><?php echo ($post->title); ?></h3>
-                            <p class="blog-text">
-                                <?php echo ($post->content); ?>
-                            </p>
-                            <a href="blog/post/<?php echo htmlspecialchars($post->id); ?>" class="btn small">Lire la Suite</a>
+
+                            <div class="blog-content">
+                                <div class="blog-info">
+                                    <h5 class="blog-date"><?php echo ($post->event_date); ?></h5>
+                                </div>
+                                <h3 class="title-sm"><?php echo ($post->title); ?></h3>
+                                <p class="blog-text">
+                                    <?php echo ($post->content); ?>
+                                </p>
+                                <a href="blog/post/<?php echo htmlspecialchars($post->id); ?>" class="btn small">Lire la Suite</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+            <?php endforeach;
+            } ?>
         </div>
         <div class="more-btn">
             <a href="blog" class="btn">Voir plus</a>
