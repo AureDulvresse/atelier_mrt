@@ -53,36 +53,45 @@ class AuthController
 
     public function login($email, $password): Response
     {
+        // Authentifier l'utilisateur
         $login = $this->auth->login($email, $password);
 
+        // Vérifier si l'authentification a échoué
         if ($login['error']) {
             return new Response(false, $login['message']);
-        } else {
-            // Mettre à jour la date de dernière connexion
-            $customer = Customer::findByEmail($this->pdo, $email);
-            $customer->last_login = date('Y-m-d H:i:s');
-            $customer->update($this->pdo);
-
-            // Stocker le hash de session dans la session PHP
-            $_SESSION['auth_hash'] = $login['hash'];
-
-            if ($customer->is_staff && $customer->is_superuser) {
-                $_SESSION['auth_admin'] = bin2hex(random_bytes(32));
-            }
-
-            // Récupérer le panier de l'utilisateur
-            $cart = Cart::get($this->pdo, $customer->id);
-            if (empty($cart)) {
-                $cart = Cart::create($this->pdo, $customer->id);
-            }
-
-            $_SESSION['cart'] = $cart['id'];
-            $_SESSION['current_id'] = $customer->id;
-
-            return new Response(true, 'Connexion réussie.');
         }
-    }
 
+        // Récupérer le client par email
+        $customer = Customer::findByEmail($this->pdo, $email);
+
+        // Vérifier si le client a été trouvé
+        if ($customer === null) {
+            return new Response(false, 'Utilisateur non trouvé.');
+        }
+
+        // Mettre à jour la date de dernière connexion
+        $customer->last_login = date('Y-m-d H:i:s');
+        $customer->update($this->pdo);
+
+        // Stocker le hash de session dans la session PHP
+        $_SESSION['auth_hash'] = $login['hash'];
+
+        // Vérifier les rôles de l'utilisateur et mettre à jour la session
+        if ($customer->is_staff && $customer->is_superuser) {
+            $_SESSION['auth_admin'] = bin2hex(random_bytes(32));
+        }
+
+        // Récupérer ou créer le panier de l'utilisateur
+        $cart = Cart::get($this->pdo, $customer->id);
+        if (empty($cart)) {
+            $cart = Cart::create($this->pdo, $customer->id);
+        }
+
+        $_SESSION['cart'] = $cart['id'];
+        $_SESSION['current_id'] = $customer->id;
+
+        return new Response(true, 'Connexion réussie.');
+    }
 
 
     public function logout()
