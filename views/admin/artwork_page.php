@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Artwork;
-use App\Models\Category;
+    use App\Models\Category;
 use App\Models\Medium;
 
 $artworks = Artwork::all($pdo);
