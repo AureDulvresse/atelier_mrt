@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Artwork;
-    use App\Models\Category;
+use App\Models\Category;
 use App\Models\Medium;
 
 $artworks = Artwork::all($pdo);
@@ -72,44 +72,46 @@ include 'includes/sidebar.php';
     </div>
 
     <!-- Tableau des œuvres -->
-    <div class="table-container">
-        <div class="table-card">
-            <div class="table-header">
-                <h5>Œuvres</h5>
-            </div>
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Titre</th>
-                        <th>Description</th>
-                        <th>Prix</th>
-                        <th>Catégorie</th>
-                        <th>Medium</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($artworks as $artwork) : ?>
+    <?php if (isset($artworks) && !empty($artworks)) { ?>
+        <div class="table-container">
+            <div class="table-card">
+                <div class="table-header">
+                    <h5>Œuvres</h5>
+                </div>
+                <table class="data-table">
+                    <thead>
                         <tr>
-                            <td class="table-img">
-                                <img src="/atelier_mrt/<?php echo ($artwork->thumbnail != null) ? htmlspecialchars($artwork->thumbnail) : "assets/images/sample.jpg"; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" width="100">
-                            </td>
-                            <td><?php echo htmlspecialchars($artwork->title); ?></td>
-                            <td><?php echo htmlspecialchars($artwork->description); ?></td>
-                            <td><?php echo htmlspecialchars($artwork->price); ?></td>
-                            <td><?php echo htmlspecialchars($artwork->category_name); ?></td>
-                            <td><?php echo htmlspecialchars($artwork->medium_name); ?></td>
-                            <td>
-                                <button onclick="editArtwork(<?php echo htmlspecialchars(json_encode($artwork)); ?>)"><i class="bx bx-pencil"></i></button>
-                                <button onclick="deleteArtwork(<?php echo $artwork->id; ?>)"><i class="bx bx-trash"></i></button>
-                            </td>
+                            <th>Image</th>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Prix</th>
+                            <th>Catégorie</th>
+                            <th>Medium</th>
+                            <th>Actions</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($artworks as $artwork) : ?>
+                            <tr>
+                                <td class="table-img">
+                                    <img src="/atelier_mrt/<?php echo ($artwork->thumbnail != null) ? htmlspecialchars($artwork->thumbnail) : "assets/images/sample.jpg"; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" width="100">
+                                </td>
+                                <td><?php echo htmlspecialchars($artwork->title); ?></td>
+                                <td><?php echo htmlspecialchars($artwork->description); ?></td>
+                                <td><?php echo htmlspecialchars($artwork->price); ?></td>
+                                <td><?php echo htmlspecialchars($artwork->category_name); ?></td>
+                                <td><?php echo htmlspecialchars($artwork->medium_name); ?></td>
+                                <td>
+                                    <button onclick="editArtwork(<?php echo htmlspecialchars(json_encode($artwork)); ?>)"><i class="bx bx-pencil"></i></button>
+                                    <button onclick="deleteArtwork(<?php echo $artwork->id; ?>)"><i class="bx bx-trash"></i></button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
+    <?php } ?>
 </div>
 
 <script>
