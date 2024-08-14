@@ -51,13 +51,13 @@ class AuthController
         }
     }
 
-
     public function login($email, $password)
     {
         $login = $this->auth->login($email, $password);
 
         if ($login['error'] == true) {
-            return $login;
+            // Retourner un objet Response avec le statut d'erreur et le message d'erreur
+            return new Response(false, $login['message'], $login['errors']);
         } else {
             // Mettre à jour la date de dernière connexion
             $customer = Customer::findByEmail($this->pdo, $email);
@@ -67,23 +67,26 @@ class AuthController
             // Stocker le hash de session dans la session PHP
             $_SESSION['auth_hash'] = $login['hash'];
 
+            // Gestion des droits administrateur
             if ($customer->is_staff && $customer->is_superuser) {
-                $_SESSION['auth_admin'] = bin2hex(random_bytes(32));;
+                $_SESSION['auth_admin'] = bin2hex(random_bytes(32));
             }
 
-            // Récuperer le panier de l'utilisateur
+            // Récupérer le panier de l'utilisateur
             $cart = Cart::get($this->pdo, $customer->id);
 
             if (empty($cart)) {
                 $cart = Cart::create($this->pdo, $customer->id);
             }
-            
+
             $_SESSION['cart'] = $cart['id'];
             $_SESSION['current_id'] = $customer->id;
 
-            return $login;
+            // Retourner un objet Response avec un statut de succès
+            return new Response(true, "Connexion réussie.");
         }
     }
+
 
     public function logout()
     {
