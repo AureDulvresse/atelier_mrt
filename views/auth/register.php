@@ -16,14 +16,8 @@ include './views/includes/breadcrumb.php';
                 <h3 class="title">Inscription</h3>
                 <form action="/atelier_mrt/auth/traitement/register" method="post">
 
-                    <?php if (isset($message['error'])) : ?>
-                        <div class="alert error" id="alert-register">
-                            <?php echo htmlspecialchars($message['error']); ?>
-                        </div>
-                    <?php endif; ?>
-
                     <?php if (isset($_SESSION['message_register']) && !empty($_SESSION['message_register'])) : ?>
-                        <div class="alert error" id="alert-register">
+                        <div class="alert error fade-out">
                             <?php echo htmlspecialchars($_SESSION['message_register']); ?>
                         </div>
                     <?php endif; ?>
