@@ -33,13 +33,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($response->status) {
             // Enregistrement réussi
             $_SESSION['message_register'] = $response->message;
-            header("Location: /login");
+            header("Location: /atelier_mrt/login");
         } else {
             // Enregistrement échoué
             $_SESSION['message_register'] = $response->message;
             // Vous pouvez également afficher les erreurs spécifiques
             // var_dump($response->errors);
-            header("Location: /register");
+            header("Location: /atelier_mrt/register");
         }
         exit;
 
