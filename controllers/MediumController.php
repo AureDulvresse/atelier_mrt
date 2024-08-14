@@ -55,7 +55,7 @@ class MediumController
 
     public function getAll($pdo)
     {
-        $data = Medium::all($pdo);
+        $data = Medium::getAll($pdo);
         echo json_encode(["success" => true, "data" => $data]);
     }
 }
