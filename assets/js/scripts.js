@@ -5,21 +5,26 @@ document.addEventListener("DOMContentLoaded", function () {
   const totalItems = items.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const pagination = document.querySelector(".pagination");
-  const hideDelay = 5000;
 
-  // Fonction pour masquer les messages d'alerte
-  function hideAlert(id) {
-    var alert = document.getElementById(id);
-    if (alert) {
+  function hideAlerts() {
+    let baseDelay = 5000;
+    let delayIncrement = 1000;
+
+    // Sélectionner tous les éléments avec la classe 'alert'
+    var alerts = document.querySelectorAll(".alert");
+
+    alerts.forEach(function (alert, index) {
+      // Calculer le délai spécifique pour cet élément
+      var delay = baseDelay + index * delayIncrement;
+
+      // Ajouter la classe 'hide' après le délai calculé
       setTimeout(function () {
         alert.classList.add("hide");
-      }, hideDelay);
-    }
+      }, delay);
+    });
   }
-
-  // Masquer les messages d'alerte après le délai
-  hideAlert("alert-message");
-  hideAlert("alert-register");
+  
+  hideAlerts();
 
   function showPage(page) {
     const start = (page - 1) * itemsPerPage;
