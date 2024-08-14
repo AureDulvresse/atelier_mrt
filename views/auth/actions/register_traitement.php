@@ -28,18 +28,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $message = ['error' => 'Token CSRF invalide.'];
     } else {
         // Appel au contrôleur pour l'inscription
-        $authController->register($firstName, $lastName, $email, $password, $repeatPassword);
-        if ($authController->registerMessage()) {
-            $message = $authController->registerMessage();
-            $_SESSION['message_register'] = $message;
+        $response = $authController->register($firstName, $lastName, $email, $password, $repeatPassword);
 
-            if ($message != "Enregistrement réussi. Veuillez vérifier votre email pour activer votre compte.") {
-                header("Location: /atelier_mrt/register");
-                exit;
-            }
-            
-            header("Location: /atelier_mrt/login");
-            exit;
+        if ($response->status) {
+            // Enregistrement réussi
+            $_SESSION['message_register'] = $response->message;
+            header("Location: /login");
+        } else {
+            // Enregistrement échoué
+            $_SESSION['message_register'] = $response->message;
+            // Vous pouvez également afficher les erreurs spécifiques
+            // var_dump($response->errors);
+            header("Location: /register");
         }
+        exit;
+
     }
 }
