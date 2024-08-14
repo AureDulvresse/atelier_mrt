@@ -17,7 +17,9 @@ include './views/includes/header.php'; ?>
             <p class="text">
                 Explorez notre collection d'art et trouvez l'inspiration !
             </p>
-            <a href="#gallery" class="btn" data-aos="fade-up" data-aos-duration="1000">Découvrir mes tableaux</a>
+            <?php if (isset($artworks) && !empty($artworks)) { ?>
+                <a href="#gallery" class="btn" data-aos="fade-up" data-aos-duration="1000">Découvrir mes tableaux</a>
+            <?php } ?>
         </div>
     </div>
 </div>
