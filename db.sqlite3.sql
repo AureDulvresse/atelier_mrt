@@ -3,14 +3,14 @@ DROP TABLE IF EXISTS checkout_orders;
 DROP TABLE IF EXISTS checkouts;
 DROP TABLE IF EXISTS order_items;
 DROP TABLE IF EXISTS orders;
-DROP TABLE IF EXISTS carts;
 DROP TABLE IF EXISTS cart_items;
+DROP TABLE IF EXISTS carts;
+DROP TABLE IF EXISTS post_event_artworks;
+DROP TABLE IF EXISTS posts;
 DROP TABLE IF EXISTS artworks;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS mediums;
-DROP TABLE IF EXISTS posts;
-DROP TABLE IF EXISTS post_event_artworks;
 
 -- Tables de base
 CREATE TABLE categories (
