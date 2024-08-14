@@ -57,7 +57,7 @@ class CategoryController
 
     public function getAll()
     {
-        $data = $this->category->getAll();
+        $data = $this->category->getAll($this);
         echo json_encode(["success" => true, "data" => $data]);
     }
 }
