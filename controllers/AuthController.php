@@ -42,7 +42,7 @@ class AuthController
         if ($register['error'] == true) {
             return new Response(false, $register['message'], ["auth_error" => $register['message']]);
         } else {
-            $customer = new Customer($firstName, $lastName, $email, $password, false, false, true);
+            $customer = new Customer($firstName, $lastName, $email, $password, 0, 0, 1);
             if ($customer->save($this->pdo)) {
                 return new Response(true, "Enregistrement réussi. Veuillez vérifier votre email pour activer votre compte.");
             } else {
