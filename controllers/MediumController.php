@@ -55,7 +55,7 @@ class MediumController
 
     public function getAll()
     {
-        $data = $this->medium->getAll();
+        $data = $this->medium->getAll($this);
         echo json_encode(["success" => true, "data" => $data]);
     }
 }
