@@ -111,28 +111,28 @@ include './views/includes/header.php'; ?>
         </div>
 
         <div class="blog-wrapper">
-            <?php for ($i = 0; $i < 3; $i++) : ?>
+            <?php foreach ($posts as $post) : ?>
                 <div class="blog-wrap">
                     <img src="" alt="" class="points points-sq" />
 
                     <div class="blog-card">
                         <div class="blog-image">
-                            <img src="./assets/images/sample.jpg" alt="" />
+                            <img src="<?php echo ($post->thumbnail != null) ? htmlspecialchars($artwork->thumbnail) : "/atelier_mrt/assets/images/sample.jpg"; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" />
                         </div>
 
                         <div class="blog-content">
                             <div class="blog-info">
-                                <h5 class="blog-date">19 Mars, 2020</h5>
+                                <h5 class="blog-date"><?php echo ($post->event_date); ?></h5>
                             </div>
-                            <h3 class="title-sm">Un Titre Court</h3>
+                            <h3 class="title-sm"><?php echo ($post->title); ?></h3>
                             <p class="blog-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem poimus? Tempora expedita eos autem!
+                                <?php echo ($post->description); ?>
                             </p>
                             <a href="blog/post/<?php echo $i + 1; ?>" class="btn small">Lire la Suite</a>
                         </div>
                     </div>
                 </div>
-            <?php endfor; ?>
+            <?php endforeach; ?>
         </div>
         <div class="more-btn">
             <a href="blog" class="btn">Voir plus</a>

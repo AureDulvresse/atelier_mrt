@@ -124,6 +124,7 @@ CREATE TABLE posts (
     post_type ENUM('news', 'event') NOT NULL,
     event_date DATETIME NULL, -- Date pour les événements uniquement
     event_location VARCHAR(200) NULL, -- Lieu pour les événements uniquement
+    thumbnail VARCHAR(100) NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

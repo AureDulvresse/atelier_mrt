@@ -4,6 +4,8 @@ namespace App\Models;
 
 use PDO;
 
+use App\Models\Artwork;
+
 class Post
 {
     private $conn;
@@ -16,6 +18,7 @@ class Post
     public $post_type;
     public $event_date;
     public $event_location;
+    public $thumbnail;
     public $created_at;
     public $updated_at;
 
@@ -39,7 +42,13 @@ class Post
         $query = "SELECT * FROM " . $this->table . " WHERE id = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([$id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($data) {
+            $this->fill($data);
+            return $this;
+        }
+        return null;
     }
 
     public static function all($pdo)
@@ -47,7 +56,16 @@ class Post
         $query = "SELECT * FROM posts";
         $stmt = $pdo->prepare($query);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $posts = [];
+        foreach ($results as $result) {
+            $post = new self($pdo);
+            $post->fill($result);
+            $posts[] = $post;
+        }
+
+        return $posts;
     }
 
     public function update()
@@ -84,7 +102,15 @@ class Post
         $query = "SELECT a.* FROM artworks a JOIN post_event_artworks pea ON a.id = pea.artwork_id WHERE pea.post_id = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([$this->id]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $artworks = [];
+        foreach ($results as $result) {
+            $artwork = Artwork::createFromDatabaseRow($result); // Assurez-vous que la classe Artwork est définie
+            $artworks[] = $artwork;
+        }
+
+        return $artworks;
     }
 
     public static function countEvents($pdo)
@@ -94,5 +120,14 @@ class Post
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['count'];
+    }
+
+    private function fill($data)
+    {
+        foreach ($data as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->$key = $value;
+            }
+        }
     }
 }
