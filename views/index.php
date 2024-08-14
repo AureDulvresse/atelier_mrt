@@ -1,8 +1,10 @@
 <?php
 
 use App\Models\Artwork;
+use App\Models\Post;
 
 $artworks = Artwork::all($pdo);
+$posts = Post::all($pdo);
 
 include './views/includes/header.php'; ?>
 
