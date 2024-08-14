@@ -40,6 +40,7 @@ include 'includes/sidebar.php';
             <span class="stat-label">Événements</span>
         </div>
     </div>
+        <?php if (isset($artworks) && !empty($artworks)) { ?>
     <div class="tables-container">
         <div class="table-card">
             <div class="table-header">
@@ -64,6 +65,7 @@ include 'includes/sidebar.php';
                 </tbody>
             </table>
         </div>
+        <?php } ?>
         <div class="table-card">
             <div class="table-header">
                 <h5>Commandes</h5>
