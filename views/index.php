@@ -1,8 +1,10 @@
 <?php
 
 use App\Models\Artwork;
+use App\Models\Post;
 
 $artworks = Artwork::all($pdo);
+$posts = Post::all($pdo);
 
 include './views/includes/header.php'; ?>
 
@@ -15,7 +17,9 @@ include './views/includes/header.php'; ?>
             <p class="text">
                 Explorez notre collection d'art et trouvez l'inspiration !
             </p>
-            <a href="#gallery" class="btn" data-aos="fade-up" data-aos-duration="1000">Découvrir mes tableaux</a>
+            <?php if (isset($artworks) && !empty($artworks)) { ?>
+                <a href="#gallery" class="btn" data-aos="fade-up" data-aos-duration="1000">Découvrir mes tableaux</a>
+            <?php } ?>
         </div>
     </div>
 </div>
@@ -45,142 +49,101 @@ include './views/includes/header.php'; ?>
 </section>
 
 <!-- Section Galerie -->
-<section class="gallery section" id="gallery">
-    <div class="background-bg">
-        <div class="overlay overlay-sm">
-            <!-- Images de fond -->
-            <img src="./assets/images/shapes/half-circle.png" class="shape half-circle1" alt="" data-aos="fade-up" data-aos-duration="1000" />
-            <img src="./assets/images/shapes/half-circle.png" class="shape half-circle2" alt="" data-aos="fade-up" data-aos-duration="2000" />
-            <img src="./assets/images/shapes/square.png" class="shape square" alt="" data-aos="fade-up" data-aos-duration="3000" />
-            <img src="./assets/images/shapes/wave.png" class="shape wave" alt="" data-aos="fade-up" data-aos-duration="4000" />
-            <img src="./assets/images/shapes/circle.png" class="shape circle" alt="" data-aos="fade-up" data-aos-duration="5000" />
-            <img src="./assets/images/shapes/triangle.png" class="shape triangle" alt="" data-aos="fade-up" data-aos-duration="6000" />
-            <img src="./assets/images/shapes/x.png" class="shape xshape" alt="" data-aos="fade-up" data-aos-duration="7000" />
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="section-header">
-            <h3 class="title" data-title="Découvrir ma galerie">Mes Œuvres</h3>
+<?php if (isset($artworks) && !empty($artworks)) { ?>
+    <section class="gallery section" id="gallery">
+        <div class="background-bg">
+            <div class="overlay overlay-sm">
+                <!-- Images de fond -->
+                <img src="./assets/images/shapes/half-circle.png" class="shape half-circle1" alt="" data-aos="fade-up" data-aos-duration="1000" />
+                <img src="./assets/images/shapes/half-circle.png" class="shape half-circle2" alt="" data-aos="fade-up" data-aos-duration="2000" />
+                <img src="./assets/images/shapes/square.png" class="shape square" alt="" data-aos="fade-up" data-aos-duration="3000" />
+                <img src="./assets/images/shapes/wave.png" class="shape wave" alt="" data-aos="fade-up" data-aos-duration="4000" />
+                <img src="./assets/images/shapes/circle.png" class="shape circle" alt="" data-aos="fade-up" data-aos-duration="5000" />
+                <img src="./assets/images/shapes/triangle.png" class="shape triangle" alt="" data-aos="fade-up" data-aos-duration="6000" />
+                <img src="./assets/images/shapes/x.png" class="shape xshape" alt="" data-aos="fade-up" data-aos-duration="7000" />
+            </div>
         </div>
 
-        <div class="section-body">
-            <div class="filter">
-                <button class="filter-btn active" data-filter="*">Toutes</button>
-                <button class="filter-btn" data-filter=".peinture">Peinture</button>
-                <button class="filter-btn" data-filter=".dessin">Dessin</button>
-                <button class="filter-btn" data-filter=".sculpture">Sculpture</button>
-                <button class="filter-btn" data-filter=".photographie">Photographie</button>
+        <div class="container">
+            <div class="section-header">
+                <h3 class="title" data-title="Découvrir ma galerie">Mes Œuvres</h3>
             </div>
 
-            <div class="grid" data-aos="fade-up" data-aos-duration="11000">
-                <?php foreach ($artworks as $artwork) : ?>
-                    <div class="grid-item peinture">
-                        <div class="gallery-image">
-                            <img src="<?php echo ($artwork->thumbnail != null) ? htmlspecialchars($artwork->thumbnail) : "/atelier_mrt/assets/images/sample.jpg"; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" />
-                            <div class="img-overlay">
-                                <div class="img-overlay-content">
-                                    <div class="img-description">
-                                        <h3><?php echo htmlspecialchars($artwork->title); ?></h3>
-                                        <h5><?php echo htmlspecialchars($artwork->category_name); ?></h5>
+            <div class="section-body">
+                <div class="filter">
+                    <button class="filter-btn active" data-filter="*">Toutes</button>
+                    <button class="filter-btn" data-filter=".peinture">Peinture</button>
+                    <button class="filter-btn" data-filter=".dessin">Dessin</button>
+                    <button class="filter-btn" data-filter=".sculpture">Sculpture</button>
+                    <button class="filter-btn" data-filter=".photographie">Photographie</button>
+                </div>
+
+                <div class="grid" data-aos="fade-up" data-aos-duration="11000">
+                    <?php foreach ($artworks as $artwork) : ?>
+                        <div class="grid-item peinture">
+                            <div class="gallery-image">
+                                <img src="<?php echo ($artwork->thumbnail != null) ? htmlspecialchars($artwork->thumbnail) : "/atelier_mrt/assets/images/sample.jpg"; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" />
+                                <div class="img-overlay">
+                                    <div class="img-overlay-content">
+                                        <div class="img-description">
+                                            <h3><?php echo htmlspecialchars($artwork->title); ?></h3>
+                                            <h5><?php echo htmlspecialchars($artwork->category_name); ?></h5>
+                                        </div>
+                                        <a href="shop/artwork/<?php echo htmlspecialchars($artwork->id); ?>" class="btn black small">Détail</a>
                                     </div>
-                                    <a href="shop/artwork/<?php echo htmlspecialchars($artwork->id); ?>" class="btn black small">Détail</a>
                                 </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="more-btn">
+                    <a href="shop" class="btn">Explorer la galerie</a>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php } ?>
+
+<!-- Section Blog -->
+<?php if (isset($posts) && !empty($posts)) { ?>
+    <section class="blog section" id="blog">
+        <div class="container">
+            <div class="section-header">
+                <h3 class="title" data-title="Dernières Nouvelles">Mon Blog</h3>
+                <p class="text">
+                    Découvrez les dernières actualités et exposition de l'atelier MRT.
+                </p>
+            </div>
+
+            <div class="blog-wrapper">
+                <?php foreach ($posts as $post): ?>
+                    <div class="blog-wrap">
+
+                        <div class="blog-card">
+                            <div class="blog-image">
+                                <img src="<?php echo ($post->thumbnail != null) ? htmlspecialchars($artwork->thumbnail) : "/atelier_mrt/assets/images/sample.jpg"; ?>" alt="<?php echo htmlspecialchars($artwork->title); ?>" />
+                            </div>
+
+                            <div class="blog-content">
+                                <div class="blog-info">
+                                    <h5 class="blog-date"><?php echo ($post->event_date); ?></h5>
+                                </div>
+                                <h3 class="title-sm"><?php echo ($post->title); ?></h3>
+                                <p class="blog-text">
+                                    <?php echo ($post->content); ?>
+                                </p>
+                                <a href="blog/post/<?php echo htmlspecialchars($post->id); ?>" class="btn small">Lire la Suite</a>
                             </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
             <div class="more-btn">
-                <a href="shop" class="btn">Explorer la galerie</a>
+                <a href="blog" class="btn">Voir plus</a>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- Section Records
-<section class="records">
-    <div class="overlay overlay-sm">
-        <img src="./assets/images/shapes/square.png" alt="" class="shape square1" />
-        <img src="./assets/images/shapes/square.png" alt="" class="shape square2" />
-        <img src="./assets/images/shapes/circle.png" alt="" class="shape circle" />
-        <img src="./assets/images/shapes/half-circle.png" alt="" class="shape half-circle" />
-        <img src="./assets/images/shapes/wave.png" alt="" class="shape wave wave1" />
-        <img src="./assets/images/shapes/wave.png" alt="" class="shape wave wave2" />
-        <img src="./assets/images/shapes/x.png" alt="" class="shape xshape" />
-        <img src="./assets/images/shapes/triangle.png" alt="" class="shape triangle" />
-    </div>
-
-    <div class="container">
-        <div class="wrap">
-            <div class="record-circle">
-                <h2 class="number" data-num="235">0</h2>
-                <h4 class="sub-title">Projets</h4>
-            </div>
-        </div>
-
-        <div class="wrap">
-            <div class="record-circle active">
-                <h2 class="number" data-num="174">0</h2>
-                <h4 class="sub-title">Clients Satisfaits</h4>
-            </div>
-        </div>
-
-        <div class="wrap">
-            <div class="record-circle">
-                <h2 class="number" data-num="892">0</h2>
-                <h4 class="sub-title">Heures de Travail</h4>
-            </div>
-        </div>
-
-        <div class="wrap">
-            <div class="record-circle">
-                <h2 class="number" data-num="368">0</h2>
-                <h4 class="sub-title">Récompenses</h4>
-            </div>
-        </div>
-    </div>
-</section> -->
-
-<!-- Section Blog -->
-<section class="blog section" id="blog">
-    <div class="container">
-        <div class="section-header">
-            <h3 class="title" data-title="Dernières Nouvelles">Mon Blog</h3>
-            <p class="text">
-                Découvrez les dernières actualités et exposition de l'atelier MRT.
-            </p>
-        </div>
-
-        <div class="blog-wrapper">
-            <?php for ($i = 0; $i < 3; $i++) : ?>
-                <div class="blog-wrap">
-                    <img src="" alt="" class="points points-sq" />
-
-                    <div class="blog-card">
-                        <div class="blog-image">
-                            <img src="./assets/images/sample.jpg" alt="" />
-                        </div>
-
-                        <div class="blog-content">
-                            <div class="blog-info">
-                                <h5 class="blog-date">19 Mars, 2020</h5>
-                            </div>
-                            <h3 class="title-sm">Un Titre Court</h3>
-                            <p class="blog-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem poimus? Tempora expedita eos autem!
-                            </p>
-                            <a href="blog/post/<?php echo $i + 1; ?>" class="btn small">Lire la Suite</a>
-                        </div>
-                    </div>
-                </div>
-            <?php endfor; ?>
-        </div>
-        <div class="more-btn">
-            <a href="blog" class="btn">Voir plus</a>
-        </div>
-    </div>
-</section>
+    </section>
+<?php } ?>
 
 <!-- Section Contact -->
 <section class="contact" id="contact">

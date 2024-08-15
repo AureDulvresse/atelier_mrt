@@ -4,8 +4,27 @@ document.addEventListener("DOMContentLoaded", function () {
   const items = document.querySelectorAll(".grid-item");
   const totalItems = items.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const grid = document.querySelector(".grid");
   const pagination = document.querySelector(".pagination");
+
+  function hideAlerts() {
+    let baseDelay = 5000;
+    let delayIncrement = 1000;
+
+    // Sélectionner tous les éléments avec la classe 'alert'
+    var alerts = document.querySelectorAll(".alert");
+
+    alerts.forEach(function (alert, index) {
+      // Calculer le délai spécifique pour cet élément
+      var delay = baseDelay + index * delayIncrement;
+
+      // Ajouter la classe 'hide' après le délai calculé
+      setTimeout(function () {
+        alert.classList.add("hide");
+      }, delay);
+    });
+  }
+  
+  hideAlerts();
 
   function showPage(page) {
     const start = (page - 1) * itemsPerPage;

@@ -18,14 +18,20 @@ include './views/includes/breadcrumb.php';
                 <form action="/atelier_mrt/auth/traitement/login" method="post">
 
                     <?php if (isset($message) && !empty($message)) : ?>
-                        <div class="alert error">
+                        <div class="alert error fade-out">
                             <?php echo htmlspecialchars($message); ?>
                         </div>
                     <?php endif; ?>
 
                     <?php if (isset($_SESSION['message_register']) && !empty($_SESSION['message_register'])) : ?>
-                        <div class="alert success">
+                        <div class="alert success fade-out">
                             <?php echo htmlspecialchars($_SESSION['message_register']); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (isset($_SESSION['login_message']) && !empty($_SESSION['login_message'])) : ?>
+                        <div class="alert error fade-out">
+                            <?php echo htmlspecialchars($_SESSION['login_message']); ?>
                         </div>
                     <?php endif; ?>
 

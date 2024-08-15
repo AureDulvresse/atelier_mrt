@@ -20,7 +20,7 @@ class Customer
     public $created_at;
     public $updated_at;
 
-    public function __construct($first_name, $last_name, $email, $password, $is_superuser = false, $is_staff = false, $is_active = true)
+    public function __construct($first_name, $last_name, $email, $password, $is_superuser = 0, $is_staff = 0, $is_active = 1)
     {
         $this->first_name = $first_name;
         $this->last_name = $last_name;

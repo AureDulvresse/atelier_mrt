@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atelier MRT | <?php echo htmlspecialchars($pageTitle); ?></title>
 
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
 
