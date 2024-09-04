@@ -20,14 +20,12 @@ class Artwork
     public $width;
     public $height;
     public $thumbnail;
-    public $category_id;
-    public $category_name;
     public $medium_id;
     public $medium_name;
     public $created_at;
     public $updated_at;
 
-    public function __construct($title, $description, $price, $stock, $width, $height, $thumbnail, $category_id, $medium_id)
+    public function __construct($title, $description, $price, $stock, $width, $height, $thumbnail, $medium_id)
     {
         $this->title = $title;
         $this->slug = slugify($title);
@@ -37,7 +35,6 @@ class Artwork
         $this->width = $width;
         $this->height = $height;
         $this->thumbnail = $thumbnail;
-        $this->category_id = $category_id;
         $this->medium_id = $medium_id;
         $this->created_at = date('Y-m-d H:i:s');
         $this->updated_at = date('Y-m-d H:i:s');
@@ -53,12 +50,10 @@ class Artwork
             $row['width'],
             $row['height'],
             $row['thumbnail'],
-            $row['category_id'],
             $row['medium_id']
         );
 
         $instance->id = $row['id'];
-        $instance->category_name = $row['category_name'];
         $instance->medium_name = $row['medium_name'];
         $instance->created_at = $row['created_at'];
         $instance->updated_at = $row['updated_at'];
@@ -68,8 +63,8 @@ class Artwork
 
     public function save($pdo)
     {
-        $sql = "INSERT INTO " . $this->table_name . " (title, slug, description, price, stock, width, height, thumbnail, category_id, medium_id, created_at, updated_at) 
-                VALUES (:title, :slug, :description, :price, :stock, :width, :height, :thumbnail, :category_id, :medium_id, :created_at, :updated_at)";
+        $sql = "INSERT INTO " . $this->table_name . " (title, slug, description, price, stock, width, height, thumbnail, medium_id, created_at, updated_at) 
+                VALUES (:title, :slug, :description, :price, :stock, :width, :height, :thumbnail, :medium_id, :created_at, :updated_at)";
         $stmt = $pdo->prepare($sql);
         $params = [
             ':title' => $this->title,
@@ -80,7 +75,6 @@ class Artwork
             ':width' => $this->width,
             ':height' => $this->height,
             ':thumbnail' => $this->thumbnail,
-            ':category_id' => $this->category_id,
             ':medium_id' => $this->medium_id,
             ':created_at' => $this->created_at,
             ':updated_at' => $this->updated_at
@@ -91,7 +85,7 @@ class Artwork
     public function update($pdo)
     {
         $sql = "UPDATE " . $this->table_name . " SET title = :title, slug = :slug, description = :description, price = :price, stock = :stock, 
-                width = :width, height = :height, thumbnail = :thumbnail, category_id = :category_id, medium_id = :medium_id, 
+                width = :width, height = :height, thumbnail = :thumbnail, medium_id = :medium_id, 
                 updated_at = :updated_at WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         $params = [
@@ -103,7 +97,6 @@ class Artwork
             ':width' => $this->width,
             ':height' => $this->height,
             ':thumbnail' => $this->thumbnail,
-            ':category_id' => $this->category_id,
             ':medium_id' => $this->medium_id,
             ':updated_at' => $this->updated_at,
             ':id' => $this->id
@@ -113,9 +106,8 @@ class Artwork
 
     public static function find($pdo, $id)
     {
-        $sql = "SELECT artworks.*, categories.name as category_name, mediums.name as medium_name
+        $sql = "SELECT artworks.*, mediums.name as medium_name
             FROM artworks
-            INNER JOIN categories ON artworks.category_id = categories.id
             INNER JOIN mediums ON artworks.medium_id = mediums.id
             WHERE artworks.id = :id";
 
@@ -134,11 +126,10 @@ class Artwork
     public static function all($pdo, $order_by = "updated_at DESC")
     {
         // Requête SQL pour récupérer les œuvres avec les noms des catégories et des mediums
-        $sql = "SELECT artworks.*, categories.name as category_name, mediums.name as medium_name
+        $sql = "SELECT artworks.*, mediums.name as medium_name
             FROM artworks
-            INNER JOIN categories ON artworks.category_id = categories.id
             INNER JOIN mediums ON artworks.medium_id = mediums.id
-            ORDER BY ". $order_by;
+            ORDER BY " . $order_by;
 
         // Préparation et exécution de la requête
         $stmt = $pdo->prepare($sql);
@@ -176,5 +167,4 @@ class Artwork
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['count'];
     }
-
 }
