@@ -41,7 +41,7 @@ include 'includes/sidebar.php';
                 <label for="medium">Medium</label>
                 <select name="medium_id" id="medium" required>
                     <?php foreach ($mediums as $medium) : ?>
-                        <option value="<?php echo $medium['id']; ?>"><?php echo $medium['name']; ?></option>
+                        <option value="<?php echo $medium->id; ?>"><?php echo $medium->name; ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
