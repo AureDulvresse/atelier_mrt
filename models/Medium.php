@@ -34,9 +34,9 @@ class Medium
         return $stmt->execute();
     }
 
-    public function delete($pdo, $id)
+    public static function delete($pdo, $id)
     {
-        $query = "DELETE FROM " . $this->table . " WHERE id = ?";
+        $query = "DELETE FROM mediums WHERE id = ?";
         $stmt = $pdo->prepare($query);
         $stmt->bind_param("i", $id);
         return $stmt->execute();
