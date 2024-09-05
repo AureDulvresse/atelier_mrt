@@ -39,7 +39,7 @@ class Medium
                 VALUES (:name, :created_at, :updated_at)";
         $stmt = $pdo->prepare($sql);
         $params = [
-            ':title' => $this->name,
+            ':name' => $this->name,
             ':created_at' => $this->created_at,
             ':updated_at' => $this->updated_at
         ];
@@ -48,10 +48,10 @@ class Medium
 
     public function update($pdo)
     {
-        $sql = "UPDATE " . $this->table_name . " SET title = :name, updated_at = :updated_at WHERE id = :id";
+        $sql = "UPDATE " . $this->table_name . " SET name = :name, updated_at = :updated_at WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         $params = [
-            ':title' => $this->name,
+            ':name' => $this->name,
             ':updated_at' => $this->updated_at,
             ':id' => $this->id
         ];
