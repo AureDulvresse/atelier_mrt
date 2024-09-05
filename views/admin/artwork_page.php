@@ -1,11 +1,9 @@
 <?php
 
 use App\Models\Artwork;
-use App\Models\Category;
 use App\Models\Medium;
 
 $artworks = Artwork::all($pdo);
-$categories = Category::all($pdo);
 $mediums = Medium::all($pdo);
 
 include 'includes/sidebar.php';
@@ -99,7 +97,6 @@ include 'includes/sidebar.php';
                                 <td><?php echo htmlspecialchars($artwork->title); ?></td>
                                 <td><?php echo htmlspecialchars($artwork->description); ?></td>
                                 <td><?php echo htmlspecialchars($artwork->price); ?></td>
-                                <td><?php echo htmlspecialchars($artwork->category_name); ?></td>
                                 <td><?php echo htmlspecialchars($artwork->medium_name); ?></td>
                                 <td>
                                     <button onclick="editArtwork(<?php echo htmlspecialchars(json_encode($artwork)); ?>)"><i class="bx bx-pencil"></i></button>
