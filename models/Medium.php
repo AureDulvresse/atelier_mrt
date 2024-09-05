@@ -6,7 +6,7 @@ use PDO;
 
 class Medium
 {
-    private $table = 'mediums';
+    private $table_name = 'mediums';
 
     public $id;
     public $name;
@@ -16,23 +16,62 @@ class Medium
     public function __construct($name)
     {
         $this->name = $name;
+        $this->created_at = date('Y-m-d H:i:s');
+        $this->updated_at = date('Y-m-d H:i:s');
+    }
+
+    public static function createFromDatabaseRow($row)
+    {
+        $instance = new self(
+            $row['name'],
+        );
+
+        $instance->id = $row['id'];
+        $instance->created_at = $row['created_at'];
+        $instance->updated_at = $row['updated_at'];
+
+        return $instance;
     }
 
     public function save($pdo)
     {
-        $query = "INSERT INTO " . $this->table . " (name, created_at, updated_at) VALUES (?, NOW(), NOW())";
-        $stmt = $pdo->prepare($query);
-        $stmt->bind_param("s", $this->name);
-        return $stmt->execute();
+        $sql = "INSERT INTO " . $this->table_name . " (name, created_at, updated_at) 
+                VALUES (:name, :created_at, :updated_at)";
+        $stmt = $pdo->prepare($sql);
+        $params = [
+            ':title' => $this->name,
+            ':created_at' => $this->created_at,
+            ':updated_at' => $this->updated_at
+        ];
+        return $stmt->execute($params);
     }
 
     public function update($pdo)
     {
-        $query = "UPDATE " . $this->table . " SET name = ?, updated_at = NOW() WHERE id = ?";
-        $stmt = $pdo->prepare($query);
-        $stmt->bind_param("si", $this->name, $this->id);
-        return $stmt->execute();
+        $sql = "UPDATE " . $this->table_name . " SET title = :name, updated_at = :updated_at WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        $params = [
+            ':title' => $this->name,
+            ':updated_at' => $this->updated_at,
+            ':id' => $this->id
+        ];
+        return $stmt->execute($params);
     }
+
+    public static function find($pdo, $id)
+    {
+        $sql = "SELECT * FROM mediums WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':id' => $id]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row) {
+            return self::createFromDatabaseRow($row);
+        }
+
+        return null;
+    }
+
 
     public static function delete($pdo, $id)
     {
@@ -42,10 +81,26 @@ class Medium
         return $stmt->execute();
     }
 
-    public static function all($pdo)
+    public static function all($pdo, $order_by = "updated_at DESC")
     {
-        $query = "SELECT * FROM mediums";
-        $result = $pdo->query($query);
-        return $result->fetchAll(PDO::FETCH_ASSOC);
+        $query ="SELECT * FROM mediums
+                ORDER BY " . $order_by;
+        $stmt = $pdo->query($query);
+
+        // Récupération des résultats sous forme de tableau associatif
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Vérification si des résultats ont été trouvés
+        if ($rows) {
+            // Création d'objets Artwork à partir des résultats de la base de données
+            $artworks = [];
+            foreach ($rows as $row) {
+                $mediums[] = self::createFromDatabaseRow($row);
+            }
+            return $mediums;
+        }
+
+        // Retourne null s'il n'y a pas de résultats
+        return null;
     }
 }
