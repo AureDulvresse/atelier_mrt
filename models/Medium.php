@@ -19,7 +19,7 @@ class Medium
         $this->conn = $db;
     }
 
-    public function create()
+    public function save()
     {
         $query = "INSERT INTO " . $this->table . " (name, created_at, updated_at) VALUES (?, NOW(), NOW())";
         $stmt = $this->conn->prepare($query);
