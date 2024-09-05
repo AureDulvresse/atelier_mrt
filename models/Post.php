@@ -4,12 +4,14 @@ namespace App\Models;
 
 use PDO;
 
+require_once 'utils/slugify.php';
+
 use App\Models\Artwork;
 
 class Post
 {
-    private $conn;
     private $table = 'posts';
+    private $pdo; // Ajout de la connexion PDO
 
     public $id;
     public $title;
@@ -22,25 +24,56 @@ class Post
     public $created_at;
     public $updated_at;
 
-    public function __construct($pdo)
+    public function __construct($pdo, $title = null, $content = null, $post_type = null, $event_date = null, $event_location = null, $thumbnail = null)
     {
-        $this->conn = $pdo;
+        $this->pdo = $pdo;
+        $this->title = $title;
+        $this->slug = $title ? slugify($title) : null; // Gestion des titres nuls
+        $this->content = $content;
+        $this->post_type = $post_type;
+        $this->event_date = $event_date;
+        $this->event_location = $event_location;
+        $this->thumbnail = $thumbnail;
+        $this->created_at = date('Y-m-d H:i:s');
+        $this->updated_at = date('Y-m-d H:i:s');
     }
 
-    public function create()
+    public static function createFromDatabaseRow($pdo, $row)
     {
-        $query = "INSERT INTO " . $this->table . " (title, slug, content, post_type, event_date, event_location, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())";
-        $stmt = $this->conn->prepare($query);
+        $instance = new self(
+            $pdo,
+            $row['title'],
+            $row['content'],
+            $row['post_type'],
+            $row['event_date'],
+            $row['event_location'],
+            $row['thumbnail']
+        );
 
-        $stmt->execute([$this->title, $this->slug, $this->content, $this->post_type, $this->event_date, $this->event_location]);
+        $instance->id = $row['id'];
+        $instance->created_at = $row['created_at'];
+        $instance->updated_at = $row['updated_at'];
 
-        return $this->conn->lastInsertId();
+        return $instance;
+    }
+
+    public function save()
+    {
+        $query = "INSERT INTO " . $this->table . " (title, slug, content, post_type, event_date, event_location, thumbnail, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+        $stmt = $this->pdo->prepare($query);
+
+        if ($stmt->execute([$this->title, $this->slug, $this->content, $this->post_type, $this->event_date, $this->event_location, $this->thumbnail])) {
+            $this->id = $this->pdo->lastInsertId(); // Ajout de l'ID après l'insertion
+            return $this->id;
+        }
+
+        return false; // Gérer l'échec
     }
 
     public function read($id)
     {
         $query = "SELECT * FROM " . $this->table . " WHERE id = ?";
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         $stmt->execute([$id]);
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -60,8 +93,7 @@ class Post
 
         $posts = [];
         foreach ($results as $result) {
-            $post = new self($pdo);
-            $post->fill($result);
+            $post = self::createFromDatabaseRow($pdo, $result);
             $posts[] = $post;
         }
 
@@ -70,43 +102,43 @@ class Post
 
     public function update()
     {
-        $query = "UPDATE " . $this->table . " SET title = ?, slug = ?, content = ?, post_type = ?, event_date = ?, event_location = ?, updated_at = NOW() WHERE id = ?";
-        $stmt = $this->conn->prepare($query);
+        $query = "UPDATE " . $this->table . " SET title = ?, slug = ?, content = ?, post_type = ?, event_date = ?, event_location = ?, thumbnail = ?, updated_at = NOW() WHERE id = ?";
+        $stmt = $this->pdo->prepare($query);
 
-        return $stmt->execute([$this->title, $this->slug, $this->content, $this->post_type, $this->event_date, $this->event_location, $this->id]);
+        return $stmt->execute([$this->title, $this->slug, $this->content, $this->post_type, $this->event_date, $this->event_location, $this->thumbnail, $this->id]);
     }
 
     public function delete($id)
     {
         $query = "DELETE FROM " . $this->table . " WHERE id = ?";
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         return $stmt->execute([$id]);
     }
 
     public function attachArtwork($artworkId)
     {
         $query = "INSERT INTO post_event_artworks (post_id, artwork_id) VALUES (?, ?)";
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         return $stmt->execute([$this->id, $artworkId]);
     }
 
     public function detachArtwork($artworkId)
     {
         $query = "DELETE FROM post_event_artworks WHERE post_id = ? AND artwork_id = ?";
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         return $stmt->execute([$this->id, $artworkId]);
     }
 
     public function getArtworks()
     {
         $query = "SELECT a.* FROM artworks a JOIN post_event_artworks pea ON a.id = pea.artwork_id WHERE pea.post_id = ?";
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         $stmt->execute([$this->id]);
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $artworks = [];
         foreach ($results as $result) {
-            $artwork = Artwork::createFromDatabaseRow($result); // Assurez-vous que la classe Artwork est définie
+            $artwork = Artwork::createFromDatabaseRow($result); // Utilisation de la connexion PDO
             $artworks[] = $artwork;
         }
 
