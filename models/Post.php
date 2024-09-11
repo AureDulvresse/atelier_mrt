@@ -23,7 +23,7 @@ class Post
     public $created_at;
     public $updated_at;
 
-    public function __construct($title, $content = null, $post_type = null, $event_date = null, $event_location = null, $thumbnail = null)
+    public function __construct($title, $content, $post_type, $event_date, $event_location, $thumbnail)
     {
         $this->title = $title;
         $this->slug = $title ? slugify($title) : null; // Gestion des titres nuls
@@ -124,11 +124,11 @@ class Post
         // Vérification si des résultats ont été trouvés
         if ($rows) {
             // Création d'objets Artwork à partir des résultats de la base de données
-            $artworks = [];
+            $posts = [];
             foreach ($rows as $row) {
-                $artworks[] = self::createFromDatabaseRow($row);
+                $posts[] = self::createFromDatabaseRow($row);
             }
-            return $artworks;
+            return $posts;
         }
 
         // Retourne null s'il n'y a pas de résultats
