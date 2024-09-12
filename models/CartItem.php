@@ -68,13 +68,11 @@ class CartItem
     {
         $query = "SELECT cart_items.*, 
                      artworks.id AS artwork_id, artworks.title, artworks.description, artworks.price, artworks.stock, 
-                     artworks.width, artworks.height, artworks.thumbnail, artworks.category_id, artworks.medium_id, 
+                     artworks.width, artworks.height, artworks.thumbnail, artworks.medium_id, 
                      artworks.created_at, artworks.updated_at,
-                     categories.name AS category_name,
                      mediums.name AS medium_name
               FROM " . $this->table_name . " 
               INNER JOIN artworks ON " . $this->table_name . ".artwork_id = artworks.id
-              INNER JOIN categories ON artworks.category_id = categories.id
               INNER JOIN mediums ON artworks.medium_id = mediums.id
               WHERE cart_id = :cart_id";
 
@@ -99,11 +97,9 @@ class CartItem
                 $row['width'],
                 $row['height'],
                 $row['thumbnail'],
-                $row['category_id'],
                 $row['medium_id']
             );
             $cartItem->artwork->id = $row['artwork_id'];
-            $cartItem->artwork->category_name = $row['category_name'];
             $cartItem->artwork->medium_name = $row['medium_name'];
             $cartItem->artwork->created_at = $row['created_at'];
             $cartItem->artwork->updated_at = $row['updated_at'];
